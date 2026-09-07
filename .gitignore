@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.venv/
+.DS_Store
+*.log
+
+# large artefacts are intentionally not tracked
+*.pt
+*.hdf5
+*.npz
+data/

@@ -1,0 +1,222 @@
+#!/usr/bin/env python3
+"""Generate 2D incompressible Navier-Stokes data using pseudo-spectral solver."""
+
+import sys
+import pathlib
+import numpy as np
+from datetime import datetime
+
+REYNOLDS_CONFIGS = {
+    100:   {"nu": 1e-2, "n_samples": 10000, "T_burn": 5.0},
+    1000:  {"nu": 1e-3, "n_samples": 10000, "T_burn": 5.0},
+    3600:  {"nu": 2.78e-4, "n_samples": 10000, "T_burn": 5.0},
+    10000: {"nu": 1e-4, "n_samples": 10000, "T_burn": 5.0},
+}
+
+N_TIMESTEPS = 20
+DT_SAVE = 0.1
+N_INNER = 10
+N_GRID = 64
+
+OUTPUT_DIR = pathlib.Path.home() / "data" / "2D" / "Navier_Stokes"
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+
+def _build_wavenumbers(N):
+    k = np.fft.fftfreq(N, d=1.0 / N).astype(np.float64)
+    kx, ky = np.meshgrid(k, k, indexing="ij")
+    k2 = kx**2 + ky**2
+    k2[0, 0] = 1.0
+    return kx, ky, k2
+
+
+def _dealias_mask(N):
+    k = np.fft.fftfreq(N, d=1.0 / N)
+    kx, ky = np.meshgrid(k, k, indexing="ij")
+    kmax = N // 3
+    return (np.abs(kx) <= kmax) & (np.abs(ky) <= kmax)
+
+
+def _forcing(N):
+    x = np.linspace(0, 1, N, endpoint=False)
+    X, Y = np.meshgrid(x, x, indexing="ij")
+    f = 0.1 * (np.sin(2 * np.pi * (X + Y)) + np.cos(2 * np.pi * (X + Y)))
+    return np.fft.rfft2(f)
+
+
+def _omega_to_vel(omega_hat, kx, ky, k2):
+    """Return (u, v) in physical space from vorticity Fourier coefficients."""
+    # psi = -omega / k^2,  u = d(psi)/dy,  v = -d(psi)/dx
+    psi_hat = -omega_hat / k2
+    u = np.fft.irfft2(1j * ky[:, :omega_hat.shape[1]] * psi_hat)
+    v = np.fft.irfft2(-1j * kx[:, :omega_hat.shape[1]] * psi_hat)
+    return u, v
+
+
+def _nonlinear(omega_hat, kx, ky, k2, mask):
+    """Compute -u·∇ω in Fourier space (dealiased)."""
+    Nk = omega_hat.shape[1]
+    u, v = _omega_to_vel(omega_hat, kx[:, :Nk], ky[:, :Nk], k2[:, :Nk])
+    omega = np.fft.irfft2(omega_hat)
+    dw_dx = np.fft.irfft2(1j * kx[:, :Nk] * omega_hat)
+    dw_dy = np.fft.irfft2(1j * ky[:, :Nk] * omega_hat)
+    nl = -(u * dw_dx + v * dw_dy)
+    nl_hat = np.fft.rfft2(nl)
+    nl_hat *= mask[:, :Nk]
+    return nl_hat
+
+
+def simulate_one(omega0, nu, dt, n_steps_burn, n_steps_save, n_inner, N):
+    """Run NS from initial vorticity omega0. Returns (n_steps_save+1, N, N, 2) or None if NaN."""
+    kx, ky, k2 = _build_wavenumbers(N)
+    mask = _dealias_mask(N)
+    f_hat = _forcing(N)
+    Nk = N // 2 + 1
+    k2r = k2[:, :Nk]
+    kxr = kx[:, :Nk]
+    kyr = ky[:, :Nk]
+
+    cn_denom = 1.0 + 0.5 * nu * dt * k2r
+    cn_num = 1.0 - 0.5 * nu * dt * k2r
+
+    omega_hat = np.fft.rfft2(omega0)
+    omega_hat *= mask[:, :Nk]
+
+    nl_prev = None
+
+    def step(omega_hat, nl_prev):
+        nl = _nonlinear(omega_hat, kx, ky, k2, mask)
+        if nl_prev is None:
+            nl_prev = nl
+        rhs = (cn_num * omega_hat
+               + dt * (1.5 * nl - 0.5 * nl_prev)
+               + dt * f_hat[:, :Nk])
+        omega_hat_new = rhs / cn_denom
+        omega_hat_new[0, 0] = 0.0
+        return omega_hat_new, nl
+
+    for _ in range(n_steps_burn):
+        omega_hat, nl_prev = step(omega_hat, nl_prev)
+        if not np.isfinite(omega_hat).all():
+            return None
+
+    traj = np.zeros((n_steps_save + 1, N, N, 2), dtype=np.float32)
+    u, v = _omega_to_vel(omega_hat, kxr, kyr, k2r)
+    if not (np.isfinite(u).all() and np.isfinite(v).all()
+            and np.abs(u).max() < 1e4 and np.abs(v).max() < 1e4):
+        return None
+    traj[0, :, :, 0] = u.astype(np.float32)
+    traj[0, :, :, 1] = v.astype(np.float32)
+
+    for t in range(n_steps_save):
+        for _ in range(n_inner):
+            omega_hat, nl_prev = step(omega_hat, nl_prev)
+        if not np.isfinite(omega_hat).all() or np.abs(omega_hat).max() > 1e6:
+            return None
+        u, v = _omega_to_vel(omega_hat, kxr, kyr, k2r)
+        if not (np.isfinite(u).all() and np.isfinite(v).all()
+                and np.abs(u).max() < 1e4 and np.abs(v).max() < 1e4):
+            return None
+        traj[t + 1, :, :, 0] = u.astype(np.float32)
+        traj[t + 1, :, :, 1] = v.astype(np.float32)
+
+    return traj
+
+
+def generate_ns_data(re, nu, n_samples, T_burn):
+    N = N_GRID
+    dt = DT_SAVE / N_INNER
+    n_steps_burn = int(T_burn / dt)
+    n_steps_save = N_TIMESTEPS
+
+    filename = OUTPUT_DIR / f"2D_NavierStokes_Incomp_Re{re:05d}.npz"
+
+    print(f"\n[Re={re}] nu={nu:.2e}  samples={n_samples}  burn={T_burn}s  save={n_steps_save}×{DT_SAVE}s")
+
+    all_data = np.zeros((n_samples, n_steps_save + 1, N, N, 2), dtype=np.float32)
+
+    x = np.linspace(0, 1, N, endpoint=False)
+    X, Y = np.meshgrid(x, x, indexing="ij")
+
+    n_retries = 0
+    for i in range(n_samples):
+        traj = None
+        attempt = 0
+        while traj is None:
+            rng = np.random.default_rng(seed=i + re * 100000 + attempt * 99999983)
+            omega0 = np.zeros((N, N))
+            for k in range(1, 8):
+                amp = rng.standard_normal() / (1 + k)
+                phi = rng.uniform(0, 2 * np.pi)
+                omega0 += amp * np.sin(2 * np.pi * k * X + phi)
+                omega0 += amp * np.cos(2 * np.pi * k * Y + phi)
+            traj = simulate_one(omega0, nu, dt,
+                                n_steps_burn=n_steps_burn,
+                                n_steps_save=n_steps_save,
+                                n_inner=N_INNER, N=N)
+            if traj is None:
+                n_retries += 1
+                attempt += 1
+        all_data[i] = traj
+
+        if (i + 1) % 500 == 0:
+            print(f"  {i + 1}/{n_samples}  (retries so far: {n_retries})")
+
+    np.savez_compressed(filename,
+        velocity=all_data,
+        reynolds_number=re,
+        kinematic_viscosity=nu,
+        n_samples=n_samples,
+        time_steps=n_steps_save,
+        dt=DT_SAVE,
+        grid_size=N,
+        generated_at=str(datetime.now().isoformat())
+    )
+    size_mb = filename.stat().st_size / (1024**2)
+    print(f"  Saved: {filename.name} ({size_mb:.0f} MB)")
+    return True
+
+
+def main():
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--re", type=int, nargs="*", default=None,
+                        help="Reynolds numbers to generate (default: all)")
+    parser.add_argument("--n_per_re", type=int, default=None,
+                        help="Samples per Re (default: from REYNOLDS_CONFIGS)")
+    args = parser.parse_args()
+
+    target_res = args.re if args.re else sorted(REYNOLDS_CONFIGS.keys())
+
+    print("=" * 70)
+    print("2D Navier-Stokes Pseudo-Spectral Generator")
+    print("=" * 70)
+    print(f"Grid: {N_GRID}x{N_GRID}  T_save={N_TIMESTEPS}×{DT_SAVE}s")
+    print(f"Generating Re: {target_res}")
+    print(f"Output: {OUTPUT_DIR}\n")
+
+    success = 0
+    for re in target_res:
+        if re not in REYNOLDS_CONFIGS:
+            print(f"  WARNING: Re={re} not in REYNOLDS_CONFIGS, skipping")
+            continue
+        cfg = REYNOLDS_CONFIGS[re]
+        if args.n_per_re is not None:
+            cfg = {**cfg, "n_samples": args.n_per_re}
+        try:
+            generate_ns_data(re, cfg["nu"], cfg["n_samples"], cfg["T_burn"])
+            success += 1
+        except Exception as e:
+            import traceback
+            print(f"  ERROR Re={re}: {e}")
+            traceback.print_exc()
+
+    print(f"\nDone: {success}/{len(target_res)} Reynolds numbers generated")
+    print(f"Files in {OUTPUT_DIR}:")
+    for f in sorted(OUTPUT_DIR.glob("*.npz")):
+        print(f"  {f.name}  ({f.stat().st_size/1e6:.0f} MB)")
+    return 0 if success == len(target_res) else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

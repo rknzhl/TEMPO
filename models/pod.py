@@ -1,0 +1,120 @@
+
+from dataclasses import dataclass
+
+import torch
+import torch.nn as nn
+from torch import Tensor
+
+
+@dataclass
+class TrainHistory:
+    mean_loss: list[float] = None
+    mode_losses: list[list[float]] = None
+    residual_norms: list[float] = None
+
+    def __post_init__(self):
+        if self.mean_loss is None:
+            self.mean_loss = []
+        if self.mode_losses is None:
+            self.mode_losses = []
+        if self.residual_norms is None:
+            self.residual_norms = []
+
+
+@dataclass
+class PODConfig:
+    """Hyperparameters for classical POD via SVD."""
+    max_modes: int = 10
+    tol: float = 0.9999
+    log_every: int = 1 
+
+
+class PODBasis(nn.Module):
+    """POD basis: mean and orthonormal modes as non-trainable buffers."""
+
+    def __init__(self) -> None:
+        super().__init__()
+        self._initialized = False
+
+    def initialize(self, mean: Tensor, modes: Tensor, coeffs: Tensor) -> None:
+        """Store SVD results (mean, modes, coeffs) as non-trainable buffers."""
+        self.register_buffer("mean", mean)
+        self.register_buffer("modes", modes)
+        self.register_buffer("coeffs", coeffs)
+        self._initialized = True
+
+    @property
+    def num_modes(self) -> int:
+        return self.modes.shape[1] if self._initialized else 0
+
+    def forward(self, x: Tensor = None, t: Tensor = None, kappa: Tensor = None) -> Tensor:
+        """Reconstruct all training snapshots. Returns (N, Ny)."""
+        return self.mean.unsqueeze(0) + self.coeffs @ self.modes.T
+
+
+class PODTrainer:
+    """Classical POD via SVD with optional responsibility weighting."""
+
+    def __init__(self, cfg: PODConfig) -> None:
+        self.cfg = cfg
+        self.basis = PODBasis()
+        self.history = TrainHistory()
+        self.num_modes = 0
+
+    def train(
+        self,
+        s: Tensor,
+        x: Tensor,
+        t: Tensor,
+        kappa: Tensor = None,
+        gamma: Tensor = None,
+    ) -> TrainHistory:
+        """Compute weighted POD basis via SVD. gamma defaults to uniform 1/N."""
+        N, Ny = s.shape
+        dtype = s.dtype
+        dev = s.device
+        gpu = x.device if (x is not None and x.device.type != 'cpu') else dev
+
+        if gamma is None:
+            gamma = torch.ones(N, dtype=dtype, device=dev) / N
+        else:
+            gamma = (gamma / gamma.sum()).to(device=dev, dtype=dtype)
+
+        print(f"POD | N={N}, Ny={Ny} | max_modes={self.cfg.max_modes}, tol={self.cfg.tol}")
+
+        mean = (gamma.unsqueeze(1) * s).sum(dim=0)
+
+        sqrt_gamma = gamma.sqrt()
+        if gpu != s.device:
+            s_weighted_gpu = s.to(gpu, dtype=torch.float32)
+            s_weighted_gpu.sub_(mean.to(gpu)).mul_(sqrt_gamma.to(gpu).unsqueeze(1))
+        else:
+            s_weighted_gpu = s.sub(mean.unsqueeze(0)).mul_(sqrt_gamma.unsqueeze(1)).to(dtype=torch.float32)
+
+        q = min(self.cfg.max_modes + 10, min(N, Ny))
+# MPS lacks linalg_qr, which svd_lowrank uses internally
+        svd_input = s_weighted_gpu.cpu() if s_weighted_gpu.device.type == "mps" else s_weighted_gpu
+        _, sigma, V = torch.svd_lowrank(svd_input, q=q, niter=4)
+        del s_weighted_gpu, svd_input
+
+        sigma = sigma.to(dtype=dtype)
+        energy = sigma ** 2
+        cumvar = torch.cumsum(energy, dim=0) / energy.sum()
+        above_tol = (cumvar >= self.cfg.tol).nonzero(as_tuple=True)[0]
+        n_for_tol = int(above_tol[0].item()) + 1 if len(above_tol) > 0 else len(sigma)
+        P = min(n_for_tol, self.cfg.max_modes, len(sigma))
+
+        print(f"  P={P} modes ({self.cfg.tol*100:.2f}% variance, needed {n_for_tol})")
+        for p in range(P):
+            print(f"  mode {p+1:2d}: sigma={sigma[p].item():.4e}  cumvar={cumvar[p].item()*100:.2f}%")
+
+        modes = V[:, :P].to(device=dev, dtype=dtype)
+        del V
+
+        coeffs = (s @ modes - (mean @ modes).unsqueeze(0)).cpu()
+        modes = modes.cpu()
+
+        self.basis.initialize(mean, modes, coeffs)
+        self.num_modes = P
+        print("  done")
+        return self.history

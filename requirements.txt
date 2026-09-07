@@ -1,0 +1,10 @@
+torch==2.10.0
+numpy==2.4.3
+h5py==3.16.0
+scikit-learn==1.8.0
+matplotlib==3.10.8
+seaborn==0.13.2
+umap-learn==0.5.11
+tqdm==4.67.3
+datasets==4.7.0
+neuralop
