@@ -1,0 +1,29 @@
+{
+  "task": "burgers_original",
+  "parameter": 0.01,
+  "training_parameters": [
+    0.001,
+    0.1,
+    1.0
+  ],
+  "n_test": 1000,
+  "grid": [
+    201,
+    1024
+  ],
+  "method": "TEMPO(POD)",
+  "M": 2,
+  "K": 32,
+  "total_modes": 64,
+  "checkpoint": "artifacts/checkpoints/burgers_original/burgers_original_pod_m2k32_onlinegram_relative_kl0001_ent0_seed17_20261109/weights.pt",
+  "checkpoint_sha256": "19354095fa8ec4c2a24209fb5f5c363d830b8dfb32766d939a0a31b624909dec",
+  "metric": "Mean per-trajectory relative L2 error",
+  "mean_relative_l2": 0.26688907847367616,
+  "mean_percent": 26.688907847367616,
+  "evaluation_rows": [
+    4000,
+    5000
+  ],
+  "errors_file": "burgers_unseen_viscosity_errors.npz",
+  "experiment": "Separate parameter-generalization experiment; no fitting or tuning at the held-out parameter."
+}

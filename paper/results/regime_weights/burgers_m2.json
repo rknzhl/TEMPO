@@ -1,0 +1,38 @@
+{
+  "checkpoint_sha256": "f453f93c973856c9cff5a3057fd2f7f0c5d4202156abed0031e9901e346ffbce",
+  "matched_initial_conditions": 400,
+  "viscosities": [
+    "0.001",
+    "0.1",
+    "1.0"
+  ],
+  "validation_trajectories": 1200,
+  "mean_online_gate": {
+    "0.001": [
+      0.5079662207188085,
+      0.4920337828993797
+    ],
+    "0.1": [
+      0.6573549143574201,
+      0.3426450818963349
+    ],
+    "1.0": [
+      0.7535564994590822,
+      0.24644350106595084
+    ]
+  },
+  "any_viscosity_change": {
+    "count": 131,
+    "denominator": 400,
+    "percent": 32.75
+  },
+  "initialization": {
+    "kappa_init": true,
+    "kappa_init_noise": 0.05,
+    "kappa_prior_weight": 0.0
+  },
+  "method": "Main two-regime TEMPO(POD), online gate",
+  "data": "Validation; shared initial conditions across viscosities",
+  "data_file": "burgers_m2_validation.npz",
+  "data_sha256": "3a152bd4549f9412e22283fe111c2f575850f4955d48e8102f61631c4b5af464"
+}

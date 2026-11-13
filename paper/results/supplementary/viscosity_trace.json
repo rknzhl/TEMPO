@@ -1,0 +1,359 @@
+{
+  "family": "selected_trace",
+  "statistics": {
+    "validation": {
+      "rows": 1350,
+      "groups": 450,
+      "seeds": [
+        17,
+        29,
+        43
+      ],
+      "accuracy_percent": 96.54320987654322,
+      "seed_accuracy_percent": {
+        "17": 97.03703703703704,
+        "29": 96.0,
+        "43": 96.5925925925926
+      },
+      "per_nu_accuracy_percent": {
+        "0.001": 98.74074074074073,
+        "0.1": 91.7037037037037,
+        "1.0": 99.18518518518519
+      },
+      "field_errors": {
+        "known": {
+          "mean_relative_l2": 0.34796132194499174,
+          "increase_absolute": 0.0,
+          "increase_percent_vs_known": 0.0,
+          "seed_mean_relative_l2": {
+            "17": 0.34796132194499174,
+            "29": 0.34796132194499174,
+            "43": 0.34796132194499174
+          },
+          "seed_increase_percent_vs_known": {
+            "17": 0.0,
+            "29": 0.0,
+            "43": 0.0
+          },
+          "per_nu_mean_relative_l2": {
+            "0.001": 0.4904709189633528,
+            "0.1": 0.3458767069627841,
+            "1.0": 0.20753633990883827
+          },
+          "mean_relative_l2_ci95": [
+            0.32313078092997544,
+            0.3751744576353856
+          ],
+          "increase_absolute_ci95": [
+            0.0,
+            0.0
+          ],
+          "increase_percent_vs_known_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "zero": {
+          "mean_relative_l2": 0.4913648504708652,
+          "increase_absolute": 0.14340352852587346,
+          "increase_percent_vs_known": 41.21249101029216,
+          "seed_mean_relative_l2": {
+            "17": 0.4913648504708652,
+            "29": 0.4913648504708652,
+            "43": 0.4913648504708652
+          },
+          "seed_increase_percent_vs_known": {
+            "17": 41.21249101029216,
+            "29": 41.21249101029216,
+            "43": 41.21249101029216
+          },
+          "per_nu_mean_relative_l2": {
+            "0.001": 0.49048273493846256,
+            "0.1": 0.464705978958971,
+            "1.0": 0.5189058375151621
+          },
+          "mean_relative_l2_ci95": [
+            0.44592769151767375,
+            0.5404595714341849
+          ],
+          "increase_absolute_ci95": [
+            0.11780065925584893,
+            0.17378085427082798
+          ],
+          "increase_percent_vs_known_ci95": [
+            34.85635574327722,
+            48.53237491968591
+          ]
+        },
+        "hard": {
+          "mean_relative_l2": 0.3502686114126333,
+          "increase_absolute": 0.0023072894676415823,
+          "increase_percent_vs_known": 0.6630879129739364,
+          "seed_mean_relative_l2": {
+            "17": 0.350192350116041,
+            "29": 0.3506453838075201,
+            "43": 0.349968100314339
+          },
+          "seed_increase_percent_vs_known": {
+            "17": 0.6411713113913198,
+            "29": 0.7713678771897214,
+            "43": 0.5767245503408347
+          },
+          "per_nu_mean_relative_l2": {
+            "0.001": 0.49046719004158623,
+            "0.1": 0.35113651432786824,
+            "1.0": 0.20920212986844558
+          },
+          "mean_relative_l2_ci95": [
+            0.32547151544575154,
+            0.37817709879984185
+          ],
+          "increase_absolute_ci95": [
+            0.00032283038356237525,
+            0.004609823711009505
+          ],
+          "increase_percent_vs_known_ci95": [
+            0.08961430176148588,
+            1.343985133897011
+          ]
+        },
+        "soft": {
+          "mean_relative_l2": 0.3473913799437844,
+          "increase_absolute": -0.0005699420012073575,
+          "increase_percent_vs_known": -0.16379464189339998,
+          "seed_mean_relative_l2": {
+            "17": 0.3470134904939267,
+            "29": 0.34808432377184984,
+            "43": 0.34707632556557655
+          },
+          "seed_increase_percent_vs_known": {
+            "17": -0.2723956345972445,
+            "29": 0.035349281400165466,
+            "43": -0.25433757248315425
+          },
+          "per_nu_mean_relative_l2": {
+            "0.001": 0.4870499634963495,
+            "0.1": 0.3475025962251756,
+            "1.0": 0.20762158010982804
+          },
+          "mean_relative_l2_ci95": [
+            0.3229053347979753,
+            0.3748163750867739
+          ],
+          "increase_absolute_ci95": [
+            -0.0027457495056277064,
+            0.0015852703957783812
+          ],
+          "increase_percent_vs_known_ci95": [
+            -0.8018540912666511,
+            0.4631121415860617
+          ]
+        }
+      },
+      "bootstrap": {
+        "unit": "initial-condition group, all three viscosities kept together",
+        "seed_aggregation": "all three seeds averaged before resampling groups",
+        "replicates": 999,
+        "seed": 20261108,
+        "interval": "95% percentile; conditional on these trained seeds and frozen TEMPO"
+      },
+      "accuracy_percent_ci95": [
+        95.62839506172841,
+        97.4074074074074
+      ],
+      "soft_minus_hard": {
+        "mean_relative_l2_difference": -0.0028772314688489398,
+        "mean_relative_l2_difference_ci95": [
+          -0.004469608986980236,
+          -0.0014114903208833887
+        ],
+        "gap_difference_percentage_points": -0.8268825548673463,
+        "gap_difference_percentage_points_ci95": [
+          -1.2511898085993656,
+          -0.41134893760134483
+        ],
+        "interpretation": "Negative favors posterior averaging; paired over the same ICs, viscosities, and seeds."
+      }
+    },
+    "test": {
+      "rows": 1350,
+      "groups": 450,
+      "seeds": [
+        17,
+        29,
+        43
+      ],
+      "accuracy_percent": 96.5679012345679,
+      "seed_accuracy_percent": {
+        "17": 96.29629629629629,
+        "29": 96.88888888888889,
+        "43": 96.51851851851852
+      },
+      "per_nu_accuracy_percent": {
+        "0.001": 97.4074074074074,
+        "0.1": 93.18518518518518,
+        "1.0": 99.11111111111111
+      },
+      "field_errors": {
+        "known": {
+          "mean_relative_l2": 0.3297782752248976,
+          "increase_absolute": 0.0,
+          "increase_percent_vs_known": 0.0,
+          "seed_mean_relative_l2": {
+            "17": 0.3297782752248976,
+            "29": 0.3297782752248976,
+            "43": 0.3297782752248976
+          },
+          "seed_increase_percent_vs_known": {
+            "17": 0.0,
+            "29": 0.0,
+            "43": 0.0
+          },
+          "per_nu_mean_relative_l2": {
+            "0.001": 0.4549995668936107,
+            "0.1": 0.32830985905395615,
+            "1.0": 0.20602539972712597
+          },
+          "mean_relative_l2_ci95": [
+            0.3020286300906705,
+            0.35802919963605834
+          ],
+          "increase_absolute_ci95": [
+            0.0,
+            0.0
+          ],
+          "increase_percent_vs_known_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "zero": {
+          "mean_relative_l2": 0.45665625625186496,
+          "increase_absolute": 0.12687798102696735,
+          "increase_percent_vs_known": 38.47372327374836,
+          "seed_mean_relative_l2": {
+            "17": 0.45665625625186496,
+            "29": 0.45665625625186496,
+            "43": 0.45665625625186496
+          },
+          "seed_increase_percent_vs_known": {
+            "17": 38.47372327374836,
+            "29": 38.47372327374836,
+            "43": 38.47372327374836
+          },
+          "per_nu_mean_relative_l2": {
+            "0.001": 0.4549859934507145,
+            "0.1": 0.41801589141082435,
+            "1.0": 0.4969668838940561
+          },
+          "mean_relative_l2_ci95": [
+            0.40993699314759147,
+            0.5070843003711973
+          ],
+          "increase_absolute_ci95": [
+            0.10476544565469441,
+            0.15174077779037395
+          ],
+          "increase_percent_vs_known_ci95": [
+            33.434380193303426,
+            44.16328937729992
+          ]
+        },
+        "hard": {
+          "mean_relative_l2": 0.33282890432065837,
+          "increase_absolute": 0.0030506290957607596,
+          "increase_percent_vs_known": 0.9250545972685265,
+          "seed_mean_relative_l2": {
+            "17": 0.33353823362884144,
+            "29": 0.3317636922408861,
+            "43": 0.33318478709224747
+          },
+          "seed_increase_percent_vs_known": {
+            "17": 1.1401473918740246,
+            "29": 0.6020460306654485,
+            "43": 1.032970369266062
+          },
+          "per_nu_mean_relative_l2": {
+            "0.001": 0.45648126416598206,
+            "0.1": 0.3288872458268371,
+            "1.0": 0.21311820296915593
+          },
+          "mean_relative_l2_ci95": [
+            0.3041736855651424,
+            0.36279906337302364
+          ],
+          "increase_absolute_ci95": [
+            7.16388281780639e-05,
+            0.007342526607824806
+          ],
+          "increase_percent_vs_known_ci95": [
+            0.022281583521891475,
+            2.1407870671587372
+          ]
+        },
+        "soft": {
+          "mean_relative_l2": 0.329790541038699,
+          "increase_absolute": 1.2265813801370928e-05,
+          "increase_percent_vs_known": 0.003719412321201432,
+          "seed_mean_relative_l2": {
+            "17": 0.32953887595553644,
+            "29": 0.3296362114973642,
+            "43": 0.33019653566319634
+          },
+          "seed_increase_percent_vs_known": {
+            "17": -0.07259400856466369,
+            "29": -0.04307855859714271,
+            "43": 0.1268308041254329
+          },
+          "per_nu_mean_relative_l2": {
+            "0.001": 0.45548474993004845,
+            "0.1": 0.32204555836471693,
+            "1.0": 0.2118413148213316
+          },
+          "mean_relative_l2_ci95": [
+            0.30175970265041624,
+            0.3589454147496639
+          ],
+          "increase_absolute_ci95": [
+            -0.0036779952656684793,
+            0.004262965185878235
+          ],
+          "increase_percent_vs_known_ci95": [
+            -1.1148486663319828,
+            1.2730862371914795
+          ]
+        }
+      },
+      "bootstrap": {
+        "unit": "initial-condition group, all three viscosities kept together",
+        "seed_aggregation": "all three seeds averaged before resampling groups",
+        "replicates": 999,
+        "seed": 20261108,
+        "interval": "95% percentile; conditional on these trained seeds and frozen TEMPO"
+      },
+      "accuracy_percent_ci95": [
+        95.55555555555556,
+        97.50617283950616
+      ],
+      "soft_minus_hard": {
+        "mean_relative_l2_difference": -0.0030383632819593887,
+        "mean_relative_l2_difference_ci95": [
+          -0.005315839094995206,
+          -0.0006185748261388093
+        ],
+        "gap_difference_percentage_points": -0.9213351849473189,
+        "gap_difference_percentage_points_ci95": [
+          -1.5661720832758408,
+          -0.18927059011276198
+        ],
+        "interpretation": "Negative favors posterior averaging; paired over the same ICs, viscosities, and seeds."
+      }
+    }
+  },
+  "seeds": [
+    17,
+    29,
+    43
+  ],
+  "frozen_model_id": "viscosity_trace_pod_m4"
+}

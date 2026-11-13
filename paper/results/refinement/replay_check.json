@@ -1,0 +1,83 @@
+{
+  "status": "passed",
+  "models": 5,
+  "CPU_threads": 2,
+  "test_error_reproduced": true,
+  "checks": [
+    {
+      "task": "burgers_original",
+      "checkpoint": "artifacts/checkpoints/burgers_original/tempo_npod_joint_seed17/checkpoint.pt",
+      "checkpoint_sha256": "55fa111e422f9ffd8b26f7720d8bf497ec99f5f392842e36ab4adae7cc23271b",
+      "input": "paper/examples/refinement/burgers_original/input.npz",
+      "reference": "paper/examples/refinement/burgers_original/reference.npz",
+      "input_units": "raw",
+      "rows": 3,
+      "maximum_test_error_difference": 1.5338141950982376e-08,
+      "online_parameters": 1853235,
+      "basis_function_parameters": 1064115,
+      "input_sha256": "4ab71f3a08b3d1b180acce146828f1f1576a94f59fcbf8db2a4336ee965f0a74",
+      "reference_sha256": "13987f56c92d46dc8e0c61b4e85f2901f4ea50537cf405edbde3276254a1ae52",
+      "seconds": 4.531710462179035
+    },
+    {
+      "task": "navier_stokes",
+      "checkpoint": "artifacts/checkpoints/navier_stokes/tempo_npod_joint_seed42/checkpoint.pt",
+      "checkpoint_sha256": "35116e5a4fc15bfaa83d85c9e64391885612f69246f20d1d5992795a097e8366",
+      "input": "paper/examples/refinement/navier_stokes/input.npz",
+      "reference": "paper/examples/refinement/navier_stokes/reference.npz",
+      "input_units": "raw",
+      "rows": 4,
+      "maximum_test_error_difference": 8.198760333838484e-09,
+      "online_parameters": 5525380,
+      "basis_function_parameters": 7554820,
+      "input_sha256": "3060c4bfe13a88357d04fce0e8a19f4c9d831dbb6f2108aa3c23dde4ebbfa264",
+      "reference_sha256": "567910d1ce93fe0254f811325c3c201c90c55d653d620c1561e22c840316b490",
+      "seconds": 23.31169043085538
+    },
+    {
+      "task": "sod",
+      "checkpoint": "artifacts/checkpoints/sod/tempo_npod_joint_seed17/checkpoint.pt",
+      "checkpoint_sha256": "925f1cff39fb7d4c92aea7a8a71029ba7dc27294ee62662f249148387bde8a71",
+      "input": "paper/examples/refinement/sod/input.npz",
+      "reference": "paper/examples/refinement/sod/reference.npz",
+      "input_units": "raw",
+      "rows": 4,
+      "maximum_test_error_difference": 2.4044388979849174e-09,
+      "online_parameters": 142771,
+      "basis_function_parameters": 1064115,
+      "input_sha256": "e045cbe0896064b44a5b8af428cc4afd8ccf167ea757cb655fcf998041e63701",
+      "reference_sha256": "c5fd5bcf58cbd95712c801390a6269b52a8562a5579176f0136b6877f628184e",
+      "seconds": 0.29268859699368477
+    },
+    {
+      "task": "coanda",
+      "checkpoint": "artifacts/checkpoints/coanda/tempo_npod_joint_seed17/checkpoint.pt",
+      "checkpoint_sha256": "503f9133fe2fc51641ba6c3f0aa8b17da39c6a8cc078995cfeee2d29b7ac5f4a",
+      "input": "paper/examples/refinement/coanda/input.npz",
+      "reference": "paper/examples/refinement/coanda/reference.npz",
+      "input_units": "raw",
+      "rows": 4,
+      "maximum_test_error_difference": 1.1355813889918354e-08,
+      "online_parameters": 103578,
+      "basis_function_parameters": 542490,
+      "input_sha256": "fa4eb53e0ffb5f5010e9bc0ace2bd9ade84f007dd8dc186e577d2dc7352c3eac",
+      "reference_sha256": "2401e327d69ebff37f8b1bf322b1c03ef6dc19748a0fc94b0539e2c16f55ef6b",
+      "seconds": 0.15332623315043747
+    },
+    {
+      "task": "helmholtz_four_omega",
+      "checkpoint": "artifacts/checkpoints/helmholtz_four_omega/tempo_npod_joint_seed17/checkpoint.pt",
+      "checkpoint_sha256": "cd4dc7e6658a1b7bd97d0881c61590b848d340da76e59149c9b349abe22f652a",
+      "input": "paper/examples/refinement/helmholtz_four_omega/input.npz",
+      "reference": "paper/examples/refinement/helmholtz_four_omega/reference.npz",
+      "input_units": "normalized",
+      "rows": 4,
+      "maximum_test_error_difference": 7.348014005592596e-08,
+      "online_parameters": 6703812,
+      "basis_function_parameters": 1418820,
+      "input_sha256": "36cb9cf99789e5b1937810c99efa22ba37d38143274479f521a4127eafb72960",
+      "reference_sha256": "7988b734c5f75e5ed3564eb14bbc279610421f6c7a6b5ef3c5466da99a5df394",
+      "seconds": 1.0005860191304237
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "source_sha256": "30527d613dfadb34da826ac4d5d4ba460019ec14e8ed459446ebe12502520a3b",
+  "receipt": {
+    "status": "complete",
+    "n_models": 16,
+    "aggregate": [
+      {
+        "task": "coanda",
+        "method": "tempo_pod",
+        "seeds": [
+          17,
+          29,
+          43
+        ],
+        "n_seeds": 3,
+        "n_test_per_seed": 62,
+        "baseline_percent": 0.584624365958809,
+        "final_percent": 0.6249767186263908,
+        "relative_error_reduction_percent": -6.902270075829331,
+        "baseline_seed_sd_percent": 0.06472418409329453,
+        "final_seed_sd_percent": 0.10306296464665811
+      },
+      {
+        "task": "coanda",
+        "method": "tempo_npod",
+        "seeds": [
+          17,
+          29,
+          43
+        ],
+        "n_seeds": 3,
+        "n_test_per_seed": 62,
+        "baseline_percent": 0.7826933399576861,
+        "final_percent": 0.7520835145154505,
+        "relative_error_reduction_percent": 3.910832490779892,
+        "baseline_seed_sd_percent": 0.11687402337566617,
+        "final_seed_sd_percent": 0.13319346477168234
+      },
+      {
+        "task": "sod",
+        "method": "tempo_pod",
+        "seeds": [
+          17,
+          29,
+          43
+        ],
+        "n_seeds": 3,
+        "n_test_per_seed": 1024,
+        "baseline_percent": 3.30910055157713,
+        "final_percent": 3.3068641644341694,
+        "relative_error_reduction_percent": 0.06758293101413182,
+        "baseline_seed_sd_percent": 0.002731947776860494,
+        "final_seed_sd_percent": 0.0023400892290262086
+      },
+      {
+        "task": "sod",
+        "method": "tempo_npod",
+        "seeds": [
+          17,
+          29,
+          43
+        ],
+        "n_seeds": 3,
+        "n_test_per_seed": 1024,
+        "baseline_percent": 5.938443374913377,
+        "final_percent": 5.909213916466985,
+        "relative_error_reduction_percent": 0.4922074119603437,
+        "baseline_seed_sd_percent": 0.10232619493044795,
+        "final_seed_sd_percent": 0.09325187527430952
+      },
+      {
+        "task": "helmholtz_four_omega",
+        "method": "tempo_pod",
+        "seeds": [
+          17
+        ],
+        "n_seeds": 1,
+        "n_test_per_seed": 800,
+        "baseline_percent": 4.055768848812559,
+        "final_percent": 3.604809917090554,
+        "relative_error_reduction_percent": 11.118950525349502,
+        "baseline_seed_sd_percent": null,
+        "final_seed_sd_percent": null
+      },
+      {
+        "task": "helmholtz_four_omega",
+        "method": "tempo_npod",
+        "seeds": [
+          17
+        ],
+        "n_seeds": 1,
+        "n_test_per_seed": 800,
+        "baseline_percent": 19.640580592043037,
+        "final_percent": 17.98415954184301,
+        "relative_error_reduction_percent": 8.43366642058988,
+        "baseline_seed_sd_percent": null,
+        "final_seed_sd_percent": null
+      },
+      {
+        "task": "burgers_original",
+        "method": "tempo_pod",
+        "seeds": [
+          17
+        ],
+        "n_seeds": 1,
+        "n_test_per_seed": 3000,
+        "baseline_percent": 18.948045745640208,
+        "final_percent": 18.610750124308677,
+        "relative_error_reduction_percent": 1.7801077000731858,
+        "baseline_seed_sd_percent": null,
+        "final_seed_sd_percent": null
+      },
+      {
+        "task": "burgers_original",
+        "method": "tempo_npod",
+        "seeds": [
+          17
+        ],
+        "n_seeds": 1,
+        "n_test_per_seed": 3000,
+        "baseline_percent": 26.84726495501299,
+        "final_percent": 26.600568714765345,
+        "relative_error_reduction_percent": 0.918887792335743,
+        "baseline_seed_sd_percent": null,
+        "final_seed_sd_percent": null
+      }
+    ],
+    "all_original_test_results_reproduced": true,
+    "all_offline_states_unchanged": true,
+    "test_based_selection": false,
+    "model_training": false,
+    "metric": "Mean per-trajectory relative L2: Sod uses joint q; all others native physical fields",
+    "CPU_threads": 4
+  }
+}

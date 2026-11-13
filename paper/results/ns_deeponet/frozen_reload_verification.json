@@ -1,0 +1,68 @@
+{
+  "status": "passed",
+  "training": false,
+  "independently_reloaded": true,
+  "complete_test_rows_per_model": 4000,
+  "models": [
+    {
+      "run": "deeponet_ns_joint_seed39",
+      "checkpoint_sha256": "a15968fd005384b88bd5f334ca47cd64e2b6de50659147ed376b5ebc2acb46ab",
+      "rows": 4000,
+      "max_absolute_error_difference": 0.0,
+      "cross_Re": {
+        "100": 0.9999229311943054,
+        "1000": 0.9999286532402039,
+        "3600": 0.999955415725708,
+        "10000": 0.9999608397483826
+      }
+    },
+    {
+      "run": "deeponet_ns_re10000_seed39",
+      "checkpoint_sha256": "2f1d0ff0eac27cc761842f893ef6c5dc710a9462ce164b7827482453779387e9",
+      "rows": 4000,
+      "max_absolute_error_difference": 0.0,
+      "cross_Re": {
+        "100": 1.0009565353393555,
+        "1000": 1.0000101327896118,
+        "3600": 1.0000007152557373,
+        "10000": 1.0000004768371582
+      }
+    },
+    {
+      "run": "deeponet_ns_re1000_seed39",
+      "checkpoint_sha256": "a9fd11533b55627c4c199782034473712ad55f2ef8f3b01583c15acb2ac2f5e5",
+      "rows": 4000,
+      "max_absolute_error_difference": 0.0,
+      "cross_Re": {
+        "100": 1.0001771450042725,
+        "1000": 0.9999465346336365,
+        "3600": 1.0000054836273193,
+        "10000": 1.0001015663146973
+      }
+    },
+    {
+      "run": "deeponet_ns_re100_seed39",
+      "checkpoint_sha256": "e42a1e7a70833888b420fc58f20948f435ce11aeda3eeb119b642add2810e6f8",
+      "rows": 4000,
+      "max_absolute_error_difference": 0.0,
+      "cross_Re": {
+        "100": 0.999886155128479,
+        "1000": 1.0019426345825195,
+        "3600": 1.00321626663208,
+        "10000": 1.0034867525100708
+      }
+    },
+    {
+      "run": "deeponet_ns_re3600_seed39",
+      "checkpoint_sha256": "3a0b86dea52c7a5fd549647066ac114198e79f1ce7dcb511defb52ed4d65c400",
+      "rows": 4000,
+      "max_absolute_error_difference": 0.0,
+      "cross_Re": {
+        "100": 1.0014103651046753,
+        "1000": 0.9999783039093018,
+        "3600": 0.9999648332595825,
+        "10000": 0.9999962449073792
+      }
+    }
+  ]
+}

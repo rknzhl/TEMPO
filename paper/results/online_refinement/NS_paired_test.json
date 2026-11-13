@@ -1,0 +1,68 @@
+{
+  "source_sha256": "07908d694fe3730ffa8c569c09fd3067776c56383f042762b429472e51d156bf",
+  "receipt": {
+    "status": "PASS",
+    "n_test": 4000,
+    "models": {
+      "TEMPO_POD": {
+        "mean_relative_l2": 0.09648085060357207,
+        "by_Re": {
+          "100": 0.055330374695261655,
+          "1000": 0.10318886042389966,
+          "3600": 0.11145702893997562,
+          "10000": 0.1159471383551514
+        }
+      },
+      "TEMPO_NeuralPOD": {
+        "mean_relative_l2": 0.09131241528390678,
+        "by_Re": {
+          "100": 0.052114352797441345,
+          "1000": 0.09747273655040473,
+          "3600": 0.10543935140658747,
+          "10000": 0.11022322038119359
+        }
+      }
+    },
+    "checkpoints": {
+      "TEMPO_POD": {
+        "path": "source_archive/paper-revision/r27_e2e_polish_20261111/selected/checkpoint.pt",
+        "sha256": "903c42efc4b0c0c2db098fe94d90b4efe69edf7f88549ca9a96c2ad6c3767a78"
+      },
+      "TEMPO_NeuralPOD": {
+        "path": "source_archive/paper-revision/ns_npod_online_20261111/final/checkpoint.pt",
+        "sha256": "7eef61351c52566cd9bfb9ffe83ea7940fb60e806ed89242b4dfa43b19337369"
+      }
+    },
+    "metric": "Mean per-trajectory relative L2 over all21 native64x64 frames and both velocity components",
+    "same_exact_test_trajectories": true,
+    "original_field_receipts": [
+      {
+        "Re": 100,
+        "physical_test_sha256": "ef0f9adc99cf1f796c27e8d02a5bc6a9522240fd43de8c6f9f424c7c658a864e",
+        "original_bytes_match": true
+      },
+      {
+        "Re": 1000,
+        "physical_test_sha256": "429d80160e46200d788ccafdf954b93c5744193cbd93ec49a0f23dce4c5a1fed",
+        "original_bytes_match": true
+      },
+      {
+        "Re": 3600,
+        "physical_test_sha256": "e246b2f041599a82bab99952ba16a081665400cf6c775165fc1dcd4f4cec1d35",
+        "original_bytes_match": true
+      },
+      {
+        "Re": 10000,
+        "physical_test_sha256": "bf362342880785e9ccc789ff2b198c4f4396cf451ca2d6f201d72bf3f15e53fb",
+        "original_bytes_match": true
+      }
+    ],
+    "POD_replay_max_error_difference": 0.0,
+    "test_guided_tuning": false,
+    "checkpoints_unchanged": true,
+    "CPU_threads": 4,
+    "GPU_initialized": false,
+    "article_edited": false,
+    "elapsed_seconds": 36.84902766699997
+  }
+}

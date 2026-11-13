@@ -1,0 +1,240 @@
+{
+  "status": "PASS",
+  "models": [
+    {
+      "model_id": "night20261109_coanda_npod_multiscale_em20_seed17_online_refined_20261111",
+      "sha256": "e8f849c1bd75e064af758be005f2f113ba329dfdc9f4891d9ddc1d9616c894cc",
+      "every_saved_tensor_restored_exactly": true,
+      "prediction_shape": [
+        1,
+        17
+      ],
+      "coordinate_scope": "17 native coordinates; all saved neural modes",
+      "format": "revision_basis_fit",
+      "finite_prediction": true,
+      "gate_simplex": true,
+      "training": false,
+      "GPU_initialized": false
+    },
+    {
+      "model_id": "morning20261109_coanda_multiscale_em20_seed29_online_refined_20261111",
+      "sha256": "9313399fc59ebaa0338258790cc10e56fc9ee7bb3d269f37c50092f88a8d4b3f",
+      "every_saved_tensor_restored_exactly": true,
+      "prediction_shape": [
+        1,
+        17
+      ],
+      "coordinate_scope": "17 native coordinates; all saved neural modes",
+      "format": "revision_basis_fit",
+      "finite_prediction": true,
+      "gate_simplex": true,
+      "training": false,
+      "GPU_initialized": false
+    },
+    {
+      "model_id": "morning20261109_coanda_multiscale_em20_seed43_online_refined_20261111",
+      "sha256": "14b4d81db9b65dd3a83e8f9549a35bc19e41e5ad72871de949155b1661845f6c",
+      "every_saved_tensor_restored_exactly": true,
+      "prediction_shape": [
+        1,
+        17
+      ],
+      "coordinate_scope": "17 native coordinates; all saved neural modes",
+      "format": "revision_basis_fit",
+      "finite_prediction": true,
+      "gate_simplex": true,
+      "training": false,
+      "GPU_initialized": false
+    },
+    {
+      "model_id": "sod_dev_m2k24_width256_schedule800_seed17_v1_online_refined_20261111",
+      "sha256": "876082373ca35249129704cc77831637932a411821f15651f345d6e9a6fe34e0",
+      "every_saved_tensor_restored_exactly": true,
+      "prediction_shape": [
+        1,
+        6144
+      ],
+      "coordinate_scope": "full_native_field",
+      "format": "revision_basis_fit",
+      "finite_prediction": true,
+      "gate_simplex": true,
+      "training": false,
+      "GPU_initialized": false
+    },
+    {
+      "model_id": "sod_dev_m2k24_width256_schedule800_seed29_v1_online_refined_20261111",
+      "sha256": "2dcc2ca33f56ee55109eeddbadb99ee122b8d241654b21418c3fd90a4a6f6838",
+      "every_saved_tensor_restored_exactly": true,
+      "prediction_shape": [
+        1,
+        6144
+      ],
+      "coordinate_scope": "full_native_field",
+      "format": "revision_basis_fit",
+      "finite_prediction": true,
+      "gate_simplex": true,
+      "training": false,
+      "GPU_initialized": false
+    },
+    {
+      "model_id": "sod_dev_m2k24_width256_schedule800_seed43_v1_online_refined_20261111",
+      "sha256": "0968eea3f8fddd32331ec6edd97e37daa8b3b179bd8a7f8dffa03d89421ba54c",
+      "every_saved_tensor_restored_exactly": true,
+      "prediction_shape": [
+        1,
+        6144
+      ],
+      "coordinate_scope": "full_native_field",
+      "format": "revision_basis_fit",
+      "finite_prediction": true,
+      "gate_simplex": true,
+      "training": false,
+      "GPU_initialized": false
+    },
+    {
+      "model_id": "sod_fullstate_npod_tempo_mode1200_seed17_v1_online_refined_20261111",
+      "sha256": "7bf71b1b4999636c6a76bc2405a694aa8879422e52d1c493d017e9b3b652d383",
+      "every_saved_tensor_restored_exactly": true,
+      "prediction_shape": [
+        1,
+        17
+      ],
+      "coordinate_scope": "17 native coordinates; all saved neural modes",
+      "format": "revision_basis_fit",
+      "finite_prediction": true,
+      "gate_simplex": true,
+      "training": false,
+      "GPU_initialized": false
+    },
+    {
+      "model_id": "sod_fullstate_npod_tempo_mode1200_seed29_overnight_v1_online_refined_20261111",
+      "sha256": "aeec6b1ce8e46fbabf759bb9eaa2d953b7a11ea219b9019b7e7783d0ffcea8a6",
+      "every_saved_tensor_restored_exactly": true,
+      "prediction_shape": [
+        1,
+        17
+      ],
+      "coordinate_scope": "17 native coordinates; all saved neural modes",
+      "format": "revision_basis_fit",
+      "finite_prediction": true,
+      "gate_simplex": true,
+      "training": false,
+      "GPU_initialized": false
+    },
+    {
+      "model_id": "sod_fullstate_npod_tempo_mode1200_seed43_overnight_v1_online_refined_20261111",
+      "sha256": "11c4a9af7df4db7b1c4eecbfe75f94802476e4c9b6cb6dd57c0ebf4f36a233e2",
+      "every_saved_tensor_restored_exactly": true,
+      "prediction_shape": [
+        1,
+        17
+      ],
+      "coordinate_scope": "17 native coordinates; all saved neural modes",
+      "format": "revision_basis_fit",
+      "finite_prediction": true,
+      "gate_simplex": true,
+      "training": false,
+      "GPU_initialized": false
+    },
+    {
+      "model_id": "tempo_m4k16_lr0p0003_seed17_online_refined_20261111",
+      "sha256": "079400dcb94a6d527f3eb7536955d5dc4078ace71a38df1f725561e419f4027f",
+      "every_saved_tensor_restored_exactly": true,
+      "prediction_shape": [
+        1,
+        10201
+      ],
+      "coordinate_scope": "full_native_field",
+      "format": "revision_basis_fit",
+      "finite_prediction": true,
+      "gate_simplex": true,
+      "training": false,
+      "GPU_initialized": false
+    },
+    {
+      "model_id": "tempo_neuralpod_m4k16_default_seed17_online_refined_20261111",
+      "sha256": "5c112eebf82742c2367392983320a3f2c761ad90bc53d28eb544ca466a7e1e5a",
+      "every_saved_tensor_restored_exactly": true,
+      "prediction_shape": [
+        1,
+        17
+      ],
+      "coordinate_scope": "17 native coordinates; all saved neural modes",
+      "format": "revision_basis_fit",
+      "finite_prediction": true,
+      "gate_simplex": true,
+      "training": false,
+      "GPU_initialized": false
+    },
+    {
+      "model_id": "burgers_original_pod_m2k32_onlinegram_relative_kl0001_ent0_seed17_20261109_online_refined_20261111",
+      "sha256": "f453f93c973856c9cff5a3057fd2f7f0c5d4202156abed0031e9901e346ffbce",
+      "every_saved_tensor_restored_exactly": true,
+      "prediction_shape": [
+        1,
+        205824
+      ],
+      "coordinate_scope": "full_native_field",
+      "format": "revision_basis_fit",
+      "finite_prediction": true,
+      "gate_simplex": true,
+      "training": false,
+      "GPU_initialized": false
+    },
+    {
+      "model_id": "night20261109_burgers_original_npod_m3k16_freq3_seed17_online_refined_20261111",
+      "sha256": "fd0d47789a7095c7c0b62966c1387faf524c8f3555f35d6ebafcf46b7c315254",
+      "every_saved_tensor_restored_exactly": true,
+      "prediction_shape": [
+        1,
+        17
+      ],
+      "coordinate_scope": "17 native coordinates; all saved neural modes",
+      "format": "revision_basis_fit",
+      "finite_prediction": true,
+      "gate_simplex": true,
+      "training": false,
+      "GPU_initialized": false
+    },
+    {
+      "model_id": "ns_original_improved_seed42_online_refined_20261111",
+      "sha256": "903c42efc4b0c0c2db098fe94d90b4efe69edf7f88549ca9a96c2ad6c3767a78",
+      "every_saved_tensor_restored_exactly": true,
+      "prediction_shape": [
+        1,
+        172032
+      ],
+      "coordinate_scope": "full_native_field",
+      "format": "ns_original_tempo_pod_complete_v1",
+      "finite_prediction": true,
+      "gate_simplex": true,
+      "training": false,
+      "GPU_initialized": false,
+      "physical_unit_reconstruction_max_abs": 0.0
+    },
+    {
+      "model_id": "ns_tempo_npod_m4k64_seed42_online_refined_20261111",
+      "sha256": "7eef61351c52566cd9bfb9ffe83ea7940fb60e806ed89242b4dfa43b19337369",
+      "every_saved_tensor_restored_exactly": true,
+      "prediction_shape": [
+        1,
+        17
+      ],
+      "coordinate_scope": "17 native coordinates; all four means and all 256 neural modes",
+      "format": "ns_tempo_npod_complete_v1",
+      "finite_prediction": true,
+      "gate_simplex": true,
+      "training": false,
+      "GPU_initialized": false,
+      "frozen_basis_cache_max_abs": 4.76837158203125e-07,
+      "physical_unit_reconstruction_max_abs": 0.0
+    }
+  ],
+  "model_count": 15,
+  "CPU_threads": 2,
+  "GPU_initialized": false,
+  "training": false,
+  "new_test_evaluations": false,
+  "full_test_accuracy_source": "Pinned, previously completed test receipts, not these loader checks.",
+  "elapsed_seconds": 1.290319375002582
+}

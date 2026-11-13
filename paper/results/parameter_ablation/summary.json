@@ -1,0 +1,71 @@
+{
+  "table": "tab:kappa_abl",
+  "path_base": "repository root",
+  "condition": "Replace the normalized parameter input by zero, its training mean; preserve the observed input and frozen model.",
+  "models": [
+    {
+      "task": "navier_stokes",
+      "method": "TEMPO(POD)",
+      "checkpoint": "artifacts/checkpoints/navier_stokes/ns_original_improved_seed42_online_refined_20261111/checkpoint.pt",
+      "checkpoint_sha256": "903c42efc4b0c0c2db098fe94d90b4efe69edf7f88549ca9a96c2ad6c3767a78",
+      "n": 4000,
+      "split": "test",
+      "parameter": "Re",
+      "replacement": 1377.4492798866079,
+      "replacement_definition": "Training mean in the saved parameter encoding",
+      "real_error_percent": 9.648084979016398,
+      "mean_parameter_error_percent": 10.351122781157272,
+      "increase_percentage_points": 0.7030378021408754,
+      "arrays": "paper/results/parameter_ablation/ns_pod.npz",
+      "arrays_sha256": "ffb364a6288300ec9b4bb90ab2f70b7b778da12794c953c7f842bb0c0981d48a"
+    },
+    {
+      "task": "navier_stokes",
+      "method": "TEMPO(NeuralPOD)",
+      "checkpoint": "artifacts/checkpoints/navier_stokes/tempo_npod_joint_seed42/checkpoint.pt",
+      "checkpoint_sha256": "35116e5a4fc15bfaa83d85c9e64391885612f69246f20d1d5992795a097e8366",
+      "n": 4000,
+      "split": "test",
+      "parameter": "Re",
+      "replacement": 1377.4492798866079,
+      "replacement_definition": "Training mean in the saved parameter encoding",
+      "real_error_percent": 8.955736560379034,
+      "mean_parameter_error_percent": 9.659978242671823,
+      "increase_percentage_points": 0.7042416822927888,
+      "arrays": "paper/results/parameter_ablation/ns_npod.npz",
+      "arrays_sha256": "70c0daaf46ad594f47c69a386e47eff804ced7f093ea9ed35c97feb7419c31b1"
+    },
+    {
+      "task": "burgers",
+      "method": "TEMPO(POD)",
+      "checkpoint": "artifacts/checkpoints/burgers_original/burgers_original_pod_m2k32_onlinegram_relative_kl0001_ent0_seed17_20261109_online_refined_20261111/checkpoint.pt",
+      "checkpoint_sha256": "f453f93c973856c9cff5a3057fd2f7f0c5d4202156abed0031e9901e346ffbce",
+      "n": 1200,
+      "split": "validation",
+      "parameter": "nu",
+      "replacement": 0.367000013589859,
+      "replacement_definition": "Training mean in the saved parameter encoding",
+      "real_error_percent": 19.56923399054891,
+      "mean_parameter_error_percent": 47.77713600882178,
+      "increase_percentage_points": 28.20790201827287,
+      "arrays": "paper/results/parameter_ablation/burgers_pod.npz",
+      "arrays_sha256": "97f5c9184617cad67ddfa4b0eaeb4f7ad443f326438eaf939b46a02774c700f1"
+    },
+    {
+      "task": "burgers",
+      "method": "TEMPO(NeuralPOD)",
+      "checkpoint": "artifacts/checkpoints/burgers_original/tempo_npod_joint_seed17/checkpoint.pt",
+      "checkpoint_sha256": "55fa111e422f9ffd8b26f7720d8bf497ec99f5f392842e36ab4adae7cc23271b",
+      "n": 1200,
+      "split": "validation",
+      "parameter": "nu",
+      "replacement": 0.367000013589859,
+      "replacement_definition": "Training mean in the saved parameter encoding",
+      "real_error_percent": 22.86620473834047,
+      "mean_parameter_error_percent": 34.65782397454479,
+      "increase_percentage_points": 11.791619236204317,
+      "arrays": "paper/results/parameter_ablation/burgers_npod.npz",
+      "arrays_sha256": "3056e5f5483de1fb1ef5df79c0a7fe46343eed4c53571169a9027943a7748034"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "status": "complete",
+  "selected_checkpoint": "artifacts/checkpoints/darcy/tempo_pod2x32_seed17/checkpoint.pt",
+  "checkpoint_sha256": "37c9d7035b5048d8dc66010bfe2f29aa1d12abd6dcc95e5f6d7353e8070085b9",
+  "responsibility_source": "selected checkpoint offline.gamma, in saved row and regime order",
+  "train_rows": 7000,
+  "row_source_input_hash_checks": "exact",
+  "gamma_axes": [
+    7000,
+    2
+  ],
+  "fixed_reference_coordinates": "Saved alpha and embedding are independent fixed reference coordinates for the same physical training fields. Neither is replaced or aligned to the selected EM initialization coordinates.",
+  "alpha_equals_selected_initialization": false,
+  "diagnostic_only_signs": [
+    -1.0,
+    -1.0,
+    -1.0,
+    -1.0,
+    -1.0,
+    -1.0,
+    -1.0,
+    1.0,
+    -1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "diagnostic_only_aligned_relative_residual": 0.00020428955936263436,
+  "centers": "Exact responsibility-weighted arithmetic means in each displayed space: gamma.T@coordinates/gamma.sum(0).",
+  "covariance": "Responsibility-weighted population covariance in the unchanged saved alpha coordinates.",
+  "center_embedding_method": "Responsibility-weighted centroid of unchanged displayed embedding points; no UMAP.transform.",
+  "changed_keys": [
+    "center_embedding",
+    "centers",
+    "covariance",
+    "gamma",
+    "hard_regime"
+  ],
+  "preserved_keys": [
+    "alpha",
+    "embedding",
+    "input_hash",
+    "mean_permeability",
+    "row",
+    "source_row"
+  ],
+  "preserved_array_sha256": {
+    "alpha": "8422566e6d3f7b16260fcf58579614f05af7975409cfcd7652836d35c1b6dbcf",
+    "embedding": "c2d6360a44336dfac409785a835689b197fcbcfe84e6b07cf0092ddbb57524d7",
+    "input_hash": "9d89c00afa05c78ee4c106396c542dc1f48da5ca2441170437a48955522a1f23",
+    "mean_permeability": "28269d0c3e8899d1272eb15d08ad978b3d6884978940b2ade434cecec8cb1a13",
+    "row": "4142ef08e47607c484c471e4a0730b59ab24ac7c91b80250a6aded5faa41c029",
+    "source_row": "b42913c54f416499b3a92bb2091696ce546e98b117dc8e373364487b1ffabadb"
+  },
+  "old_hard_label_changes": 45,
+  "gamma_mass": [
+    0.5249650023467617,
+    0.47503499773474955
+  ],
+  "hard_counts": [
+    3677,
+    3323
+  ],
+  "output_npz_sha256": "bac0900cc578d308b44418e4c5cb41b102dcf95115131da62c939b57f28fb8b1",
+  "embedding_refit": false,
+  "UMAP_transform": false,
+  "training": false,
+  "CPU_threads": 1,
+  "GPU_initialized": false,
+  "prior_reference_npz_sha256": "9e734dbb09105b343129a52546b3295409b557647151363a4eca747094d84e07",
+  "output_npz": "figures/data/regimes_darcy.npz"
+}

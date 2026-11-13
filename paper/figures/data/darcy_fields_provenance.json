@@ -1,0 +1,27 @@
+{
+  "same_test_ids_all_five_models": true,
+  "n_test": 1000,
+  "grid": [
+    128,
+    128
+  ],
+  "input_features": 1024,
+  "total_modes": 64,
+  "TEMPO_NeuralPOD_parameters": 3314052,
+  "independent_test_percent": 2.9497760935955917,
+  "stored_test_percent": 2.9497760935955917,
+  "beta001_test_percent": 2.949775995079707,
+  "maximum_error_recomputation_difference": 5.551115123125783e-17,
+  "new_model_sha256": "ec49412c374c8306dc4162df196e3c491465e1e437537120d8604807ef431431",
+  "illustration": {
+    "test_index": 984,
+    "data_row": 8984,
+    "input_hash": "4f52afb3718ccb5de7a92b0846e9f6cb9ac9881093aa2459da6924f5d3445cdf",
+    "POD_percent": 1.4992255719446699,
+    "NeuralPOD_percent": 1.7609514324071782
+  },
+  "learned_beta_extrapolation": false,
+  "training": false,
+  "TEMPO_POD_checkpoint_sha256": "37c9d7035b5048d8dc66010bfe2f29aa1d12abd6dcc95e5f6d7353e8070085b9",
+  "TEMPO_POD_test_percent": 2.52830012086071
+}

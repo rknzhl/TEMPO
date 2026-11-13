@@ -1,0 +1,75 @@
+[
+  {
+    "id": "global_pod64_seed17",
+    "checkpoint_sha256": "34637e6c409b0cff85186a8708b782ecdea428af7dabfb53064ad4859a60bf0a",
+    "parameters_real": 1345600,
+    "test_relative_l2": 0.022539307284390575,
+    "test_percent": 2.2539307284390575,
+    "n_test": 1000,
+    "test_errors": "paper/results/darcy/global_pod64_seed17_test.npz"
+  },
+  {
+    "id": "global_neuralpod64_seed17",
+    "checkpoint_sha256": "c05fb5d996d6cc536cc75f5e5c720203d0be37f963a326f48b8344b04c62503f",
+    "parameters_real": 3234305,
+    "test_relative_l2": 0.022798611654417104,
+    "test_percent": 2.2798611654417105,
+    "n_test": 1000,
+    "test_errors": "paper/results/darcy/global_neuralpod64_seed17_test.npz"
+  },
+  {
+    "id": "tempo_pod2x32_seed17",
+    "checkpoint_sha256": "37c9d7035b5048d8dc66010bfe2f29aa1d12abd6dcc95e5f6d7353e8070085b9",
+    "parameters_real": 1343312,
+    "test_relative_l2": 0.0252830012086071,
+    "test_percent": 2.52830012086071,
+    "n_test": 1000,
+    "test_errors": "paper/results/darcy/tempo_pod2x32_seed17_test.npz"
+  },
+  {
+    "id": "tempo_neuralpod2x32_seed17",
+    "checkpoint_sha256": "ec49412c374c8306dc4162df196e3c491465e1e437537120d8604807ef431431",
+    "parameters_real": 3314052,
+    "test_relative_l2": 0.02949776093595592,
+    "test_percent": 2.9497760935955917,
+    "n_test": 1000,
+    "test_errors": "paper/results/darcy/tempo_neuralpod2x32_seed17_test.npz"
+  },
+  {
+    "id": "fixed_gmm2x32_seed17",
+    "checkpoint_sha256": "8782a6d1dcd882735661108d02ce1622a891e2c101161e41898222171559da8f",
+    "parameters_real": 1396290,
+    "test_relative_l2": 0.027673267125931544,
+    "test_percent": 2.7673267125931544,
+    "n_test": 1000,
+    "test_errors": "paper/results/darcy/fixed_gmm2x32_seed17_test.npz",
+    "compact_error_replay_mean_relative_l2": 0.027673267612352632
+  },
+  {
+    "id": "deeponet_seed17",
+    "checkpoint_sha256": "d153ac0315c6f06d4ca8b895824dc600b9e86572366fc01e3b6df2468130474d",
+    "parameters_real": 2196737,
+    "test_relative_l2": 0.05696630888492307,
+    "test_percent": 5.696630888492307,
+    "n_test": 1000,
+    "test_errors": "paper/results/darcy/deeponet_seed17_test.npz"
+  },
+  {
+    "id": "fno_seed17",
+    "checkpoint_sha256": "8812e438338bc87950ee608c1b26bf60bac6ca8b7c774d9798a1eab330f37494",
+    "parameters_real": 1192801,
+    "test_relative_l2": 0.006278072626410718,
+    "test_percent": 0.6278072626410719,
+    "n_test": 1000,
+    "test_errors": "paper/results/darcy/fno_seed17_test.npz"
+  },
+  {
+    "id": "cno_unit_beta1_seed42",
+    "checkpoint_sha256": "a69e944953e54b651d0f577f29dec1177eaa86087efba6fb6b9dddea774f7b51",
+    "parameters_real": 2007209,
+    "test_relative_l2": 0.003965776821121831,
+    "test_percent": 0.3965776821121831,
+    "n_test": 1000,
+    "test_errors": "paper/results/darcy/cno_unit_beta1_seed42_test.npz"
+  }
+]

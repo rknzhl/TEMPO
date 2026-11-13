@@ -1,11 +1,17 @@
 __pycache__/
 *.py[cod]
-.venv/
 .DS_Store
 *.log
-
-# large artefacts are intentionally not tracked
+/data/
+/artifacts/
+/output/
 *.pt
+*.pth
 *.hdf5
+*.h5
 *.npz
-data/
+!paper/examples/**/*.npz
+!paper/figures/data/*.npz
+!paper/figures/data/**/*.npz
+!paper/results/**/*.npz
+!paper/results/*.npz

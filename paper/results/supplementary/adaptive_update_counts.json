@@ -1,0 +1,140 @@
+[
+  {
+    "benchmark": "Burgers",
+    "basis": "pod",
+    "scope": "supplementary archived model",
+    "source": "artifacts/old_artifacts/results/burgers/tempo_pod_M3_v1/metrics.json",
+    "public_log": "paper/results/raw_logs.tar.gz#runs/burgers_tempo_pod_M3/metrics.json",
+    "source_sha256": "f93b4fca8587c5168ce86951def609086e3b23cdf59a73763bed97e9c4bb9c12",
+    "threshold_evidence": "historical_pod_config.json",
+    "M": 3,
+    "EM_iterations": 19,
+    "denominator": 57,
+    "thresholds": {
+      "theta_s": 0.01,
+      "theta_l": 0.1
+    },
+    "counts": {
+      "skip": 19,
+      "incremental": 20,
+      "full": 18
+    },
+    "percent": {
+      "skip": 33.333333333333336,
+      "incremental": 35.08771929824562,
+      "full": 31.57894736842105
+    }
+  },
+  {
+    "benchmark": "Burgers",
+    "basis": "npod",
+    "scope": "supplementary fixed-recipe repeat",
+    "source": "artifacts/checkpoints/burgers_supplementary/tempo_npod_burgers_m3_seed42_repeat_20261113/metrics.json",
+    "public_log": "artifacts/checkpoints/burgers_supplementary/tempo_npod_burgers_m3_seed42_repeat_20261113/training.txt",
+    "source_sha256": "0c82be331318e53c9ff14056c5097c9bf01c9b0a2de613e19303c69916cb109b",
+    "threshold_evidence": "metrics.hparams",
+    "M": 3,
+    "EM_iterations": 13,
+    "denominator": 39,
+    "thresholds": {
+      "theta_s": 0.01,
+      "theta_l": 0.1
+    },
+    "counts": {
+      "skip": 19,
+      "incremental": 5,
+      "full": 15
+    },
+    "percent": {
+      "skip": 48.717948717948715,
+      "incremental": 12.82051282051282,
+      "full": 38.46153846153847
+    }
+  },
+  {
+    "benchmark": "Darcy",
+    "basis": "pod",
+    "scope": "sequential offline stage of finalized model",
+    "seed": 17,
+    "source": "artifacts/checkpoints/darcy/tempo_pod_offline_source/weights.pt",
+    "checkpoint_sha256": "d40d886999be60070c521d2e850e12993500ea223656c2037a04f1eef43981d6",
+    "raw_log": "paper/results/raw_logs.tar.gz#results/supplementary/training/darcy_pod_raw_log.txt",
+    "raw_log_sha256": "c34fadc1eaff97125553857e919eea875696b8f795ce20d43d8061b38c9bc87f",
+    "M": 2,
+    "EM_iterations": 29,
+    "denominator": 58,
+    "thresholds": {
+      "theta_s": 0.001,
+      "theta_l": 0.1
+    },
+    "counts": {
+      "skip": 11,
+      "incremental": 36,
+      "full": 11
+    },
+    "percent": {
+      "skip": 18.96551724137931,
+      "incremental": 62.06896551724138,
+      "full": 18.96551724137931
+    }
+  },
+  {
+    "benchmark": "Darcy",
+    "basis": "npod",
+    "scope": "sequential offline stage of finalized model",
+    "seed": 17,
+    "source": "artifacts/checkpoints/darcy/tempo_neuralpod2x32_seed17/checkpoint.pt",
+    "checkpoint_sha256": "ec49412c374c8306dc4162df196e3c491465e1e437537120d8604807ef431431",
+    "raw_log": "paper/results/raw_logs.tar.gz#results/supplementary/training/darcy_npod_raw_log.txt",
+    "raw_log_sha256": "cadeceebdf33704b895c6e258112116da55aaa6aa81c33a9ffbbe61936aa094c",
+    "M": 2,
+    "EM_iterations": 6,
+    "denominator": 12,
+    "thresholds": {
+      "theta_s": 0.001,
+      "theta_l": 0.1
+    },
+    "counts": {
+      "skip": 5,
+      "incremental": 6,
+      "full": 1
+    },
+    "percent": {
+      "skip": 41.666666666666664,
+      "incremental": 50.0,
+      "full": 8.333333333333334
+    },
+    "incremental_noop_count": 6,
+    "trace": "paper/results/raw_logs.tar.gz#results/supplementary/training/darcy_npod_trace.txt",
+    "trace_sha256": "79e56f07a5c45a61b6bc74ab11ad1198ac7036d4f5fdb205d184f5792f484e60",
+    "actual_basis_fits": 3,
+    "post_EM_refinement_excluded": true
+  },
+  {
+    "benchmark": "Navier-Stokes",
+    "basis": "npod",
+    "scope": "sequential offline stage of finalized model",
+    "seed": 42,
+    "source": "artifacts/checkpoints/navier_stokes/tempo_npod_joint_seed42/checkpoint.pt",
+    "checkpoint_sha256": "35116e5a4fc15bfaa83d85c9e64391885612f69246f20d1d5992795a097e8366",
+    "actual_basis_fits": 4,
+    "post_EM_refinement_excluded": true,
+    "M": 4,
+    "EM_iterations": 2,
+    "denominator": 8,
+    "thresholds": {
+      "theta_s": 0.001,
+      "theta_l": 0.1
+    },
+    "counts": {
+      "skip": 8,
+      "incremental": 0,
+      "full": 0
+    },
+    "percent": {
+      "skip": 100.0,
+      "incremental": 0.0,
+      "full": 0.0
+    }
+  }
+]

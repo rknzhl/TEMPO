@@ -1,0 +1,45 @@
+{
+  "table": "tab:viscosity_trace",
+  "path_base": "repository root",
+  "burgers": {
+    "source": "paper/results/supplementary/viscosity_trace.json",
+    "source_key": "statistics.test",
+    "known_mean_relative_l2": 0.3297782752248976,
+    "estimated_mean_relative_l2": 0.33282890432065837,
+    "accuracy_percent": 96.5679012345679,
+    "n": 1350,
+    "groups": 450,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  "navier_stokes": [
+    {
+      "task": "navier_stokes",
+      "method": "TEMPO(POD)",
+      "n": 4000,
+      "known_mean_relative_l2": 0.09648084979016397,
+      "estimated_mean_relative_l2": 0.0972374498915607,
+      "per_sample": "paper/results/parameter_estimation/ns_pod.npz",
+      "sha256": "8b59a7cf7bcd1b196c4c995135052ea13102ce2fa0481ad0c40b5557dff715f7",
+      "checkpoint": "artifacts/checkpoints/navier_stokes/ns_original_improved_seed42_online_refined_20261111/checkpoint.pt",
+      "checkpoint_sha256": "903c42efc4b0c0c2db098fe94d90b4efe69edf7f88549ca9a96c2ad6c3767a78"
+    },
+    {
+      "task": "navier_stokes",
+      "method": "TEMPO(NeuralPOD)",
+      "n": 4000,
+      "known_mean_relative_l2": 0.08955736560379034,
+      "estimated_mean_relative_l2": 0.09039478019731212,
+      "per_sample": "paper/results/parameter_estimation/ns_npod.npz",
+      "sha256": "ced3f7af54be52bf2a94f2b0ab0d01c30a54268a670cdb273a69364cdafca579",
+      "checkpoint": "artifacts/checkpoints/navier_stokes/tempo_npod_joint_seed42/checkpoint.pt",
+      "checkpoint_sha256": "35116e5a4fc15bfaa83d85c9e64391885612f69246f20d1d5992795a097e8366"
+    }
+  ],
+  "estimator": "paper/configs/parameter_estimator.json",
+  "cohort_sha256": "41906a2aa6ae6b5baf35085f23b41a258d248140f7fe6d0684e97d6abb58dbcc",
+  "estimated_Re_sha256": "edab955ef3629f40bd1c88b573f652d920f634ac1cd71adf73b73f23451e4068"
+}
