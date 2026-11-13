@@ -38,7 +38,6 @@ def hdf5_path(name: str) -> str:
 
 
 def download(name: str) -> None:
-    """Download dataset from HuggingFace and save as HDF5."""
     from datasets import load_dataset
 
     path = hdf5_path(name)
@@ -74,7 +73,7 @@ def download(name: str) -> None:
 
 
 def load(name: str, path: str = None) -> dict[str, np.ndarray]:
-    """Load a full HDF5 dataset into memory (small files only)."""
+    """Load a small HDF5 dataset into memory."""
     if path is None:
         if not os.path.exists(hdf5_path(name)):
             download(name)
@@ -227,8 +226,6 @@ def load_ns_stacked(
     xy_np = np.stack([xx.ravel(), yy.ravel()], axis=1).astype(np.float32)
 
     return s, u0, kappa, xy_np, Nx, Ny, Nt
-
-
 
 
 def measure_inference_time(predict_fn, device, n_warmup=3, n_rep=10):

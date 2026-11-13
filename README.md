@@ -1,63 +1,56 @@
 # TEMPO: Regime-Aware Operator Learning with Locally Adapted POD Bases
 
-TEMPO recovers latent solution regimes from snapshot data by expectation-maximization, fits
-a dedicated linear (POD) or nonlinear (NeuralPOD) basis to each, and routes new inputs with
-a gating network trained online.
+TEMPO learns local POD or NeuralPOD bases and combines their predictions
+with an input-conditioned gate. Benchmarks: Burgers, Sod, Coanda, Darcy,
+Navier–Stokes and heterogeneous Helmholtz.
 
-![TEMPO overview](docs/overview.png)
+![TEMPO overview](paper/figures/overview.png)
 
 ## Install
 
-```bash
-pip install -r requirements.txt
-git clone https://github.com/camlab-ethz/ConvolutionalNeuralOperator ~/CNO
+```sh
+python -m pip install -r requirements.txt
 ```
 
-The scripts also look for CNO next to this repository or at `$CNO_PATH`.
+FNO uses `neuraloperator==2.0.0`; CNO source information is in
+`paper/configs/dependencies.json`.
 
-## Data
+## Files
 
-1D Burgers' and 2D Darcy flow come from [PDEBench](https://github.com/pdebench/PDEBench);
-`utils/datasets.py` downloads them on first use. The 2D Navier-Stokes data is generated
-here:
+- `models/`: POD, NeuralPOD, TEMPO and joint neural-basis refinement.
+- `scripts/`: data preparation, training and saved-model prediction.
+- `utils/`: dataset loading and plotting utilities.
+- `paper/`: settings, results, figures and prediction examples.
+- `artifacts/`: model weights and their file index.
+- `tests/`: checks for model loading and training components.
 
-```bash
-python scripts/data_generation/generate_navier_stokes_spectral.py
+## Models
+
+Weights and settings are indexed in `paper/configs/checkpoints.json`.
+Unpack the model bundle from the repository root:
+
+```sh
+tar -xf artifacts/TEMPO-models.tar
 ```
 
-## Layout
+Predict a Darcy pressure field:
 
-```
-models/   TEMPO (offline EM, online gating), POD and NeuralPOD bases, DeepONet branches
-utils/    dataset loading, plotting
-scripts/  one training script per method and benchmark, plus ablations and benchmarks
-runs/     metrics, EM logs and hyperparameters of the runs reported in the paper
-```
-
-## Running
-
-Run from the repository root; every script supports `--help`.
-
-```bash
-# TEMPO
-python scripts/burgers/train_tempo.py --nu_values 0.001 0.1 1.0 --M 3 --basis_type pod
-python scripts/darcy/train_tempo_darcy.py --M 5 --basis_type pod
-python scripts/navier_stokes/train_tempo_navier_stokes.py --re_values 100 1000 3600 10000 --M 4 --no-kappa-init
-
-# baselines
-python scripts/burgers/train_pod.py --nu_values 0.001 0.1 1.0
-python scripts/darcy/train_fno_darcy.py
-python scripts/navier_stokes/train_cno_navier_stokes.py
-
-# analysis
-python scripts/benchmark_inference.py
-python scripts/verify_theorem.py
-python scripts/ablation_kappa.py --benchmark darcy --run_dir <dir with trainer.pt>
-python scripts/burgers/generate_basis_figures.py
+```sh
+python scripts/paper/replay_checkpoint.py \
+  --checkpoint artifacts/checkpoints/darcy/tempo_pod2x32_seed17/checkpoint.pt \
+  --inputs paper/examples/darcy_replay/input.npz --input-units raw --out output/darcy.npz
 ```
 
-On Navier-Stokes the regimes are initialised from `log Re` by default; `--no-kappa-init`
-falls back to the GMM initialisation.
+Input formats and units are described in [scripts/paper/README.md](scripts/paper/README.md).
+Task settings are in `paper/configs/`; test errors and timings are in `paper/results/`.
 
-`runs/` holds the metrics and configuration of the eight TEMPO runs; see
-`runs/HPARAMS.md`. Checkpoints are not tracked here because of their size.
+## Figures and checks
+
+```sh
+python paper/figures/render_all.py --out output/figures
+python -m unittest discover -s tests
+```
+
+The figure command builds all 14 article figures using the shared style.
+Joint NeuralPOD refinement is implemented in `models/neural_refinement.py`;
+settings are indexed in `paper/configs/refinement.json`.

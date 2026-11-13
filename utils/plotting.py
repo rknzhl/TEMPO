@@ -1,4 +1,4 @@
-"""Unified plotting utilities."""
+"""Shared plotting utilities."""
 
 
 import matplotlib
@@ -15,12 +15,6 @@ except ImportError:
 COLOR_MEAN = PALETTE[2]
 COLOR_RESIDUAL = PALETTE[1]
 C0, C1, C2     = plt.cm.tab10(0), plt.cm.tab10(1), plt.cm.tab10(2)
-
-
-
-
-
-
 
 
 def plot_pod_phase1(sigmas: np.ndarray, save_path: str) -> None:
@@ -72,7 +66,6 @@ def plot_cross_param_bar(
     save_path: str,
     ylim: float = 1.0,
 ) -> None:
-    """Bar chart of mean/median cross-parameter errors."""
     keys = list(cross_metrics.keys())
     labels = [f"{param_label}={k:.4g}" if isinstance(k, float) else f"{param_label}={k}" for k in keys]
     means = [cross_metrics[k]["mean"]   for k in keys]
@@ -92,8 +85,6 @@ def plot_cross_param_bar(
     ax.spines[["top", "right"]].set_visible(False)
     plt.tight_layout()
     plt.savefig(save_path, dpi=150, bbox_inches="tight"); plt.close()
-
-
 
 
 def plot_umap_regimes(
