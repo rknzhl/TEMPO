@@ -1,0 +1,47 @@
+{
+  "method": "tempo_pod",
+  "seed": 17,
+  "path": "artifacts/checkpoints/sod/tempo_pod_refined_seed17/checkpoint.pt",
+  "sha256": "b88c8b4d8c9096a5f4682a7cedc175634120550f6099d36c46e7b7e654e4593a",
+  "ranks": [
+    24,
+    24
+  ],
+  "grid": [
+    3,
+    16,
+    128
+  ],
+  "split": {
+    "train": 1232,
+    "validation": 408,
+    "test": 1024
+  },
+  "initial_checkpoint": "artifacts/checkpoints/sod/sod_dev_m2k24_width256_schedule800_seed17_v1_online_refined_20261111/checkpoint.pt",
+  "initial_sha256": "876082373ca35249129704cc77831637932a411821f15651f345d6e9a6fe34e0",
+  "bases_changed": false,
+  "loss": "relative field MSE",
+  "coefficient_conditioning": "train-only mean and standard deviation, folded into output heads",
+  "adam": {
+    "epochs": 2000,
+    "selected_epoch": 1720,
+    "batch_size": 256,
+    "gate_lr": 0.0001,
+    "hidden_lr": 0.0003,
+    "head_lr": 0.001,
+    "weight_decay": 0.0001,
+    "scheduler": "cosine",
+    "patience": 300
+  },
+  "lbfgs": {
+    "lr": 0.5,
+    "max_iterations": 2000,
+    "history_size": 20,
+    "line_search": "strong_wolfe",
+    "selected_iteration": 0
+  },
+  "validation_relative_l2": 0.03221558876581096,
+  "test_relative_l2": 0.032729808767075194,
+  "error_data": "paper/results/refinement/sod_pod_test.npz",
+  "selection": "validation"
+}

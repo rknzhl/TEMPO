@@ -71,7 +71,7 @@ def pred_to_flat(pred_np, Nt, Nx, Ny):
 
 
 def predict_batched(model, X_tensor, device, batch_size=16):
-    """(N, 3, Nx, Ny) → (N, 2*Nt, Nx, Ny) on CPU."""
+    """Map (N, 2, Nx, Ny) inputs to (N, 2*Nt, Nx, Ny) outputs on CPU."""
     model.eval()
     parts = []
     with torch.no_grad():

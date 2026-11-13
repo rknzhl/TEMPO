@@ -1,0 +1,111 @@
+{
+  "source": "scripts/navier_stokes/train_deeponet_navier_stokes.py",
+  "source_sha256": "41c7843abd64cb3b91cca21224e1eddab9414fb46057f4c1394e7110cfa69aa2",
+  "recipe": "Archived script defaults",
+  "seed": 39,
+  "hidden_dim": 256,
+  "n_layers": 4,
+  "optimizer": "AdamW",
+  "learning_rate": 0.0003,
+  "weight_decay": 0.0001,
+  "optimizer_steps": 500,
+  "batch_size": 64,
+  "minibatches_per_original_epoch": 1,
+  "sampling": "numpy.random.choice without replacement within each batch",
+  "loss": "MSE on raw velocity",
+  "normalization": "none",
+  "selection": "final fixed step",
+  "grid": [
+    21,
+    64,
+    64,
+    2
+  ],
+  "trunk_coordinate_order": [
+    "x",
+    "y",
+    "t"
+  ],
+  "trunk_flatten_order": [
+    "x",
+    "y",
+    "t"
+  ],
+  "target_flatten_order": [
+    "time",
+    "x",
+    "y",
+    "component"
+  ],
+  "coordinate_range": [
+    0.0,
+    1.0
+  ],
+  "Re": [
+    100,
+    1000,
+    3600,
+    10000
+  ],
+  "train_per_Re": 4000,
+  "test_per_Re": 1000,
+  "source_selection_sha256": "b46008fd7549f230dd85a1c82cd51a21644aae03ca4715e1891bf1ec3529b4d7",
+  "data_files": {
+    "train.npy": {
+      "shape": [
+        16000,
+        21,
+        64,
+        64,
+        2
+      ],
+      "dtype": "<f4",
+      "bytes": 11010048128,
+      "sha256": "1387160725598e1d7656aa2ab3dc055679672d25a1cedab8d5d236463f6a591f"
+    },
+    "test.npy": {
+      "shape": [
+        4000,
+        21,
+        64,
+        64,
+        2
+      ],
+      "dtype": "<f4",
+      "bytes": 2752512128,
+      "sha256": "0035c5fb010a031b722f8254502f2d6cef411b13052972383b33995178d8da90"
+    },
+    "train_Re.npy": {
+      "shape": [
+        16000
+      ],
+      "dtype": "<i8",
+      "sha256": "1a0767da977f251680a96200394e64ab884fce1e76068dd365be7a7d6f0fb073",
+      "bytes": 128128
+    },
+    "train_source_index.npy": {
+      "shape": [
+        16000
+      ],
+      "dtype": "<i8",
+      "sha256": "8f63c1d50849e76fb8d3f8ec2e46111fa6d38c483a96979b3a59fb813fc9d188",
+      "bytes": 128128
+    },
+    "test_Re.npy": {
+      "shape": [
+        4000
+      ],
+      "dtype": "<i8",
+      "sha256": "97a368fa8853e2557856f758b9cad5fc5b645465b1b18d4d4ff455eed7342e94",
+      "bytes": 32128
+    },
+    "test_source_index.npy": {
+      "shape": [
+        4000
+      ],
+      "dtype": "<i8",
+      "sha256": "34d0d970de87c34874d3745bfdcbc15db160f812e180b0235c44009af5093e62",
+      "bytes": 32128
+    }
+  }
+}

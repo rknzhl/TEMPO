@@ -1,0 +1,17 @@
+{
+  "versions": {
+    "torch": "2.5.1+cu124",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "scikit-learn": "1.7.2",
+    "umap-learn": "0.5.12",
+    "matplotlib": "3.10.9",
+    "neuraloperator": "2.0.0"
+  },
+  "cno": {
+    "repository": "https://github.com/camlab-ethz/ConvolutionalNeuralOperator",
+    "commit": "6e765198aa02b56352e0a3437104b9d9e337176e",
+    "source": "CNO2d_simplified/CNO2d.py",
+    "sha256": "30c1141b050eadd6f74ba34e33039a1488e498a8c1774bfa4ab09f75f323f47c"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "method": "global_pod_total",
+  "seed": 17,
+  "path": "artifacts/checkpoints/sod/global_pod48_width448_seed17/checkpoint.pt",
+  "sha256": "d3fd03a7970c2291ab04d363e2922f4f07a535f792bdbc7a5aa35c60d545cc36",
+  "rank": 48,
+  "hidden_dim": 448,
+  "n_layers": 3,
+  "epochs": 500,
+  "batch_size": 128,
+  "lr": 0.001,
+  "weight_decay": 0.0001,
+  "optimizer": "AdamW",
+  "gradient_clip": 1.0,
+  "loss": "field MSE",
+  "selection": "final epoch",
+  "test_relative_l2": 0.03138518247515115,
+  "grid": [
+    3,
+    16,
+    128
+  ],
+  "training_repeated": false
+}

@@ -115,7 +115,7 @@ def _labels_to_idx(nu_labels, nu_values):
 
 
 def train_classifier(u0_train, nu_labels_train, nu_values, device, epochs=30, batch=256):
-    """Train MLP to classify nu from u0. nu_labels_train is (N, 1) float tensor of nu values."""
+    """Classify viscosity from the initial field."""
     y_train = _labels_to_idx(nu_labels_train, nu_values)
 
     in_dim = u0_train.shape[1]
@@ -147,7 +147,7 @@ def train_classifier(u0_train, nu_labels_train, nu_values, device, epochs=30, ba
 
 @torch.no_grad()
 def eval_classifier(clf, u0_test, nu_labels_test, nu_values, device):
-    """Predict nu for each test sample. Returns kappa_pred tensor (N, 1)."""
+    """Return predicted viscosity values with shape (N, 1)."""
     y_true = _labels_to_idx(nu_labels_test, nu_values)
 
     clf.eval()

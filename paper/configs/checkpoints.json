@@ -1,0 +1,2066 @@
+{
+  "release": "TEMPO-artifacts-20261111",
+  "path_base": "repository root",
+  "download_base_url": null,
+  "download_status": "External artifacts are identified by relative path and SHA256; a public release URL has not been assigned.",
+  "models": [
+    {
+      "task": "burgers_original",
+      "method": "tempo_pod",
+      "id": "burgers_original_pod_m2k32_onlinegram_relative_kl0001_ent0_seed17_20261109_online_refined_20261111",
+      "seed": 17,
+      "path": "artifacts/checkpoints/burgers_original/burgers_original_pod_m2k32_onlinegram_relative_kl0001_ent0_seed17_20261109_online_refined_20261111/checkpoint.pt",
+      "bytes": 64479586,
+      "sha256": "f453f93c973856c9cff5a3057fd2f7f0c5d4202156abed0031e9901e346ffbce",
+      "scope": "final_article",
+      "config": "paper/configs/burgers.json",
+      "supersedes_checkpoint_sha256": "19354095fa8ec4c2a24209fb5f5c363d830b8dfb32766d939a0a31b624909dec"
+    },
+    {
+      "task": "burgers_original",
+      "method": "npod_deeponet_coeff",
+      "id": "joint_npod32_seed42",
+      "seed": 42,
+      "path": "artifacts/checkpoints/burgers_original/joint_npod32_seed42/weights.pt",
+      "bytes": 57120388,
+      "sha256": "e6b5039cf652ddf6e2b57f9544748000825e68e33d82fc9614330a783e30109d",
+      "scope": "final_article",
+      "config": "paper/configs/burgers.json"
+    },
+    {
+      "task": "burgers_original",
+      "method": "global_pod_96_control",
+      "id": "global_pod96_seed42",
+      "seed": 42,
+      "path": "artifacts/checkpoints/burgers_original/global_pod96_seed42/weights.pt",
+      "bytes": 86412265,
+      "sha256": "67ee4a1f578db275095ebccad40dda8376bf1ccc377d1db6ec64e2c51d5ac6eb",
+      "scope": "final_article",
+      "config": "paper/configs/burgers.json"
+    },
+    {
+      "task": "burgers_original",
+      "method": "deeponet_100updates",
+      "id": "burgers_original_deeponet_old100updates_seed39_20261109",
+      "seed": 39,
+      "path": "artifacts/checkpoints/burgers_original/burgers_original_deeponet_old100updates_seed39_20261109/weights.pt",
+      "bytes": 6461384,
+      "sha256": "0f5aa7c0a290a404bb3ad2defea97e337baeb452a24a6b68d910047318eed5ea",
+      "scope": "final_article",
+      "config": "paper/configs/burgers.json"
+    },
+    {
+      "task": "burgers_original",
+      "method": "tempo_pod_m3k32",
+      "id": "night20261109_burgers_original_pod_m3k32_noise1_seed17",
+      "seed": 17,
+      "path": "artifacts/checkpoints/burgers_original/night20261109_burgers_original_pod_m3k32_noise1_seed17/weights.pt",
+      "bytes": 94952253,
+      "sha256": "1f61d627096d03baf45df29aace3250fc1c166575cca2be87cf824d24ddeb322",
+      "scope": "final_article",
+      "config": "paper/configs/burgers.json"
+    },
+    {
+      "task": "burgers_original",
+      "method": "tempo_pod_m4k16",
+      "id": "burgers_original_pod_m4k16_total64_seed17_20261109",
+      "seed": 17,
+      "path": "artifacts/checkpoints/burgers_original/burgers_original_pod_m4k16_total64_seed17_20261109/weights.pt",
+      "bytes": 69904406,
+      "sha256": "86da29ebe677e3c4d6f15fb316029b7dd32f908518e07bf416a9020db83e4497",
+      "scope": "final_article",
+      "config": "paper/configs/burgers.json"
+    },
+    {
+      "task": "sod",
+      "method": "deeponet",
+      "id": "baseline_sod_deeponet_seed17_20261108",
+      "seed": 17,
+      "path": "artifacts/checkpoints/sod/baseline_sod_deeponet_seed17_20261108/weights.pt",
+      "bytes": 2249288,
+      "sha256": "a470924dcf9a3e95bdbbafa2b3e0f18c1cc8fc67078097cd2c03935c69f4d68a",
+      "scope": "final_article",
+      "config": "paper/configs/sod.json"
+    },
+    {
+      "task": "sod",
+      "method": "deeponet",
+      "id": "baseline_sod_deeponet_seed29_20261108",
+      "seed": 29,
+      "path": "artifacts/checkpoints/sod/baseline_sod_deeponet_seed29_20261108/weights.pt",
+      "bytes": 2249288,
+      "sha256": "2915b8f6aa291755fa5d17644627641fbd67378ade75d083040165d1149de503",
+      "scope": "final_article",
+      "config": "paper/configs/sod.json"
+    },
+    {
+      "task": "sod",
+      "method": "deeponet",
+      "id": "baseline_sod_deeponet_seed43_20261108",
+      "seed": 43,
+      "path": "artifacts/checkpoints/sod/baseline_sod_deeponet_seed43_20261108/weights.pt",
+      "bytes": 2249288,
+      "sha256": "54096d85071e06225ec35fec5ad5a937cd90196a6b8fc16db60e30e3bda6bd80",
+      "scope": "final_article",
+      "config": "paper/configs/sod.json"
+    },
+    {
+      "task": "sod",
+      "method": "global_pod_k",
+      "id": "sod_fullstate_globalK24_cpuoffline_seed17_v1",
+      "seed": 17,
+      "path": "artifacts/checkpoints/sod/sod_fullstate_globalK24_cpuoffline_seed17_v1/weights.pt",
+      "bytes": 1229167,
+      "sha256": "9ccd0d3b7a90b4675e3f0f580419e38aa608c202f80b2979c2d7a4a168eefb6d",
+      "scope": "final_article",
+      "config": "paper/configs/sod.json"
+    },
+    {
+      "task": "sod",
+      "method": "global_pod_k",
+      "id": "sod_fullstate_globalK24_cpuoffline_seed29_v1",
+      "seed": 29,
+      "path": "artifacts/checkpoints/sod/sod_fullstate_globalK24_cpuoffline_seed29_v1/weights.pt",
+      "bytes": 1229167,
+      "sha256": "1023253020264b9ca1a903f8076402f3c16286d0fe756fbfad997df6e5b682ed",
+      "scope": "final_article",
+      "config": "paper/configs/sod.json"
+    },
+    {
+      "task": "sod",
+      "method": "global_pod_k",
+      "id": "sod_fullstate_globalK24_cpuoffline_seed43_v1",
+      "seed": 43,
+      "path": "artifacts/checkpoints/sod/sod_fullstate_globalK24_cpuoffline_seed43_v1/weights.pt",
+      "bytes": 1229167,
+      "sha256": "d3b94a340ecd0e0f7c333934a6705a97ca82c378a77090b3a9f98470349dfa80",
+      "scope": "final_article",
+      "config": "paper/configs/sod.json"
+    },
+    {
+      "task": "sod",
+      "method": "fno",
+      "id": "sod_fno_seed17",
+      "seed": 17,
+      "path": "artifacts/checkpoints/sod/sod_fno_seed17/weights.pt",
+      "bytes": 4850069,
+      "sha256": "cc7b4b22bdae248f0de4da2ce9a5792efa39e1e219ae25a890272375faf34cf8",
+      "scope": "final_article",
+      "config": "paper/configs/sod.json"
+    },
+    {
+      "task": "sod",
+      "method": "fno",
+      "id": "sod_fno_seed29",
+      "seed": 29,
+      "path": "artifacts/checkpoints/sod/sod_fno_seed29/weights.pt",
+      "bytes": 4850069,
+      "sha256": "6ef9fb2234deec74ea11dda55d4f5c7747ba744d7f9eec084d03f569aa299fff",
+      "scope": "final_article",
+      "config": "paper/configs/sod.json"
+    },
+    {
+      "task": "sod",
+      "method": "fno",
+      "id": "sod_fno_seed43",
+      "seed": 43,
+      "path": "artifacts/checkpoints/sod/sod_fno_seed43/weights.pt",
+      "bytes": 4850069,
+      "sha256": "18bd2347337e4bc30aab41bd6cb402c27695d1622dc3d7935dde4b4583655a1e",
+      "scope": "final_article",
+      "config": "paper/configs/sod.json"
+    },
+    {
+      "task": "sod",
+      "method": "cno",
+      "id": "sod_cno_seed17",
+      "seed": 17,
+      "path": "artifacts/checkpoints/sod/sod_cno_seed17/weights.pt",
+      "bytes": 8145992,
+      "sha256": "1f1f7cda2c4fa93619caebd430b53f8e51283e13d5d241298d8829efe06665d0",
+      "scope": "final_article",
+      "config": "paper/configs/sod.json"
+    },
+    {
+      "task": "sod",
+      "method": "cno",
+      "id": "sod_cno_seed29",
+      "seed": 29,
+      "path": "artifacts/checkpoints/sod/sod_cno_seed29/weights.pt",
+      "bytes": 8145992,
+      "sha256": "1ccf6fbb2a97d4cc77d8bb493dde339b4926c73d110989dffeca8b49e20d0496",
+      "scope": "final_article",
+      "config": "paper/configs/sod.json"
+    },
+    {
+      "task": "sod",
+      "method": "cno",
+      "id": "sod_cno_seed43",
+      "seed": 43,
+      "path": "artifacts/checkpoints/sod/sod_cno_seed43/weights.pt",
+      "bytes": 8145992,
+      "sha256": "5083b2e3b1aa83a086f6f98cac123f4338d6a21730aca1c8b0e8708b23f43126",
+      "scope": "final_article",
+      "config": "paper/configs/sod.json"
+    },
+    {
+      "task": "sod",
+      "method": "fixed_gmm",
+      "id": "sod_fullstate_fixed_gmm_m2k24_cpuoffline_seed17_v1",
+      "seed": 17,
+      "path": "artifacts/checkpoints/sod/sod_fullstate_fixed_gmm_m2k24_cpuoffline_seed17_v1/weights.pt",
+      "bytes": 2505398,
+      "sha256": "3c1430af5216e47206d2e96f61e798f87d60051f71132f4cae94f6ef38f87fd1",
+      "scope": "final_article",
+      "config": "paper/configs/sod.json"
+    },
+    {
+      "task": "sod",
+      "method": "fixed_gmm",
+      "id": "sod_fullstate_fixed_gmm_m2k24_cpuoffline_seed29_v1",
+      "seed": 29,
+      "path": "artifacts/checkpoints/sod/sod_fullstate_fixed_gmm_m2k24_cpuoffline_seed29_v1/weights.pt",
+      "bytes": 2505398,
+      "sha256": "31342ad60b392d5b42f7470ea5a722aba9f3e863b03194d741ba9dac754cd656",
+      "scope": "final_article",
+      "config": "paper/configs/sod.json"
+    },
+    {
+      "task": "sod",
+      "method": "fixed_gmm",
+      "id": "sod_fullstate_fixed_gmm_m2k24_cpuoffline_seed43_v1",
+      "seed": 43,
+      "path": "artifacts/checkpoints/sod/sod_fullstate_fixed_gmm_m2k24_cpuoffline_seed43_v1/weights.pt",
+      "bytes": 2505398,
+      "sha256": "c1498edd164e945ee68c3585ce76e99de2db51cfc68900e4b345b6aedaf09409",
+      "scope": "final_article",
+      "config": "paper/configs/sod.json"
+    },
+    {
+      "task": "coanda",
+      "method": "tempo_pod",
+      "id": "coanda_tempo_pod_seed17",
+      "seed": 17,
+      "path": "artifacts/checkpoints/coanda/coanda_tempo_pod_seed17/weights.pt",
+      "bytes": 1116406,
+      "sha256": "80fd812f71fa1706b6fa9f3a534109b090736bc0fb68e0bce5a0032913786418",
+      "scope": "final_article",
+      "config": "paper/configs/coanda.json"
+    },
+    {
+      "task": "coanda",
+      "method": "tempo_pod",
+      "id": "coanda_tempo_pod_seed29",
+      "seed": 29,
+      "path": "artifacts/checkpoints/coanda/coanda_tempo_pod_seed29/weights.pt",
+      "bytes": 1116086,
+      "sha256": "b77abddcde0dbd31d6a2b46392406f93eefc17895239cf32c97cd5bbd2a1c773",
+      "scope": "final_article",
+      "config": "paper/configs/coanda.json"
+    },
+    {
+      "task": "coanda",
+      "method": "tempo_pod",
+      "id": "coanda_tempo_pod_seed43",
+      "seed": 43,
+      "path": "artifacts/checkpoints/coanda/coanda_tempo_pod_seed43/weights.pt",
+      "bytes": 1116086,
+      "sha256": "6e7fdb1079e8e8509a3c024a5ba5525209e9d3d57bec207b00a408f6c25134d6",
+      "scope": "final_article",
+      "config": "paper/configs/coanda.json"
+    },
+    {
+      "task": "coanda",
+      "method": "deeponet",
+      "id": "baseline_coanda_deeponet_seed17_20261108",
+      "seed": 17,
+      "path": "artifacts/checkpoints/coanda/baseline_coanda_deeponet_seed17_20261108/weights.pt",
+      "bytes": 2230088,
+      "sha256": "52095c319ff61c39226d918a4a1d695feb98eb3f2012f519f0dfa77df4b74edd",
+      "scope": "final_article",
+      "config": "paper/configs/coanda.json"
+    },
+    {
+      "task": "coanda",
+      "method": "deeponet",
+      "id": "baseline_coanda_deeponet_seed29_20261108",
+      "seed": 29,
+      "path": "artifacts/checkpoints/coanda/baseline_coanda_deeponet_seed29_20261108/weights.pt",
+      "bytes": 2230088,
+      "sha256": "4cfafcbe4cf60b58c9ccddd59055771f4e67ed55f7b5994752f3403c50543d0f",
+      "scope": "final_article",
+      "config": "paper/configs/coanda.json"
+    },
+    {
+      "task": "coanda",
+      "method": "deeponet",
+      "id": "baseline_coanda_deeponet_seed43_20261108",
+      "seed": 43,
+      "path": "artifacts/checkpoints/coanda/baseline_coanda_deeponet_seed43_20261108/weights.pt",
+      "bytes": 2230088,
+      "sha256": "53492a54172e80134383e1129dc64fbea83d66345253b21917586e45cbdf6ff1",
+      "scope": "final_article",
+      "config": "paper/configs/coanda.json"
+    },
+    {
+      "task": "coanda",
+      "method": "global_pod_k",
+      "id": "coanda_global_pod_k_seed17",
+      "seed": 17,
+      "path": "artifacts/checkpoints/coanda/coanda_global_pod_k_seed17/weights.pt",
+      "bytes": 540207,
+      "sha256": "8ba26d9ccb50a9493800f019767bbc7536784d64d94c1a0252b8c75cf6b72d46",
+      "scope": "final_article",
+      "config": "paper/configs/coanda.json"
+    },
+    {
+      "task": "coanda",
+      "method": "global_pod_k",
+      "id": "coanda_global_pod_k_seed29",
+      "seed": 29,
+      "path": "artifacts/checkpoints/coanda/coanda_global_pod_k_seed29/weights.pt",
+      "bytes": 540335,
+      "sha256": "c4c15c81c7ad1cc2dd9cef0d7044b310aaf6e10a5bc5fb994dad6fdc9f4bbeca",
+      "scope": "final_article",
+      "config": "paper/configs/coanda.json"
+    },
+    {
+      "task": "coanda",
+      "method": "global_pod_k",
+      "id": "coanda_global_pod_k_seed43",
+      "seed": 43,
+      "path": "artifacts/checkpoints/coanda/coanda_global_pod_k_seed43/weights.pt",
+      "bytes": 540335,
+      "sha256": "18f5442b2ba462c6be0787ff62841b5f6487b5aff6ce3fec00104fa6b19e75a9",
+      "scope": "final_article",
+      "config": "paper/configs/coanda.json"
+    },
+    {
+      "task": "coanda",
+      "method": "fno",
+      "id": "coanda_fno_seed17",
+      "seed": 17,
+      "path": "artifacts/checkpoints/coanda/coanda_fno_seed17/weights.pt",
+      "bytes": 6458962,
+      "sha256": "fab4051030fc25498f192edabf441d132bec0df48e587e1a49d149e6d569646f",
+      "scope": "final_article",
+      "config": "paper/configs/coanda.json"
+    },
+    {
+      "task": "coanda",
+      "method": "fno",
+      "id": "coanda_fno_seed29",
+      "seed": 29,
+      "path": "artifacts/checkpoints/coanda/coanda_fno_seed29/weights.pt",
+      "bytes": 6458962,
+      "sha256": "7a81490aac72f76498e05b2929740b347112b41bab8a21b2fa92fea2500bc1ce",
+      "scope": "final_article",
+      "config": "paper/configs/coanda.json"
+    },
+    {
+      "task": "coanda",
+      "method": "fno",
+      "id": "coanda_fno_seed43",
+      "seed": 43,
+      "path": "artifacts/checkpoints/coanda/coanda_fno_seed43/weights.pt",
+      "bytes": 6458962,
+      "sha256": "142090c81f813985bcc24935cfe299f1fb853ff190aef0fb7302c00543661164",
+      "scope": "final_article",
+      "config": "paper/configs/coanda.json"
+    },
+    {
+      "task": "coanda",
+      "method": "cno",
+      "id": "coanda_cno_seed17",
+      "seed": 17,
+      "path": "artifacts/checkpoints/coanda/coanda_cno_seed17/weights.pt",
+      "bytes": 9744710,
+      "sha256": "d4c53cc1a5741c34556e193687ef560dec84606110712f7f9bef6627bbb006ec",
+      "scope": "final_article",
+      "config": "paper/configs/coanda.json"
+    },
+    {
+      "task": "coanda",
+      "method": "cno",
+      "id": "coanda_cno_seed29",
+      "seed": 29,
+      "path": "artifacts/checkpoints/coanda/coanda_cno_seed29/weights.pt",
+      "bytes": 9744710,
+      "sha256": "c25f03a01df781b61e3eb79bbaa19eff9b091eecf39d998854e4aec1a717f3a9",
+      "scope": "final_article",
+      "config": "paper/configs/coanda.json"
+    },
+    {
+      "task": "coanda",
+      "method": "cno",
+      "id": "coanda_cno_seed43",
+      "seed": 43,
+      "path": "artifacts/checkpoints/coanda/coanda_cno_seed43/weights.pt",
+      "bytes": 9744710,
+      "sha256": "65b7369a4cfe14e937b91b7ae6c749d32c19d66b55b2d4fb4f8e6e2bc6d08026",
+      "scope": "final_article",
+      "config": "paper/configs/coanda.json"
+    },
+    {
+      "task": "coanda",
+      "method": "fixed_gmm",
+      "id": "coanda_fixed_gmm_seed17",
+      "seed": 17,
+      "path": "artifacts/checkpoints/coanda/coanda_fixed_gmm_seed17/weights.pt",
+      "bytes": 1115318,
+      "sha256": "5a9a8c19d2178b2b4ebe2fb13584d464180262a89d1975214262034c82ce5aa6",
+      "scope": "final_article",
+      "config": "paper/configs/coanda.json"
+    },
+    {
+      "task": "coanda",
+      "method": "fixed_gmm",
+      "id": "coanda_fixed_gmm_seed29",
+      "seed": 29,
+      "path": "artifacts/checkpoints/coanda/coanda_fixed_gmm_seed29/weights.pt",
+      "bytes": 1115446,
+      "sha256": "093a3ef40c6a004522ffe90a7036eade8db91055dd412d61f1ef14e6306bfcd5",
+      "scope": "final_article",
+      "config": "paper/configs/coanda.json"
+    },
+    {
+      "task": "coanda",
+      "method": "fixed_gmm",
+      "id": "coanda_fixed_gmm_seed43",
+      "seed": 43,
+      "path": "artifacts/checkpoints/coanda/coanda_fixed_gmm_seed43/weights.pt",
+      "bytes": 1115446,
+      "sha256": "81fd31fed916d04fcde0125c3be33f5332d63e27141802a8710ddb87c8ef7520",
+      "scope": "final_article",
+      "config": "paper/configs/coanda.json"
+    },
+    {
+      "task": "helmholtz_four_omega",
+      "method": "tempo_pod",
+      "id": "tempo_m4k16_lr0p0003_seed17_online_refined_20261111",
+      "seed": 17,
+      "path": "artifacts/checkpoints/helmholtz_four_omega/tempo_m4k16_lr0p0003_seed17_online_refined_20261111/checkpoint.pt",
+      "bytes": 30879074,
+      "sha256": "079400dcb94a6d527f3eb7536955d5dc4078ace71a38df1f725561e419f4027f",
+      "scope": "final_article",
+      "config": "paper/configs/helmholtz.json",
+      "supersedes_checkpoint_sha256": "e250184d7a5b3e9e6820e5f2cd242cb205f3a552adcd1bd652edbd8b0aef5cc1"
+    },
+    {
+      "task": "helmholtz_four_omega",
+      "method": "global_pod_k",
+      "id": "global_pod16_sourcepreset_seed17",
+      "seed": 17,
+      "path": "artifacts/checkpoints/helmholtz_four_omega/global_pod16_sourcepreset_seed17/weights.pt",
+      "bytes": 6509231,
+      "sha256": "b5ad5c254f65aa34bcc952525780276f00ad2d0837a31e75b960da53eee2881c",
+      "scope": "final_article",
+      "config": "paper/configs/helmholtz.json"
+    },
+    {
+      "task": "helmholtz_four_omega",
+      "method": "fixed_gmm",
+      "id": "fixed_gmm_m4k16_sourcepreset_seed17",
+      "seed": 17,
+      "path": "artifacts/checkpoints/helmholtz_four_omega/fixed_gmm_m4k16_sourcepreset_seed17/weights.pt",
+      "bytes": 30871156,
+      "sha256": "1d47f391e19eaf7ce173dbc7b962ed7d4ee219430665335ee8d3520c518ac84a",
+      "scope": "final_article",
+      "config": "paper/configs/helmholtz.json"
+    },
+    {
+      "task": "helmholtz_four_omega",
+      "method": "fno",
+      "id": "fno_default_seed17",
+      "seed": 17,
+      "path": "artifacts/checkpoints/helmholtz_four_omega/fno_default_seed17/weights.pt",
+      "bytes": 5155541,
+      "sha256": "3415538a102b6b1b4be0a5c8a9c3e442db598e1c3a0c680237ad6519e7e799cb",
+      "scope": "final_article",
+      "config": "paper/configs/helmholtz.json"
+    },
+    {
+      "task": "helmholtz_four_omega",
+      "method": "cno",
+      "id": "cno_default_micro32_seed17",
+      "seed": 17,
+      "path": "artifacts/checkpoints/helmholtz_four_omega/cno_default_micro32_seed17/weights.pt",
+      "bytes": 8437064,
+      "sha256": "d962942fa467e734638af0dd7b8f3f640bee0c44f9e918fb54f0787df5867ab6",
+      "scope": "final_article",
+      "config": "paper/configs/helmholtz.json"
+    },
+    {
+      "task": "helmholtz_four_omega",
+      "method": "deeponet",
+      "id": "deeponet_default500_seed17",
+      "seed": 17,
+      "path": "artifacts/checkpoints/helmholtz_four_omega/deeponet_default500_seed17/weights.pt",
+      "bytes": 12812040,
+      "sha256": "8d7c25f091bbdbf3dc74fd0b98c49ada9515c4da99caa4cdb0cd1d1aff02e3e9",
+      "scope": "final_article",
+      "config": "paper/configs/helmholtz.json"
+    },
+    {
+      "task": "navier_stokes",
+      "method": "tempo_pod",
+      "id": "ns_original_improved_seed42_online_refined_20261111",
+      "seed": 42,
+      "path": "artifacts/checkpoints/navier_stokes/ns_original_improved_seed42_online_refined_20261111/checkpoint.pt",
+      "bytes": 241816565,
+      "sha256": "903c42efc4b0c0c2db098fe94d90b4efe69edf7f88549ca9a96c2ad6c3767a78",
+      "scope": "final_article",
+      "config": "paper/configs/navier_stokes.json",
+      "supersedes_checkpoint_sha256": "1d248063351de9237a6f97e1a2e86f5c40ebe8c499b7b4610531e82169b66f30"
+    },
+    {
+      "task": "darcy",
+      "method": "global_pod_total",
+      "id": "global_pod64_seed17",
+      "seed": 17,
+      "path": "artifacts/checkpoints/darcy/global_pod64_seed17/checkpoint.pt",
+      "bytes": 11644422,
+      "sha256": "34637e6c409b0cff85186a8708b782ecdea428af7dabfb53064ad4859a60bf0a",
+      "scope": "final_article",
+      "config": "paper/configs/darcy.json"
+    },
+    {
+      "task": "darcy",
+      "method": "npod_deeponet_coeff",
+      "id": "global_neuralpod64_seed17",
+      "seed": 17,
+      "path": "artifacts/checkpoints/darcy/global_neuralpod64_seed17/checkpoint.pt",
+      "bytes": 31354082,
+      "sha256": "c05fb5d996d6cc536cc75f5e5c720203d0be37f963a326f48b8344b04c62503f",
+      "scope": "final_article",
+      "config": "paper/configs/darcy.json"
+    },
+    {
+      "task": "darcy",
+      "method": "tempo_pod",
+      "id": "tempo_pod2x32_seed17",
+      "seed": 17,
+      "path": "artifacts/checkpoints/darcy/tempo_pod2x32_seed17/checkpoint.pt",
+      "bytes": 12228706,
+      "sha256": "37c9d7035b5048d8dc66010bfe2f29aa1d12abd6dcc95e5f6d7353e8070085b9",
+      "scope": "final_article",
+      "config": "paper/configs/darcy.json"
+    },
+    {
+      "task": "darcy",
+      "method": "tempo_npod",
+      "id": "tempo_neuralpod2x32_seed17",
+      "seed": 17,
+      "path": "artifacts/checkpoints/darcy/tempo_neuralpod2x32_seed17/checkpoint.pt",
+      "bytes": 16082278,
+      "sha256": "ec49412c374c8306dc4162df196e3c491465e1e437537120d8604807ef431431",
+      "scope": "final_article",
+      "config": "paper/configs/darcy.json"
+    },
+    {
+      "task": "darcy",
+      "method": "fixed_gmm",
+      "id": "fixed_gmm2x32_seed17",
+      "seed": 17,
+      "path": "artifacts/checkpoints/darcy/fixed_gmm2x32_seed17/checkpoint.pt",
+      "bytes": 12408538,
+      "sha256": "8782a6d1dcd882735661108d02ce1622a891e2c101161e41898222171559da8f",
+      "scope": "final_article",
+      "config": "paper/configs/darcy.json"
+    },
+    {
+      "task": "darcy",
+      "method": "deeponet",
+      "id": "deeponet_seed17",
+      "seed": 17,
+      "path": "artifacts/checkpoints/darcy/deeponet_seed17/checkpoint.pt",
+      "bytes": 9076514,
+      "sha256": "d153ac0315c6f06d4ca8b895824dc600b9e86572366fc01e3b6df2468130474d",
+      "scope": "final_article",
+      "config": "paper/configs/darcy.json"
+    },
+    {
+      "task": "darcy",
+      "method": "fno",
+      "id": "fno_seed17",
+      "seed": 17,
+      "path": "artifacts/checkpoints/darcy/fno_seed17/checkpoint.pt",
+      "bytes": 5075042,
+      "sha256": "8812e438338bc87950ee608c1b26bf60bac6ca8b7c774d9798a1eab330f37494",
+      "scope": "final_article",
+      "config": "paper/configs/darcy.json"
+    },
+    {
+      "task": "darcy",
+      "method": "cno",
+      "id": "cno_unit_beta1_seed42",
+      "seed": 42,
+      "path": "artifacts/checkpoints/darcy/cno_unit_beta1_seed42/checkpoint.pt",
+      "bytes": 8333530,
+      "sha256": "a69e944953e54b651d0f577f29dec1177eaa86087efba6fb6b9dddea774f7b51",
+      "scope": "final_article",
+      "config": "paper/configs/darcy.json"
+    },
+    {
+      "id": "pod_burgers_matched_width_20261112",
+      "task": "burgers_original",
+      "method": "global_pod_total",
+      "seed": 42,
+      "sha256": "8ccd6e72cbd3af1426c6d11396140db7cef9c01d529241c444e73ac0186a3a81",
+      "bytes": 61979253,
+      "local_path": "artifacts/checkpoints/burgers_original/pod_burgers_matched_width_20261112/checkpoint.pt",
+      "training_recipe_status": "saved_completed_fixed_recipe",
+      "training_recipe": {
+        "seed": 42,
+        "rank": 64,
+        "width": 512,
+        "layers": 4,
+        "epochs": 600,
+        "batch": 1024,
+        "lr": 0.0003,
+        "weight_decay": 0.0001,
+        "scheduler": null,
+        "objective": "POD coefficient MSE",
+        "selection": "final fixed epoch",
+        "hyperparameter_search": false,
+        "test_used_for_selection": false,
+        "source_sha256": "c4c8ee38fbeea5c9a7663593198bb94996454a141ee5c9e2d791a5bec80256a9",
+        "source_branch_sha256": "8059fef227663f572862e590cd60562a4aea3e4696e6bfbe8c5453fd4c665df9",
+        "online_parameters": 1346112,
+        "original_online_parameters": 476480
+      }
+    },
+    {
+      "id": "pod_coanda_matched_width_20261112",
+      "task": "coanda",
+      "method": "global_pod_total",
+      "seed": 17,
+      "sha256": "e757e1db178e41f8ecd0c4c44d10f128c264d326e039a535fcdece4438e4d54b",
+      "bytes": 1102517,
+      "local_path": "artifacts/checkpoints/coanda/pod_coanda_matched_width_20261112/checkpoint.pt",
+      "training_recipe_status": "saved_completed_fixed_recipe",
+      "training_recipe": {
+        "task": "coanda",
+        "seed": 17,
+        "width": 224,
+        "online_parameters": 106872,
+        "original_online_parameters": 36504,
+        "rank": 24,
+        "layers": 3,
+        "epochs": 1000,
+        "batch_size": 64,
+        "lr": 0.0003,
+        "weight_decay": 0.0001,
+        "optimizer": "AdamW",
+        "gradient_clip": 1.0,
+        "loss": "same native-field MSE, evaluated through fixed-basis Gram products",
+        "selection": "final fixed epoch; validation is monitoring only",
+        "test_evaluated": false,
+        "hyperparameter_search": false,
+        "extra_training": false,
+        "source_sha256": "e0dd91ee99ba7645eb760956f8295ad3544f8bde8aabdcada72937cbb57bae0d",
+        "source_branch_sha256": "8059fef227663f572862e590cd60562a4aea3e4696e6bfbe8c5453fd4c665df9"
+      }
+    },
+    {
+      "id": "pod_helmholtz_matched_width_20261112",
+      "task": "helmholtz_four_omega",
+      "method": "global_pod_total",
+      "seed": 17,
+      "sha256": "c1d71a56695a996ac3c66384a8dbdb37e6a1e5c549ffec95d70845e2fd206403",
+      "bytes": 30188661,
+      "local_path": "artifacts/checkpoints/helmholtz_four_omega/pod_helmholtz_matched_width_20261112/checkpoint.pt",
+      "training_recipe_status": "saved_completed_fixed_recipe",
+      "training_recipe": {
+        "task": "helmholtz",
+        "seed": 17,
+        "width": 576,
+        "online_parameters": 6578560,
+        "original_online_parameters": 1347264,
+        "rank": 64,
+        "layers": 3,
+        "epochs": 300,
+        "batch_size": 32,
+        "lr": 0.001,
+        "weight_decay": 0.0001,
+        "optimizer": "AdamW",
+        "gradient_clip": 1.0,
+        "loss": "same native-field MSE, evaluated through fixed-basis Gram products",
+        "selection": "final fixed epoch; validation is monitoring only",
+        "test_evaluated": false,
+        "hyperparameter_search": false,
+        "extra_training": false,
+        "source_sha256": "a4a7d467a65376247864c7d170cbf19841bbabb21deba23c316ef36f3c05ffbf",
+        "source_branch_sha256": "8059fef227663f572862e590cd60562a4aea3e4696e6bfbe8c5453fd4c665df9"
+      }
+    },
+    {
+      "id": "neuralpod_sod_matched_width_20261112",
+      "task": "sod",
+      "method": "npod_deeponet_coeff",
+      "seed": 17,
+      "sha256": "0d6eee81ceda8b6ab09063b143d62f47b043cc00c48544b8f7da928c3c9d5e95",
+      "bytes": 5181603,
+      "local_path": "artifacts/checkpoints/sod/neuralpod_sod_matched_width_20261112/checkpoint.pt",
+      "training_recipe_status": "saved_completed_fixed_recipe",
+      "training_recipe": {
+        "task": "sod",
+        "method": "NeuralPOD-DeepONet",
+        "seed": 17,
+        "rank": 48,
+        "width": 256,
+        "layers": 3,
+        "epochs": 500,
+        "batch": 128,
+        "lr": 0.001,
+        "optimizer": "AdamW",
+        "weight_decay": 0.0001,
+        "gradient_clip": null,
+        "scheduler": null,
+        "objective": "Original MSE on saved offline lambda",
+        "online_parameters": 145968,
+        "basis_refitted": false,
+        "hyperparameter_search": false,
+        "selection": "final fixed epoch",
+        "source_sha256": "88bd9847b589b1ea14a94032ea66c4d0197cbb5edf5443a3745411333767a69d"
+      }
+    },
+    {
+      "id": "neuralpod_helmholtz_matched_width_20261112",
+      "task": "helmholtz_four_omega",
+      "method": "npod_deeponet_coeff",
+      "seed": 17,
+      "sha256": "fd76b099199bda0a54c07f53baf634b36b6592982dfbafaa981deebcfff3a028",
+      "bytes": 33194659,
+      "local_path": "artifacts/checkpoints/helmholtz_four_omega/neuralpod_helmholtz_matched_width_20261112/checkpoint.pt",
+      "training_recipe_status": "saved_completed_fixed_recipe",
+      "training_recipe": {
+        "task": "helmholtz",
+        "method": "NeuralPOD-DeepONet",
+        "seed": 17,
+        "rank": 64,
+        "width": 576,
+        "layers": 3,
+        "epochs": 300,
+        "batch": 32,
+        "lr": 0.001,
+        "optimizer": "AdamW",
+        "weight_decay": 0.0001,
+        "gradient_clip": null,
+        "scheduler": null,
+        "objective": "Original MSE on saved offline lambda",
+        "online_parameters": 6578560,
+        "basis_refitted": false,
+        "hyperparameter_search": false,
+        "selection": "final fixed epoch",
+        "source_sha256": "175e02c9d5e033b8c6f4a48dc33663d2c02937a604014500152a44d139bbf622"
+      }
+    },
+    {
+      "id": "tempo_npod_joint_seed42",
+      "task": "navier_stokes",
+      "method": "tempo_npod",
+      "seed": 42,
+      "path": "artifacts/checkpoints/navier_stokes/tempo_npod_joint_seed42/checkpoint.pt",
+      "sha256": "35116e5a4fc15bfaa83d85c9e64391885612f69246f20d1d5992795a097e8366",
+      "bytes": 74306652,
+      "config": "paper/configs/refinement/navier_stokes.json",
+      "ranks": [
+        64,
+        64,
+        64,
+        64
+      ],
+      "grid": [
+        21,
+        64,
+        64,
+        2
+      ],
+      "split": {
+        "train": 16000,
+        "validation": 512,
+        "test": 4000
+      },
+      "initial_checkpoint": "artifacts/checkpoints/navier_stokes/ns_tempo_npod_m4k64_seed42_online_refined_20261111/checkpoint.pt",
+      "initial_sha256": "7eef61351c52566cd9bfb9ffe83ea7940fb60e806ed89242b4dfa43b19337369",
+      "validation_relative_l2": 0.08989393907860782,
+      "test_relative_l2": 0.08955736569898959,
+      "baseline_test_relative_l2": 0.09131241534771363,
+      "error_data": "paper/results/refinement/navier_stokes_test.npz",
+      "selection": "validation",
+      "scope": "joint_refinement",
+      "field_examples": "paper/figures/data/refinement/navier_stokes_fields.npz",
+      "error_key": "selected_relative_l2",
+      "training_recipe_status": "saved_joint_refinement",
+      "training_recipe": {
+        "seed": 42,
+        "source_sha256": "7eef61351c52566cd9bfb9ffe83ea7940fb60e806ed89242b4dfa43b19337369",
+        "target_units": "prepared",
+        "basis": {
+          "steps": 100,
+          "lr": 0.0001,
+          "coefficient_every": 25,
+          "trajectory_batch": 64,
+          "coordinate_batch": 4096,
+          "relative": true,
+          "normalize_modes": true,
+          "patience": 75
+        },
+        "em_steps": 0,
+        "online": {
+          "epochs": 100,
+          "batch_size": 256,
+          "gate_lr": 3e-05,
+          "hidden_lr": 0.0001,
+          "head_lr": 0.0003,
+          "patience": 40
+        }
+      }
+    },
+    {
+      "id": "tempo_npod_joint_seed17",
+      "task": "helmholtz_four_omega",
+      "method": "tempo_npod",
+      "seed": 17,
+      "path": "artifacts/checkpoints/helmholtz_four_omega/tempo_npod_joint_seed17/checkpoint.pt",
+      "sha256": "cd4dc7e6658a1b7bd97d0881c61590b848d340da76e59149c9b349abe22f652a",
+      "bytes": 34160904,
+      "config": "paper/configs/refinement/helmholtz.json",
+      "ranks": [
+        16,
+        16,
+        16,
+        16
+      ],
+      "grid": [
+        101,
+        101
+      ],
+      "split": {
+        "train": 4000,
+        "validation": 800,
+        "test": 800
+      },
+      "initial_checkpoint": "artifacts/checkpoints/helmholtz_four_omega/tempo_neuralpod_m4k16_default_seed17_online_refined_20261111/checkpoint.pt",
+      "initial_sha256": "5c112eebf82742c2367392983320a3f2c761ad90bc53d28eb544ca466a7e1e5a",
+      "validation_relative_l2": 0.05903258182325486,
+      "test_relative_l2": 0.05831805490212773,
+      "baseline_test_relative_l2": 0.17984159029710636,
+      "error_data": "paper/results/refinement/helmholtz_test.npz",
+      "selection": "validation",
+      "scope": "joint_refinement",
+      "error_key": "relative_l2",
+      "training_recipe_status": "saved_joint_refinement",
+      "training_recipe": {
+        "seed": 17,
+        "source_sha256": "5c112eebf82742c2367392983320a3f2c761ad90bc53d28eb544ca466a7e1e5a",
+        "target_units": "normalized",
+        "phases": [
+          {
+            "basis": {
+              "steps": 600,
+              "m_step_steps": 300,
+              "lr": 0.0003,
+              "coefficient_every": 20,
+              "relative": true,
+              "normalize_modes": true,
+              "coefficient_solver": "svd",
+              "rtol": 1e-07
+            },
+            "EM": {
+              "max_iterations": 6,
+              "actual_iterations": 2,
+              "parameter_initialization": true,
+              "initialization_noise": 0.0,
+              "prior_weight": 0.1,
+              "calibrate_sigma2_after_initial_refinement": true,
+              "eps_skip": 0.005,
+              "eps_conv": 0.005
+            },
+            "online": {
+              "epochs": 400,
+              "batch_size": 256,
+              "gate_lr": 0.0001,
+              "hidden_lr": 0.0003,
+              "head_lr": 0.0003,
+              "KL": 0.001,
+              "entropy": 0.0,
+              "reset_heads": true,
+              "selected_epoch": 400
+            }
+          },
+          {
+            "basis": {
+              "steps": 2000,
+              "m_step_steps": 600,
+              "lr": 0.0001,
+              "coefficient_every": 20,
+              "relative": true,
+              "normalize_modes": true,
+              "coefficient_solver": "svd",
+              "rtol": 1e-07
+            },
+            "EM": {
+              "max_iterations": 6,
+              "actual_iterations": 2,
+              "parameter_initialization": true,
+              "initialization_noise": 0.0,
+              "prior_weight": 0.1,
+              "calibrate_sigma2_after_initial_refinement": true,
+              "eps_skip": 0.005,
+              "eps_conv": 0.005
+            },
+            "online": {
+              "epochs": 400,
+              "batch_size": 256,
+              "gate_lr": 0.0001,
+              "hidden_lr": 0.0002,
+              "head_lr": 0.0005,
+              "KL": 0.0,
+              "entropy": 0.0,
+              "selected_epoch": 400
+            }
+          }
+        ],
+        "recipe": "Recorded two-stage fit; use the TEMPO trainer API for its EM initialization and adaptive updates."
+      }
+    },
+    {
+      "id": "tempo_pod_small_seed17",
+      "method": "tempo_pod",
+      "path": "artifacts/checkpoints/sod/tempo_pod_small_seed17/checkpoint.pt",
+      "sha256": "11e8f1b31aab783045e1301ec8d96348f4c8039ecba86e68d5255c2cd4763c51",
+      "neural_parameters": 11866,
+      "ranks": [
+        24,
+        24
+      ],
+      "test_relative_l2": 0.03270029038138407,
+      "validation_relative_l2": 0.032113311631875585,
+      "error_data": "paper/results/sod_capacity/tempo_test.npz",
+      "training": {
+        "seed": 17,
+        "architecture": {
+          "lr": 0.001,
+          "n_epochs": 2400,
+          "batch_size": 256,
+          "hidden_dim": 46,
+          "n_layers": 3,
+          "sensor_stride": 1,
+          "lambda_kl": 0.0,
+          "lambda_ent": 0.0,
+          "log_every": 50,
+          "val_every": 50,
+          "data_loss": "relative",
+          "relative_loss_eps": 1e-12,
+          "gate_hidden_dim": 8
+        },
+        "ranks": [
+          24,
+          24
+        ],
+        "stages": [
+          {
+            "optimizer": "AdamW",
+            "phase": "offline coefficient pretraining",
+            "epochs": 400,
+            "lr": 0.001,
+            "batch_size": 256
+          },
+          {
+            "optimizer": "AdamW",
+            "epochs": 2400,
+            "gate_lr": 0.0003,
+            "hidden_lr": 0.001,
+            "head_lr": 0.001,
+            "batch_size": 256,
+            "scheduler": "cosine",
+            "patience": 300
+          },
+          {
+            "optimizer": "AdamW",
+            "epochs": 3000,
+            "gate_lr": 0.0001,
+            "hidden_lr": 0.0003,
+            "head_lr": 0.0003,
+            "batch_size": 256,
+            "scheduler": "cosine",
+            "patience": 300,
+            "feature_standardization": "train only, folded into first layers"
+          },
+          {
+            "optimizer": "LBFGS",
+            "max_iterations": [
+              2000,
+              10000
+            ],
+            "lr": 0.5,
+            "history_size": 20,
+            "line_search": "strong_wolfe",
+            "input_and_coefficient_conditioning": true,
+            "conditioning_folded": true,
+            "patience_iterations": 300
+          }
+        ],
+        "loss": "mean relative squared field error",
+        "selection": "validation",
+        "source_checkpoint_sha256": "a9c821cc3da9d5d64fdd68ffe68e94cbe64f04c1e668590f77e8917e0f373c86"
+      },
+      "task": "sod",
+      "seed": 17,
+      "bytes": 1609333,
+      "config": "paper/configs/sod_capacity.json",
+      "training_recipe": {
+        "seed": 17,
+        "architecture": {
+          "lr": 0.001,
+          "n_epochs": 2400,
+          "batch_size": 256,
+          "hidden_dim": 46,
+          "n_layers": 3,
+          "sensor_stride": 1,
+          "lambda_kl": 0.0,
+          "lambda_ent": 0.0,
+          "log_every": 50,
+          "val_every": 50,
+          "data_loss": "relative",
+          "relative_loss_eps": 1e-12,
+          "gate_hidden_dim": 8
+        },
+        "ranks": [
+          24,
+          24
+        ],
+        "stages": [
+          {
+            "optimizer": "AdamW",
+            "phase": "offline coefficient pretraining",
+            "epochs": 400,
+            "lr": 0.001,
+            "batch_size": 256
+          },
+          {
+            "optimizer": "AdamW",
+            "epochs": 2400,
+            "gate_lr": 0.0003,
+            "hidden_lr": 0.001,
+            "head_lr": 0.001,
+            "batch_size": 256,
+            "scheduler": "cosine",
+            "patience": 300
+          },
+          {
+            "optimizer": "AdamW",
+            "epochs": 3000,
+            "gate_lr": 0.0001,
+            "hidden_lr": 0.0003,
+            "head_lr": 0.0003,
+            "batch_size": 256,
+            "scheduler": "cosine",
+            "patience": 300,
+            "feature_standardization": "train only, folded into first layers"
+          },
+          {
+            "optimizer": "LBFGS",
+            "max_iterations": [
+              2000,
+              10000
+            ],
+            "lr": 0.5,
+            "history_size": 20,
+            "line_search": "strong_wolfe",
+            "input_and_coefficient_conditioning": true,
+            "conditioning_folded": true,
+            "patience_iterations": 300
+          }
+        ],
+        "loss": "mean relative squared field error",
+        "selection": "validation",
+        "source_checkpoint_sha256": "a9c821cc3da9d5d64fdd68ffe68e94cbe64f04c1e668590f77e8917e0f373c86"
+      },
+      "training_recipe_status": "saved_final_small_capacity_recipe"
+    },
+    {
+      "id": "global_pod48_width64_seed17",
+      "method": "global_pod_total",
+      "path": "artifacts/checkpoints/sod/global_pod48_width64_seed17/checkpoint.pt",
+      "sha256": "47f7e4e200432dd0fde0b8a85921084781dc8841dfa4de7f2fd9f2779a135215",
+      "neural_parameters": 11952,
+      "ranks": [
+        48
+      ],
+      "test_relative_l2": 0.033692425717760335,
+      "validation_relative_l2": 0.03317970111834992,
+      "error_data": "paper/results/sod_capacity/pod_test.npz",
+      "training": {
+        "seed": 17,
+        "architecture": {
+          "lr": 0.001,
+          "n_epochs": 2000,
+          "batch_size": 128,
+          "hidden_dim": 64,
+          "n_layers": 3,
+          "sensor_stride": 1,
+          "lambda_kl": 0.0,
+          "lambda_ent": 0.0,
+          "log_every": 50,
+          "val_every": 50,
+          "data_loss": "mse",
+          "relative_loss_eps": 1e-12,
+          "gate_hidden_dim": null
+        },
+        "ranks": [
+          48
+        ],
+        "stages": [
+          {
+            "optimizer": "AdamW",
+            "epochs": 2000,
+            "lr": 0.001,
+            "batch_size": 128,
+            "weight_decay": 0.0001,
+            "gradient_clip": 1.0
+          }
+        ],
+        "loss": "mean squared field error",
+        "selection": "fixed final epoch",
+        "source_checkpoint_sha256": "a8fdb548ea1c2635b2a35e27fc21ac87f0fdcb1b5250e3296c6b0c824aefb8a8"
+      },
+      "task": "sod",
+      "seed": 17,
+      "bytes": 1573685,
+      "config": "paper/configs/sod_capacity.json",
+      "training_recipe": {
+        "seed": 17,
+        "architecture": {
+          "lr": 0.001,
+          "n_epochs": 2000,
+          "batch_size": 128,
+          "hidden_dim": 64,
+          "n_layers": 3,
+          "sensor_stride": 1,
+          "lambda_kl": 0.0,
+          "lambda_ent": 0.0,
+          "log_every": 50,
+          "val_every": 50,
+          "data_loss": "mse",
+          "relative_loss_eps": 1e-12,
+          "gate_hidden_dim": null
+        },
+        "ranks": [
+          48
+        ],
+        "stages": [
+          {
+            "optimizer": "AdamW",
+            "epochs": 2000,
+            "lr": 0.001,
+            "batch_size": 128,
+            "weight_decay": 0.0001,
+            "gradient_clip": 1.0
+          }
+        ],
+        "loss": "mean squared field error",
+        "selection": "fixed final epoch",
+        "source_checkpoint_sha256": "a8fdb548ea1c2635b2a35e27fc21ac87f0fdcb1b5250e3296c6b0c824aefb8a8"
+      },
+      "training_recipe_status": "saved_final_small_capacity_recipe"
+    },
+    {
+      "id": "neuralpod_coanda_matched_width_20261112",
+      "task": "coanda",
+      "method": "npod_deeponet_coeff",
+      "seed": 17,
+      "sha256": "ab677587ee17e8b21793202c702842006ebc659f1e5b0e9048f647ddcc0ff752",
+      "bytes": 2751843,
+      "local_path": "artifacts/checkpoints/coanda/neuralpod_coanda_matched_width_20261112/checkpoint.pt",
+      "training_recipe_status": "saved_completed_fixed_recipe",
+      "training_recipe": {
+        "task": "coanda",
+        "method": "NeuralPOD-DeepONet",
+        "seed": 17,
+        "rank": 24,
+        "width": 224,
+        "layers": 3,
+        "epochs": 1000,
+        "batch": 64,
+        "lr": 0.001,
+        "optimizer": "AdamW",
+        "weight_decay": 0.0001,
+        "gradient_clip": null,
+        "scheduler": null,
+        "objective": "Original MSE on saved offline lambda",
+        "online_parameters": 106872,
+        "basis_refitted": false,
+        "hyperparameter_search": false,
+        "selection": "final fixed epoch",
+        "source_sha256": "32fed75b81fa2282b82cd313fc183147b82d050d7268c56411a24747a3612154"
+      },
+      "test_relative_l2": 0.09117408023920297,
+      "metrics": "artifacts/checkpoints/coanda/neuralpod_coanda_matched_width_20261112/test_summary.json",
+      "error_data": "artifacts/checkpoints/coanda/neuralpod_coanda_matched_width_20261112/test_errors.npz",
+      "verification": "artifacts/checkpoints/coanda/neuralpod_coanda_matched_width_20261112/verification.json",
+      "replay_fixture": "artifacts/checkpoints/coanda/neuralpod_coanda_matched_width_20261112/replay_fixture.npz"
+    },
+    {
+      "id": "pod_ns_matched_width_20261112",
+      "task": "navier_stokes",
+      "method": "global_pod_total",
+      "seed": 39,
+      "sha256": "a6221f7bcb31f0e3084057cc56c8cf662b7557a18d8e4b46fbe3c28aa02bf482",
+      "bytes": 198804341,
+      "training_recipe_status": "saved_completed_fixed_recipe",
+      "training_recipe": {
+        "seed": 39,
+        "rank": 256,
+        "width": 544,
+        "layers": 4,
+        "epochs": 600,
+        "batch": 64,
+        "lr": 0.0003,
+        "weight_decay": 0.01,
+        "scheduler": "original cosine, eta_min=1e-5",
+        "objective": "train-standardized POD coefficient MSE",
+        "baseline": "Existing global POD256, not the historical POD80",
+        "selection": "final fixed epoch",
+        "hyperparameter_search": false,
+        "test_used_for_selection": false,
+        "source_sha256": "cfff1bbc55a6e2e83056c339a369e4d3489803115bc7bb9592bfd8026453a38b",
+        "source_branch_sha256": "8059fef227663f572862e590cd60562a4aea3e4696e6bfbe8c5453fd4c665df9",
+        "online_parameters": 5486496,
+        "original_online_parameters": 2360832
+      },
+      "path": "artifacts/checkpoints/navier_stokes/pod_ns_matched_width_20261112/checkpoint.pt",
+      "config": "paper/configs/navier_stokes.json",
+      "scope": "final_article",
+      "reconstruction_provenance": "artifacts/checkpoints/navier_stokes/pod_ns_matched_width_20261112/reconstruction_20261112/reconstruction_provenance.json",
+      "test_errors": "artifacts/checkpoints/navier_stokes/pod_ns_matched_width_20261112/reconstruction_20261112/test_errors.npz",
+      "history": "artifacts/checkpoints/navier_stokes/pod_ns_matched_width_20261112/reconstruction_20261112/history.json",
+      "training_protocol": "artifacts/checkpoints/navier_stokes/pod_ns_matched_width_20261112/reconstruction_20261112/training_protocol.json",
+      "timed_source_identity": "artifacts/checkpoints/navier_stokes/pod_ns_matched_width_20261112/reconstruction_20261112/timed_source_tensor_identity.json"
+    },
+    {
+      "task": "navier_stokes",
+      "method": "deeponet",
+      "id": "deeponet_ns_re100_seed39",
+      "seed": 39,
+      "path": "artifacts/checkpoints/navier_stokes/deeponet_ns_re100_seed39/weights.pt",
+      "sha256": "e42a1e7a70833888b420fc58f20948f435ce11aeda3eeb119b642add2810e6f8",
+      "bytes": 11804578,
+      "scope": "fixed_recipe_rerun",
+      "config": "paper/configs/ns_deeponet.json",
+      "training_Re": [
+        100
+      ],
+      "metrics": "artifacts/checkpoints/navier_stokes/deeponet_ns_re100_seed39/metrics.json",
+      "error_data": "paper/results/ns_deeponet/deeponet_ns_re100_seed39_test.npz",
+      "checkpoint_format": "ns_original_deeponet_complete_v1"
+    },
+    {
+      "task": "navier_stokes",
+      "method": "deeponet",
+      "id": "deeponet_ns_re1000_seed39",
+      "seed": 39,
+      "path": "artifacts/checkpoints/navier_stokes/deeponet_ns_re1000_seed39/weights.pt",
+      "sha256": "a9fd11533b55627c4c199782034473712ad55f2ef8f3b01583c15acb2ac2f5e5",
+      "bytes": 11804578,
+      "scope": "fixed_recipe_rerun",
+      "config": "paper/configs/ns_deeponet.json",
+      "training_Re": [
+        1000
+      ],
+      "metrics": "artifacts/checkpoints/navier_stokes/deeponet_ns_re1000_seed39/metrics.json",
+      "error_data": "paper/results/ns_deeponet/deeponet_ns_re1000_seed39_test.npz",
+      "checkpoint_format": "ns_original_deeponet_complete_v1"
+    },
+    {
+      "task": "navier_stokes",
+      "method": "deeponet",
+      "id": "deeponet_ns_re3600_seed39",
+      "seed": 39,
+      "path": "artifacts/checkpoints/navier_stokes/deeponet_ns_re3600_seed39/weights.pt",
+      "sha256": "3a0b86dea52c7a5fd549647066ac114198e79f1ce7dcb511defb52ed4d65c400",
+      "bytes": 11804578,
+      "scope": "fixed_recipe_rerun",
+      "config": "paper/configs/ns_deeponet.json",
+      "training_Re": [
+        3600
+      ],
+      "metrics": "artifacts/checkpoints/navier_stokes/deeponet_ns_re3600_seed39/metrics.json",
+      "error_data": "paper/results/ns_deeponet/deeponet_ns_re3600_seed39_test.npz",
+      "checkpoint_format": "ns_original_deeponet_complete_v1"
+    },
+    {
+      "task": "navier_stokes",
+      "method": "deeponet",
+      "id": "deeponet_ns_re10000_seed39",
+      "seed": 39,
+      "path": "artifacts/checkpoints/navier_stokes/deeponet_ns_re10000_seed39/weights.pt",
+      "sha256": "2f1d0ff0eac27cc761842f893ef6c5dc710a9462ce164b7827482453779387e9",
+      "bytes": 11804578,
+      "scope": "fixed_recipe_rerun",
+      "config": "paper/configs/ns_deeponet.json",
+      "training_Re": [
+        10000
+      ],
+      "metrics": "artifacts/checkpoints/navier_stokes/deeponet_ns_re10000_seed39/metrics.json",
+      "error_data": "paper/results/ns_deeponet/deeponet_ns_re10000_seed39_test.npz",
+      "checkpoint_format": "ns_original_deeponet_complete_v1"
+    },
+    {
+      "task": "navier_stokes",
+      "method": "deeponet",
+      "id": "deeponet_ns_joint_seed39",
+      "seed": 39,
+      "path": "artifacts/checkpoints/navier_stokes/deeponet_ns_joint_seed39/weights.pt",
+      "sha256": "a15968fd005384b88bd5f334ca47cd64e2b6de50659147ed376b5ebc2acb46ab",
+      "bytes": 11804578,
+      "scope": "fixed_recipe_rerun",
+      "config": "paper/configs/ns_deeponet.json",
+      "training_Re": [
+        100,
+        1000,
+        3600,
+        10000
+      ],
+      "metrics": "artifacts/checkpoints/navier_stokes/deeponet_ns_joint_seed39/metrics.json",
+      "error_data": "paper/results/ns_deeponet/deeponet_ns_joint_seed39_test.npz",
+      "checkpoint_format": "ns_original_deeponet_complete_v1"
+    },
+    {
+      "id": "deeponet_burgers_nu0.001_seed39",
+      "task": "burgers_original",
+      "method": "DeepONet",
+      "seed": 39,
+      "path": "artifacts/checkpoints/burgers_original/deeponet_burgers_nu0.001_seed39/weights.pt",
+      "bytes": 4812961,
+      "sha256": "fa2b679ec4ab599c9f36cd8057492877a00ff34f153ff14597c436b5d7c79285",
+      "scope": "full_grid_control",
+      "config": "artifacts/checkpoints/burgers_original/deeponet_burgers_nu0.001_seed39/config.json",
+      "metrics": "artifacts/checkpoints/burgers_original/deeponet_burgers_nu0.001_seed39/metrics.json"
+    },
+    {
+      "id": "deeponet_burgers_nu0.1_seed39",
+      "task": "burgers_original",
+      "method": "DeepONet",
+      "seed": 39,
+      "path": "artifacts/checkpoints/burgers_original/deeponet_burgers_nu0.1_seed39/weights.pt",
+      "bytes": 4812961,
+      "sha256": "99c8b2552323ddd5080c9cb35a0273072c432e344f57e47c59f8ef07bbe856a7",
+      "scope": "full_grid_control",
+      "config": "artifacts/checkpoints/burgers_original/deeponet_burgers_nu0.1_seed39/config.json",
+      "metrics": "artifacts/checkpoints/burgers_original/deeponet_burgers_nu0.1_seed39/metrics.json"
+    },
+    {
+      "id": "deeponet_burgers_nu1.0_seed39",
+      "task": "burgers_original",
+      "method": "DeepONet",
+      "seed": 39,
+      "path": "artifacts/checkpoints/burgers_original/deeponet_burgers_nu1.0_seed39/weights.pt",
+      "bytes": 4812961,
+      "sha256": "545e1057510d35e62f9245d28e68368019866cdd89e4713050133b8bbcb44094",
+      "scope": "full_grid_control",
+      "config": "artifacts/checkpoints/burgers_original/deeponet_burgers_nu1.0_seed39/config.json",
+      "metrics": "artifacts/checkpoints/burgers_original/deeponet_burgers_nu1.0_seed39/metrics.json"
+    },
+    {
+      "task": "burgers_supplementary",
+      "method": "tempo_npod",
+      "id": "tempo_npod_burgers_m3_seed42_repeat_20261113",
+      "seed": 42,
+      "path": "artifacts/checkpoints/burgers_supplementary/tempo_npod_burgers_m3_seed42_repeat_20261113/weights.pt",
+      "bytes": 15839635,
+      "sha256": "a5060402c9390c66cfba6956b096676cf3e712c740b22da39360c4a835454b68",
+      "scope": "fixed_recipe_repeat",
+      "config": "artifacts/checkpoints/burgers_supplementary/tempo_npod_burgers_m3_seed42_repeat_20261113/config.json",
+      "paper_tables": [
+        "tab:adaptive"
+      ]
+    }
+  ],
+  "historical_table_checkpoints": [
+    {
+      "id": "pod_deeponet_nu0.001_v1",
+      "task": "burgers",
+      "method": "POD-DeepONet",
+      "sha256": "f2d96826d86944b2f2a2d9cd2b98eac2299bbe94279090f7d6517693a858ab82",
+      "path": "artifacts/old_artifacts/checkpoints/burgers/pod_deeponet_nu0.001_v1/model.pt",
+      "scope": "active_historical_paper_row",
+      "own_split": {
+        "n_train": 9000,
+        "n_test": 500,
+        "source_test_rows": [
+          9000,
+          9500
+        ]
+      },
+      "bytes": 30197581,
+      "config": "artifacts/old_artifacts/configs/burgers/pod_deeponet_nu0.001_v1/config.json",
+      "metrics": "artifacts/old_artifacts/results/burgers/pod_deeponet_nu0.001_v1/metrics.json"
+    },
+    {
+      "id": "pod_deeponet_nu0.01_v1",
+      "task": "burgers",
+      "method": "POD-DeepONet",
+      "sha256": "b407570b27bc8d0bd393edc44a061bd4a4da34eaa5a8ba9aca33a8ae95072e53",
+      "path": "artifacts/old_artifacts/checkpoints/burgers/pod_deeponet_nu0.01_v1/model.pt",
+      "scope": "active_historical_paper_row",
+      "own_split": {
+        "n_train": 9000,
+        "n_test": 500,
+        "source_test_rows": [
+          9000,
+          9500
+        ]
+      },
+      "bytes": 30197581,
+      "config": "artifacts/old_artifacts/configs/burgers/pod_deeponet_nu0.01_v1/config.json",
+      "metrics": "artifacts/old_artifacts/results/burgers/pod_deeponet_nu0.01_v1/metrics.json"
+    },
+    {
+      "id": "pod_deeponet_nu0.1_v1",
+      "task": "burgers",
+      "method": "POD-DeepONet",
+      "sha256": "8ba565e5e42fcc8c6a448a07af9c73b80ec3b9506fce4ad46f4268f2dc62af0c",
+      "path": "artifacts/old_artifacts/checkpoints/burgers/pod_deeponet_nu0.1_v1/model.pt",
+      "scope": "active_historical_paper_row",
+      "own_split": {
+        "n_train": 9000,
+        "n_test": 500,
+        "source_test_rows": [
+          9000,
+          9500
+        ]
+      },
+      "bytes": 30197581,
+      "config": "artifacts/old_artifacts/configs/burgers/pod_deeponet_nu0.1_v1/config.json",
+      "metrics": "artifacts/old_artifacts/results/burgers/pod_deeponet_nu0.1_v1/metrics.json"
+    },
+    {
+      "id": "pod_deeponet_nu1.0_v1",
+      "task": "burgers",
+      "method": "POD-DeepONet",
+      "sha256": "5c1990defe1412c94b3bae3191f76325ba73e792b2ac53646a6028081ba4743c",
+      "path": "artifacts/old_artifacts/checkpoints/burgers/pod_deeponet_nu1.0_v1/model.pt",
+      "scope": "active_historical_paper_row",
+      "own_split": {
+        "n_train": 9000,
+        "n_test": 500,
+        "source_test_rows": [
+          9000,
+          9500
+        ]
+      },
+      "bytes": 14711757,
+      "config": "artifacts/old_artifacts/configs/burgers/pod_deeponet_nu1.0_v1/config.json",
+      "metrics": "artifacts/old_artifacts/results/burgers/pod_deeponet_nu1.0_v1/metrics.json"
+    },
+    {
+      "id": "fno_burgers_nu0.001_v1",
+      "task": "burgers",
+      "method": "FNO",
+      "sha256": "eaa2cb2eef438d7e49127437e0edaca0ae43901abdd679097c75647552634276",
+      "path": "artifacts/old_artifacts/checkpoints/burgers/fno_burgers_nu0.001_v1/model.pt",
+      "scope": "active_historical_paper_row",
+      "own_split": {
+        "n_train": 8500,
+        "n_test": 1000,
+        "source_test_rows": [
+          8500,
+          9500
+        ]
+      },
+      "bytes": 4786566,
+      "config": "artifacts/old_artifacts/configs/burgers/fno_burgers_nu0.001_v1/config.json",
+      "metrics": "artifacts/old_artifacts/results/burgers/fno_burgers_nu0.001_v1/metrics.json"
+    },
+    {
+      "id": "fno_burgers_nu1.0_v1",
+      "task": "burgers",
+      "method": "FNO",
+      "sha256": "9147855fedae095344d5bff0bb2a4ce41a63a4571d00b568ffba2dae8e3e9a92",
+      "path": "artifacts/old_artifacts/checkpoints/burgers/fno_burgers_nu1.0_v1/model.pt",
+      "scope": "active_historical_paper_row",
+      "own_split": {
+        "n_train": 8500,
+        "n_test": 1000,
+        "source_test_rows": [
+          8500,
+          9500
+        ]
+      },
+      "bytes": 4786566,
+      "config": "artifacts/old_artifacts/configs/burgers/fno_burgers_nu1.0_v1/config.json",
+      "metrics": "artifacts/old_artifacts/results/burgers/fno_burgers_nu1.0_v1/metrics.json"
+    },
+    {
+      "id": "fno_burgers_nu0.1_v1",
+      "task": "burgers",
+      "method": "FNO",
+      "sha256": "1929be644e9f633c4ffc08451ee5105aa96b6c1619c06d36ea7e6d66cd5b718f",
+      "path": "artifacts/old_artifacts/checkpoints/burgers/fno_burgers_nu0.1_v1/model.pt",
+      "scope": "active_historical_paper_row",
+      "own_split": {
+        "n_train": 8500,
+        "n_test": 1000,
+        "source_test_rows": [
+          8500,
+          9500
+        ]
+      },
+      "bytes": 4786566,
+      "config": "artifacts/old_artifacts/configs/burgers/fno_burgers_nu0.1_v1/config.json",
+      "metrics": "artifacts/old_artifacts/results/burgers/fno_burgers_nu0.1_v1/metrics.json"
+    },
+    {
+      "id": "fno_burgers_nu0.01_v1",
+      "task": "burgers",
+      "method": "FNO",
+      "sha256": "5ad73699d779c98dc3887ed746b95af1c435da5591cd13508db6b1b64d3ef292",
+      "path": "artifacts/old_artifacts/checkpoints/burgers/fno_burgers_nu0.01_v1/model.pt",
+      "scope": "active_historical_paper_row",
+      "own_split": {
+        "n_train": 8500,
+        "n_test": 1000,
+        "source_test_rows": [
+          8500,
+          9500
+        ]
+      },
+      "bytes": 4786566,
+      "config": "artifacts/old_artifacts/configs/burgers/fno_burgers_nu0.01_v1/config.json",
+      "metrics": "artifacts/old_artifacts/results/burgers/fno_burgers_nu0.01_v1/metrics.json"
+    },
+    {
+      "id": "fno_joint_navier_stokes_v1",
+      "task": "navier_stokes",
+      "method": "FNO",
+      "sha256": "4437668b3427b8b47c2f7b6fd41dae3b9beb5c493e41e1bf255afb964d1c6530",
+      "path": "artifacts/old_artifacts/checkpoints/navier_stokes/fno_joint_navier_stokes_v1/model.pt",
+      "scope": "active_historical_paper_row",
+      "own_split": {
+        "train_per_Re": 4000,
+        "test_per_Re": 1000,
+        "train_source_rows": [
+          0,
+          4000
+        ],
+        "test_source_rows": [
+          4000,
+          5000
+        ],
+        "n_train_total": 16000,
+        "n_test_total": 4000
+      },
+      "bytes": 11249094,
+      "config": "artifacts/old_artifacts/configs/navier_stokes/fno_joint_navier_stokes_v1/config.json",
+      "metrics": "artifacts/old_artifacts/results/navier_stokes/fno_joint_navier_stokes_v1/metrics.json"
+    },
+    {
+      "id": "cno_joint_ns_L2_v1",
+      "task": "navier_stokes",
+      "method": "CNO",
+      "sha256": "76c45edd8c31e18d9dbf9399c6237eaed4ae9d21a67a01686cd3a8740f63c6bd",
+      "path": "artifacts/old_artifacts/checkpoints/navier_stokes/cno_joint_ns_L2_v1/model.pt",
+      "scope": "active_historical_paper_row",
+      "own_split": {
+        "train_per_Re": 4000,
+        "test_per_Re": 1000,
+        "train_source_rows": [
+          0,
+          4000
+        ],
+        "test_source_rows": [
+          4000,
+          5000
+        ],
+        "n_train_total": 16000,
+        "n_test_total": 4000
+      },
+      "bytes": 469800,
+      "config": "artifacts/old_artifacts/configs/navier_stokes/cno_joint_ns_L2_v1/config.json",
+      "metrics": "artifacts/old_artifacts/results/navier_stokes/cno_joint_ns_L2_v1/metrics.json"
+    },
+    {
+      "id": "fno_navier_stokes_re100_v1",
+      "task": "navier_stokes",
+      "method": "FNO",
+      "sha256": "50a2c52a8bc5c3dcc63ca9764705306a1c44223f084e09f5febcb9ca8c7a8ac5",
+      "path": "artifacts/old_artifacts/checkpoints/navier_stokes/fno_navier_stokes_re100_v1/model.pt",
+      "scope": "active_historical_paper_row",
+      "own_split": {
+        "train_per_Re": 1600,
+        "test_per_Re": 400,
+        "train_source_rows": [
+          0,
+          1600
+        ],
+        "test_source_rows": [
+          1600,
+          2000
+        ],
+        "n_train_total": 1600,
+        "n_test_total": 400
+      },
+      "bytes": 11249606,
+      "config": "artifacts/old_artifacts/configs/navier_stokes/fno_navier_stokes_re100_v1/config.json",
+      "metrics": "artifacts/old_artifacts/results/navier_stokes/fno_navier_stokes_re100_v1/metrics.json"
+    },
+    {
+      "id": "fno_navier_stokes_re1000_v1",
+      "task": "navier_stokes",
+      "method": "FNO",
+      "sha256": "f4d5e0887ca68a18832827fd83f503a2fbe2d5e4eef4d82a3ce1f4d3529e0385",
+      "path": "artifacts/old_artifacts/checkpoints/navier_stokes/fno_navier_stokes_re1000_v1/model.pt",
+      "scope": "active_historical_paper_row",
+      "own_split": {
+        "train_per_Re": 1600,
+        "test_per_Re": 400,
+        "train_source_rows": [
+          0,
+          1600
+        ],
+        "test_source_rows": [
+          1600,
+          2000
+        ],
+        "n_train_total": 1600,
+        "n_test_total": 400
+      },
+      "bytes": 11249606,
+      "config": "artifacts/old_artifacts/configs/navier_stokes/fno_navier_stokes_re1000_v1/config.json",
+      "metrics": "artifacts/old_artifacts/results/navier_stokes/fno_navier_stokes_re1000_v1/metrics.json"
+    },
+    {
+      "id": "fno_navier_stokes_re3600_v1",
+      "task": "navier_stokes",
+      "method": "FNO",
+      "sha256": "4a28aeaf7f90a169c96acd8c9357fee03429ff4bc78b8543593b74a4e671e243",
+      "path": "artifacts/old_artifacts/checkpoints/navier_stokes/fno_navier_stokes_re3600_v1/model.pt",
+      "scope": "active_historical_paper_row",
+      "own_split": {
+        "train_per_Re": 1600,
+        "test_per_Re": 400,
+        "train_source_rows": [
+          0,
+          1600
+        ],
+        "test_source_rows": [
+          1600,
+          2000
+        ],
+        "n_train_total": 1600,
+        "n_test_total": 400
+      },
+      "bytes": 11249606,
+      "config": "artifacts/old_artifacts/configs/navier_stokes/fno_navier_stokes_re3600_v1/config.json",
+      "metrics": "artifacts/old_artifacts/results/navier_stokes/fno_navier_stokes_re3600_v1/metrics.json"
+    },
+    {
+      "id": "fno_navier_stokes_re10000_v1",
+      "task": "navier_stokes",
+      "method": "FNO",
+      "sha256": "0e09ec30b540eac57b0d2ee6a241d33eb1d5648202bf62300f0f2ddf9bc50e98",
+      "path": "artifacts/old_artifacts/checkpoints/navier_stokes/fno_navier_stokes_re10000_v1/model.pt",
+      "scope": "active_historical_paper_row",
+      "own_split": {
+        "train_per_Re": 1600,
+        "test_per_Re": 400,
+        "train_source_rows": [
+          0,
+          1600
+        ],
+        "test_source_rows": [
+          1600,
+          2000
+        ],
+        "n_train_total": 1600,
+        "n_test_total": 400
+      },
+      "bytes": 11249606,
+      "config": "artifacts/old_artifacts/configs/navier_stokes/fno_navier_stokes_re10000_v1/config.json",
+      "metrics": "artifacts/old_artifacts/results/navier_stokes/fno_navier_stokes_re10000_v1/metrics.json"
+    },
+    {
+      "id": "cno_navier_stokes_re100_v1",
+      "task": "navier_stokes",
+      "method": "CNO",
+      "sha256": "21f8b14094c4ca410e9212878a2fdcba82e7ca7cec725042f2d39620231b85c2",
+      "path": "artifacts/old_artifacts/checkpoints/navier_stokes/cno_navier_stokes_re100_v1/model.pt",
+      "scope": "active_historical_paper_row",
+      "own_split": {
+        "train_per_Re": 4000,
+        "test_per_Re": 1000,
+        "train_source_rows": [
+          0,
+          4000
+        ],
+        "test_source_rows": [
+          4000,
+          5000
+        ],
+        "n_train_total": 4000,
+        "n_test_total": 1000
+      },
+      "bytes": 1379746,
+      "config": "artifacts/old_artifacts/configs/navier_stokes/cno_navier_stokes_re100_v1/config.json",
+      "metrics": "artifacts/old_artifacts/results/navier_stokes/cno_navier_stokes_re100_v1/metrics.json"
+    },
+    {
+      "id": "cno_navier_stokes_re1000_v1",
+      "task": "navier_stokes",
+      "method": "CNO",
+      "sha256": "e0b65dd5eedfb6ae305a14ea9432bfc33d08912496d8976cf038fc62523e3066",
+      "path": "artifacts/old_artifacts/checkpoints/navier_stokes/cno_navier_stokes_re1000_v1/model.pt",
+      "scope": "active_historical_paper_row",
+      "own_split": {
+        "train_per_Re": 4000,
+        "test_per_Re": 1000,
+        "train_source_rows": [
+          0,
+          4000
+        ],
+        "test_source_rows": [
+          4000,
+          5000
+        ],
+        "n_train_total": 4000,
+        "n_test_total": 1000
+      },
+      "bytes": 1379746,
+      "config": "artifacts/old_artifacts/configs/navier_stokes/cno_navier_stokes_re1000_v1/config.json",
+      "metrics": "artifacts/old_artifacts/results/navier_stokes/cno_navier_stokes_re1000_v1/metrics.json"
+    },
+    {
+      "id": "cno_navier_stokes_re3600_v1",
+      "task": "navier_stokes",
+      "method": "CNO",
+      "sha256": "9e6289a2609730c48680d1367b61a2201b20028355e0c2ceb19518f6bac592f3",
+      "path": "artifacts/old_artifacts/checkpoints/navier_stokes/cno_navier_stokes_re3600_v1/model.pt",
+      "scope": "active_historical_paper_row",
+      "own_split": {
+        "train_per_Re": 4000,
+        "test_per_Re": 1000,
+        "train_source_rows": [
+          0,
+          4000
+        ],
+        "test_source_rows": [
+          4000,
+          5000
+        ],
+        "n_train_total": 4000,
+        "n_test_total": 1000
+      },
+      "bytes": 1379746,
+      "config": "artifacts/old_artifacts/configs/navier_stokes/cno_navier_stokes_re3600_v1/config.json",
+      "metrics": "artifacts/old_artifacts/results/navier_stokes/cno_navier_stokes_re3600_v1/metrics.json"
+    },
+    {
+      "id": "cno_navier_stokes_re10000_v1",
+      "task": "navier_stokes",
+      "method": "CNO",
+      "sha256": "4bb6a49d6564837bf0abb9829cf9bb087d07fe7c90580a7bbf868fe637862373",
+      "path": "artifacts/old_artifacts/checkpoints/navier_stokes/cno_navier_stokes_re10000_v1/model.pt",
+      "scope": "active_historical_paper_row",
+      "own_split": {
+        "train_per_Re": 4000,
+        "test_per_Re": 1000,
+        "train_source_rows": [
+          0,
+          4000
+        ],
+        "test_source_rows": [
+          4000,
+          5000
+        ],
+        "n_train_total": 4000,
+        "n_test_total": 1000
+      },
+      "bytes": 1379746,
+      "config": "artifacts/old_artifacts/configs/navier_stokes/cno_navier_stokes_re10000_v1/config.json",
+      "metrics": "artifacts/old_artifacts/results/navier_stokes/cno_navier_stokes_re10000_v1/metrics.json"
+    },
+    {
+      "id": "pod_deeponet_navier_stokes_re100_v1",
+      "task": "navier_stokes",
+      "method": "POD-DeepONet",
+      "sha256": "8d343ca8ae5018bfb976d133c54ffecfa678156954ace0b3e37e0d57eb736bbe",
+      "path": "artifacts/old_artifacts/checkpoints/navier_stokes/pod_deeponet_navier_stokes_re100_v1/model.pt",
+      "scope": "active_historical_paper_row",
+      "own_split": {
+        "train_per_Re": 4500,
+        "test_per_Re": 500,
+        "train_source_rows": [
+          0,
+          4500
+        ],
+        "test_source_rows": [
+          4500,
+          5000
+        ],
+        "n_train_total": 4500,
+        "n_test_total": 500
+      },
+      "bytes": 66445654,
+      "config": "artifacts/old_artifacts/configs/navier_stokes/pod_deeponet_navier_stokes_re100_v1/config.json",
+      "metrics": "artifacts/old_artifacts/results/navier_stokes/pod_deeponet_navier_stokes_re100_v1/metrics.json"
+    },
+    {
+      "id": "pod_deeponet_navier_stokes_re1000_v1",
+      "task": "navier_stokes",
+      "method": "POD-DeepONet",
+      "sha256": "075cf7bfc4c94088b92f38cdd98e975d8c003086cfdb47346f27daddc95c2998",
+      "path": "artifacts/old_artifacts/checkpoints/navier_stokes/pod_deeponet_navier_stokes_re1000_v1/model.pt",
+      "scope": "active_historical_paper_row",
+      "own_split": {
+        "train_per_Re": 4500,
+        "test_per_Re": 500,
+        "train_source_rows": [
+          0,
+          4500
+        ],
+        "test_source_rows": [
+          4500,
+          5000
+        ],
+        "n_train_total": 4500,
+        "n_test_total": 500
+      },
+      "bytes": 66445654,
+      "config": "artifacts/old_artifacts/configs/navier_stokes/pod_deeponet_navier_stokes_re1000_v1/config.json",
+      "metrics": "artifacts/old_artifacts/results/navier_stokes/pod_deeponet_navier_stokes_re1000_v1/metrics.json"
+    },
+    {
+      "id": "pod_deeponet_navier_stokes_re3600_v1",
+      "task": "navier_stokes",
+      "method": "POD-DeepONet",
+      "sha256": "9473c3ebcc549bfd79c6874f2aa47ec625d1f0b56202eca4ee0b52e5b31ade04",
+      "path": "artifacts/old_artifacts/checkpoints/navier_stokes/pod_deeponet_navier_stokes_re3600_v1/model.pt",
+      "scope": "active_historical_paper_row",
+      "own_split": {
+        "train_per_Re": 4500,
+        "test_per_Re": 500,
+        "train_source_rows": [
+          0,
+          4500
+        ],
+        "test_source_rows": [
+          4500,
+          5000
+        ],
+        "n_train_total": 4500,
+        "n_test_total": 500
+      },
+      "bytes": 66445654,
+      "config": "artifacts/old_artifacts/configs/navier_stokes/pod_deeponet_navier_stokes_re3600_v1/config.json",
+      "metrics": "artifacts/old_artifacts/results/navier_stokes/pod_deeponet_navier_stokes_re3600_v1/metrics.json"
+    },
+    {
+      "id": "pod_deeponet_navier_stokes_re10000_v1",
+      "task": "navier_stokes",
+      "method": "POD-DeepONet",
+      "sha256": "7087ad99180a8c6960389854dd0edcbe35a062b36d1dd8914eb93442df230b4f",
+      "path": "artifacts/old_artifacts/checkpoints/navier_stokes/pod_deeponet_navier_stokes_re10000_v1/model.pt",
+      "scope": "active_historical_paper_row",
+      "own_split": {
+        "train_per_Re": 4500,
+        "test_per_Re": 500,
+        "train_source_rows": [
+          0,
+          4500
+        ],
+        "test_source_rows": [
+          4500,
+          5000
+        ],
+        "n_train_total": 4500,
+        "n_test_total": 500
+      },
+      "bytes": 151304406,
+      "config": "artifacts/old_artifacts/configs/navier_stokes/pod_deeponet_navier_stokes_re10000_v1/config.json",
+      "metrics": "artifacts/old_artifacts/results/navier_stokes/pod_deeponet_navier_stokes_re10000_v1/metrics.json"
+    },
+    {
+      "id": "fno_joint_burgers_3nu_v1",
+      "task": "burgers",
+      "method": "FNO",
+      "sha256": "bbea75beb829be371e8c8ed409d7d28e4b9556b8be103e93b7f487a71bcf8e34",
+      "path": "artifacts/old_artifacts/checkpoints/burgers/fno_joint_burgers_3nu_v1/model.pt",
+      "scope": "active_historical_paper_row",
+      "own_split": {
+        "n_train": 25500,
+        "n_test": 3000,
+        "source_test_rows": [
+          8500,
+          9500
+        ]
+      },
+      "bytes": 4786374,
+      "config": "artifacts/old_artifacts/configs/burgers/fno_joint_burgers_3nu_v1/config.json",
+      "metrics": "artifacts/old_artifacts/results/burgers/fno_joint_burgers_3nu_v1/metrics.json"
+    },
+    {
+      "id": "npod_deeponet_nu0.001_v1",
+      "task": "burgers",
+      "method": "NeuralPOD-DeepONet",
+      "seed": 42,
+      "path": "artifacts/checkpoints/burgers/npod_deeponet_nu0.001_v1_complete/weights.pt",
+      "bytes": 20100161,
+      "sha256": "646e533f33bbbb06867037ead97f1270c8542b7b64af7796a38ce90cac31bbc9",
+      "scope": "restored_fourier_buffers",
+      "config": "artifacts/checkpoints/burgers/npod_deeponet_nu0.001_v1_complete/config.json",
+      "metrics": "artifacts/checkpoints/burgers/npod_deeponet_nu0.001_v1_complete/metrics.json",
+      "source_checkpoint": "artifacts/old_artifacts/checkpoints/burgers/npod_deeponet_nu0.001_v1/model.pt"
+    },
+    {
+      "id": "npod_deeponet_nu0.01_v1",
+      "task": "burgers",
+      "method": "NeuralPOD-DeepONet",
+      "seed": 42,
+      "path": "artifacts/checkpoints/burgers/npod_deeponet_nu0.01_v1_complete/weights.pt",
+      "bytes": 20100161,
+      "sha256": "6e5c1eb749501ee7271b3cf1c2fdaef7ace7d84f9b9733e181c00b0e6633b7b8",
+      "scope": "restored_fourier_buffers",
+      "config": "artifacts/checkpoints/burgers/npod_deeponet_nu0.01_v1_complete/config.json",
+      "metrics": "artifacts/checkpoints/burgers/npod_deeponet_nu0.01_v1_complete/metrics.json",
+      "source_checkpoint": "artifacts/old_artifacts/checkpoints/burgers/npod_deeponet_nu0.01_v1/model.pt"
+    },
+    {
+      "id": "npod_deeponet_nu0.1_v1",
+      "task": "burgers",
+      "method": "NeuralPOD-DeepONet",
+      "seed": 42,
+      "path": "artifacts/checkpoints/burgers/npod_deeponet_nu0.1_v1_complete/weights.pt",
+      "bytes": 20100161,
+      "sha256": "de7570a895b9b0ce83d2dda58c52b23d080a606be1003dfba5495be5bd957d6b",
+      "scope": "restored_fourier_buffers",
+      "config": "artifacts/checkpoints/burgers/npod_deeponet_nu0.1_v1_complete/config.json",
+      "metrics": "artifacts/checkpoints/burgers/npod_deeponet_nu0.1_v1_complete/metrics.json",
+      "source_checkpoint": "artifacts/old_artifacts/checkpoints/burgers/npod_deeponet_nu0.1_v1/model.pt"
+    },
+    {
+      "id": "npod_deeponet_nu1.0_v1",
+      "task": "burgers",
+      "method": "NeuralPOD-DeepONet",
+      "seed": 42,
+      "path": "artifacts/checkpoints/burgers/npod_deeponet_nu1.0_v1_complete/weights.pt",
+      "bytes": 20100161,
+      "sha256": "7b497eefa8c4b5b7c88ac603cee680ad166dcf707b6a4a55222ec642880001e2",
+      "scope": "restored_fourier_buffers",
+      "config": "artifacts/checkpoints/burgers/npod_deeponet_nu1.0_v1_complete/config.json",
+      "metrics": "artifacts/checkpoints/burgers/npod_deeponet_nu1.0_v1_complete/metrics.json",
+      "source_checkpoint": "artifacts/old_artifacts/checkpoints/burgers/npod_deeponet_nu1.0_v1/model.pt"
+    },
+    {
+      "id": "cno_burgers_nu0.01_v1",
+      "task": "burgers",
+      "method": "CNO",
+      "path": "artifacts/old_artifacts/checkpoints/burgers/cno_burgers_nu0.01_v1/model.pt",
+      "sha256": "ba41b4a45d09ea223daafd48f871066e6d12e9fa9674fb4d3c29aee4c89dd483",
+      "bytes": 8072290,
+      "scope": "active_historical_paper_row",
+      "config": "artifacts/old_artifacts/configs/burgers/cno_burgers_nu0.01_v1/config.json",
+      "metrics": "artifacts/old_artifacts/results/burgers/cno_burgers_nu0.01_v1/metrics.json"
+    },
+    {
+      "id": "cno_burgers_nu0.1_v1",
+      "task": "burgers",
+      "method": "CNO",
+      "path": "artifacts/old_artifacts/checkpoints/burgers/cno_burgers_nu0.1_v1/model.pt",
+      "sha256": "8a4896313576bd502afbecb5d60ab52488c345737767e4a3f33653111e468cc8",
+      "bytes": 8072290,
+      "scope": "active_historical_paper_row",
+      "config": "artifacts/old_artifacts/configs/burgers/cno_burgers_nu0.1_v1/config.json",
+      "metrics": "artifacts/old_artifacts/results/burgers/cno_burgers_nu0.1_v1/metrics.json"
+    },
+    {
+      "id": "cno_burgers_nu1.0_v1",
+      "task": "burgers",
+      "method": "CNO",
+      "path": "artifacts/old_artifacts/checkpoints/burgers/cno_burgers_nu1.0_v1/model.pt",
+      "sha256": "7c5622f064ceb6a1f7289867395846de5fca90cb25259f1c62c61f0ec3ce3fba",
+      "bytes": 8072290,
+      "scope": "active_historical_paper_row",
+      "config": "artifacts/old_artifacts/configs/burgers/cno_burgers_nu1.0_v1/config.json",
+      "metrics": "artifacts/old_artifacts/results/burgers/cno_burgers_nu1.0_v1/metrics.json"
+    },
+    {
+      "id": "cno_joint_burgers_v1",
+      "task": "burgers",
+      "method": "CNO",
+      "path": "artifacts/old_artifacts/checkpoints/burgers/cno_joint_burgers_v1/model.pt",
+      "sha256": "89d40cf8727a0157a8522cf68d1c8f620741841b6807432348be31c7fd04e45b",
+      "bytes": 8072098,
+      "scope": "active_historical_paper_row",
+      "config": "artifacts/old_artifacts/configs/burgers/cno_joint_burgers_v1/config.json",
+      "metrics": "artifacts/old_artifacts/results/burgers/cno_joint_burgers_v1/metrics.json"
+    },
+    {
+      "id": "npod_deeponet_ns_joint_v1",
+      "task": "navier_stokes",
+      "method": "NeuralPOD-DeepONet",
+      "seed": 42,
+      "path": "artifacts/checkpoints/navier_stokes/npod_deeponet_ns_joint_v1_complete/weights.pt",
+      "bytes": 38779605,
+      "sha256": "f32a7089cd23637d047c971a58dd25a90212949de7547580f848f3b7b34eb3e8",
+      "scope": "restored_fourier_buffers",
+      "config": "artifacts/checkpoints/navier_stokes/npod_deeponet_ns_joint_v1_complete/config.json",
+      "metrics": "artifacts/checkpoints/navier_stokes/npod_deeponet_ns_joint_v1_complete/metrics.json",
+      "source_checkpoint": "artifacts/old_artifacts/checkpoints/navier_stokes/npod_deeponet_ns_joint_v1/model.pt"
+    },
+    {
+      "id": "deeponet_burgers_nu0.001_seed39_repeat",
+      "task": "burgers",
+      "method": "DeepONet",
+      "seed": 39,
+      "path": "artifacts/checkpoints/burgers/deeponet_burgers_nu0.001_seed39_repeat/weights.pt",
+      "bytes": 2428769,
+      "sha256": "46812a35c2bb3bb59b56021dd5379507f66dacb82ebe5d7b5bedf0e2cefd39d8",
+      "scope": "fixed_recipe_repeat",
+      "config": "artifacts/checkpoints/burgers/deeponet_burgers_nu0.001_seed39_repeat/config.json",
+      "metrics": "artifacts/checkpoints/burgers/deeponet_burgers_nu0.001_seed39_repeat/metrics.json"
+    },
+    {
+      "id": "deeponet_burgers_nu0.1_seed39_repeat",
+      "task": "burgers",
+      "method": "DeepONet",
+      "seed": 39,
+      "path": "artifacts/checkpoints/burgers/deeponet_burgers_nu0.1_seed39_repeat/weights.pt",
+      "bytes": 2428769,
+      "sha256": "94093c0ccea3291d49cf084bf3b013b6b1023c6921f34157d5b797f5527f6dd7",
+      "scope": "fixed_recipe_repeat",
+      "config": "artifacts/checkpoints/burgers/deeponet_burgers_nu0.1_seed39_repeat/config.json",
+      "metrics": "artifacts/checkpoints/burgers/deeponet_burgers_nu0.1_seed39_repeat/metrics.json"
+    },
+    {
+      "id": "deeponet_burgers_nu1.0_seed39_repeat",
+      "task": "burgers",
+      "method": "DeepONet",
+      "seed": 39,
+      "path": "artifacts/checkpoints/burgers/deeponet_burgers_nu1.0_seed39_repeat/weights.pt",
+      "bytes": 2428769,
+      "sha256": "a3980965ecd6e694e989b48471b4b1e6e3465ef3598c3a30190994e46dd8c049",
+      "scope": "fixed_recipe_repeat",
+      "config": "artifacts/checkpoints/burgers/deeponet_burgers_nu1.0_seed39_repeat/config.json",
+      "metrics": "artifacts/checkpoints/burgers/deeponet_burgers_nu1.0_seed39_repeat/metrics.json"
+    },
+    {
+      "task": "navier_stokes",
+      "method": "NeuralPOD-DeepONet",
+      "id": "npod_ns_re1000_rank64_seed42_repeat",
+      "seed": 42,
+      "path": "artifacts/checkpoints/navier_stokes/npod_ns_re1000_rank64_seed42_repeat/weights.pt",
+      "bytes": 61162342,
+      "sha256": "d0cb7fb109afa01a315bc0771f9beb945e6ee9d487d788e36399b85852925b37",
+      "scope": "fixed_recipe_rerun",
+      "config": "artifacts/checkpoints/navier_stokes/npod_ns_re1000_rank64_seed42_repeat/config.json",
+      "metrics": "artifacts/checkpoints/navier_stokes/npod_ns_re1000_rank64_seed42_repeat/metrics.json"
+    }
+  ],
+  "series_selection": "paper/results/online_refinement/selection.json",
+  "local_bundle": "artifacts/TEMPO-models.tar",
+  "local_bundle_manifest": "artifacts/model_bundle_manifest.json",
+  "additional_models": "artifacts/model_history.json"
+}

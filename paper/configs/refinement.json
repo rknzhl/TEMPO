@@ -1,0 +1,180 @@
+{
+  "path_base": "repository root",
+  "method": "Fixed-rank joint NeuralPOD refinement",
+  "models": [
+    {
+      "id": "tempo_npod_joint_seed17",
+      "task": "burgers_original",
+      "method": "tempo_npod",
+      "seed": 17,
+      "path": "artifacts/checkpoints/burgers_original/tempo_npod_joint_seed17/checkpoint.pt",
+      "sha256": "55fa111e422f9ffd8b26f7720d8bf497ec99f5f392842e36ab4adae7cc23271b",
+      "bytes": 18301632,
+      "config": "paper/configs/refinement/burgers.json",
+      "ranks": [
+        16,
+        16,
+        16
+      ],
+      "grid": [
+        201,
+        1024
+      ],
+      "split": {
+        "train": 10800,
+        "validation": 1200,
+        "test": 3000
+      },
+      "initial_checkpoint": "artifacts/checkpoints/burgers_original/night20261109_burgers_original_npod_m3k16_freq3_seed17_online_refined_20261111/checkpoint.pt",
+      "initial_sha256": "fd0d47789a7095c7c0b62966c1387faf524c8f3555f35d6ebafcf46b7c315254",
+      "validation_relative_l2": 0.22866204719164795,
+      "test_relative_l2": 0.21533562267424258,
+      "baseline_test_relative_l2": 0.2660056977110506,
+      "error_data": "paper/results/refinement/burgers_test.npz",
+      "selection": "validation",
+      "scope": "joint_refinement",
+      "field_examples": "paper/figures/data/refinement/burgers_fields.npz",
+      "error_key": "selected_relative_l2"
+    },
+    {
+      "id": "tempo_npod_joint_seed42",
+      "task": "navier_stokes",
+      "method": "tempo_npod",
+      "seed": 42,
+      "path": "artifacts/checkpoints/navier_stokes/tempo_npod_joint_seed42/checkpoint.pt",
+      "sha256": "35116e5a4fc15bfaa83d85c9e64391885612f69246f20d1d5992795a097e8366",
+      "bytes": 74306652,
+      "config": "paper/configs/refinement/navier_stokes.json",
+      "ranks": [
+        64,
+        64,
+        64,
+        64
+      ],
+      "grid": [
+        21,
+        64,
+        64,
+        2
+      ],
+      "split": {
+        "train": 16000,
+        "validation": 512,
+        "test": 4000
+      },
+      "initial_checkpoint": "artifacts/checkpoints/navier_stokes/ns_tempo_npod_m4k64_seed42_online_refined_20261111/checkpoint.pt",
+      "initial_sha256": "7eef61351c52566cd9bfb9ffe83ea7940fb60e806ed89242b4dfa43b19337369",
+      "validation_relative_l2": 0.08989393907860782,
+      "test_relative_l2": 0.08955736569898959,
+      "baseline_test_relative_l2": 0.09131241534771363,
+      "error_data": "paper/results/refinement/navier_stokes_test.npz",
+      "selection": "validation",
+      "scope": "joint_refinement",
+      "field_examples": "paper/figures/data/refinement/navier_stokes_fields.npz",
+      "error_key": "selected_relative_l2"
+    },
+    {
+      "id": "tempo_npod_joint_seed17",
+      "task": "sod",
+      "method": "tempo_npod",
+      "seed": 17,
+      "path": "artifacts/checkpoints/sod/tempo_npod_joint_seed17/checkpoint.pt",
+      "sha256": "925f1cff39fb7d4c92aea7a8a71029ba7dc27294ee62662f249148387bde8a71",
+      "bytes": 5410942,
+      "config": "paper/configs/refinement/sod.json",
+      "ranks": [
+        16,
+        16,
+        16
+      ],
+      "grid": [
+        3,
+        16,
+        128
+      ],
+      "split": {
+        "train": 1232,
+        "validation": 408,
+        "test": 1024
+      },
+      "initial_checkpoint": "artifacts/checkpoints/sod/sod_fullstate_npod_tempo_mode1200_seed17_v1_online_refined_20261111/checkpoint.pt",
+      "initial_sha256": "7bf71b1b4999636c6a76bc2405a694aa8879422e52d1c493d017e9b3b652d383",
+      "validation_relative_l2": 0.041909026278625035,
+      "test_relative_l2": 0.042429214396055744,
+      "baseline_test_relative_l2": 0.059674358815794866,
+      "error_data": "paper/results/refinement/sod_test.npz",
+      "selection": "validation",
+      "scope": "joint_refinement",
+      "error_key": "joint_relative_l2",
+      "field_examples": "paper/figures/data/refinement/sod_fields.npz"
+    },
+    {
+      "id": "tempo_npod_joint_seed17",
+      "task": "coanda",
+      "method": "tempo_npod",
+      "seed": 17,
+      "path": "artifacts/checkpoints/coanda/tempo_npod_joint_seed17/checkpoint.pt",
+      "sha256": "503f9133fe2fc51641ba6c3f0aa8b17da39c6a8cc078995cfeee2d29b7ac5f4a",
+      "bytes": 2848936,
+      "config": "paper/configs/refinement/coanda.json",
+      "ranks": [
+        12,
+        12
+      ],
+      "grid": [
+        2719,
+        2
+      ],
+      "split": {
+        "train": 217,
+        "validation": 62,
+        "test": 62
+      },
+      "initial_checkpoint": "artifacts/checkpoints/coanda/night20261109_coanda_npod_multiscale_em20_seed17_online_refined_20261111/checkpoint.pt",
+      "initial_sha256": "e8f849c1bd75e064af758be005f2f113ba329dfdc9f4891d9ddc1d9616c894cc",
+      "validation_relative_l2": 0.008026433762681461,
+      "test_relative_l2": 0.006798377733473579,
+      "baseline_test_relative_l2": 0.0069838748741828495,
+      "error_data": "paper/results/refinement/coanda_test.npz",
+      "selection": "validation",
+      "scope": "joint_refinement",
+      "error_key": "joint_relative_l2"
+    },
+    {
+      "id": "tempo_npod_joint_seed17",
+      "task": "helmholtz_four_omega",
+      "method": "tempo_npod",
+      "seed": 17,
+      "path": "artifacts/checkpoints/helmholtz_four_omega/tempo_npod_joint_seed17/checkpoint.pt",
+      "sha256": "cd4dc7e6658a1b7bd97d0881c61590b848d340da76e59149c9b349abe22f652a",
+      "bytes": 34160904,
+      "config": "paper/configs/refinement/helmholtz.json",
+      "ranks": [
+        16,
+        16,
+        16,
+        16
+      ],
+      "grid": [
+        101,
+        101
+      ],
+      "split": {
+        "train": 4000,
+        "validation": 800,
+        "test": 800
+      },
+      "initial_checkpoint": "artifacts/checkpoints/helmholtz_four_omega/tempo_neuralpod_m4k16_default_seed17_online_refined_20261111/checkpoint.pt",
+      "initial_sha256": "5c112eebf82742c2367392983320a3f2c761ad90bc53d28eb544ca466a7e1e5a",
+      "validation_relative_l2": 0.05903258182325486,
+      "test_relative_l2": 0.05831805490212773,
+      "baseline_test_relative_l2": 0.17984159029710636,
+      "error_data": "paper/results/refinement/helmholtz_test.npz",
+      "selection": "validation",
+      "scope": "joint_refinement",
+      "error_key": "relative_l2"
+    }
+  ],
+  "artifact_archive": "artifacts/TEMPO-models.tar",
+  "download_base_url": null
+}

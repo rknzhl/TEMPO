@@ -1,0 +1,94 @@
+{
+  "seed": 17,
+  "target_units": "prepared",
+  "phases": [
+    {
+      "name": "joint",
+      "seed": 17,
+      "source_sha256": "7bf71b1b4999636c6a76bc2405a694aa8879422e52d1c493d017e9b3b652d383",
+      "target_units": "prepared",
+      "basis": {
+        "steps": 600,
+        "lr": 0.0001,
+        "coefficient_every": 50,
+        "trajectory_batch": 64,
+        "coordinate_batch": 4096,
+        "relative": true,
+        "normalize_modes": false,
+        "patience": 150
+      },
+      "em_steps": 0,
+      "online": {
+        "epochs": 300,
+        "batch_size": 256,
+        "gate_lr": 3e-05,
+        "hidden_lr": 0.0001,
+        "head_lr": 0.0003,
+        "patience": 60
+      }
+    },
+    {
+      "name": "mode_normalization",
+      "seed": 17,
+      "source_sha256": "adb5d0e04893291c6d427402e18a306f017f4b2a96f7c6aa3aed7467c60ebd93",
+      "target_units": "prepared",
+      "basis": {
+        "steps": 2000,
+        "lr": 0.0001,
+        "coefficient_every": 50,
+        "trajectory_batch": 64,
+        "coordinate_batch": 6144,
+        "relative": true,
+        "normalize_modes": true,
+        "patience": 250
+      },
+      "em_steps": 0,
+      "online": {
+        "epochs": 600,
+        "batch_size": 256,
+        "gate_lr": 3e-05,
+        "hidden_lr": 0.0001,
+        "head_lr": 0.0003,
+        "patience": 100
+      }
+    },
+    {
+      "name": "relative_EM",
+      "seed": 17,
+      "source_sha256": "16630930126c31f917836c2bc6e85d43a3fad419dd4c116fb86ff9cd6b564953",
+      "target_units": "prepared",
+      "basis": {
+        "steps": 1500,
+        "lr": 0.0001,
+        "coefficient_every": 50,
+        "trajectory_batch": 64,
+        "coordinate_batch": 6144,
+        "relative": true,
+        "normalize_modes": true,
+        "patience": 250
+      },
+      "em_steps": 2,
+      "subsequent_steps": 1000,
+      "online": {
+        "epochs": 800,
+        "batch_size": 256,
+        "gate_lr": 0.0001,
+        "hidden_lr": 0.0003,
+        "head_lr": 0.0003,
+        "patience": 150
+      },
+      "recalibrate_noise": true
+    }
+  ],
+  "selection": "minimum validation relative L2",
+  "grid": [
+    3,
+    16,
+    128
+  ],
+  "ranks": [
+    16,
+    16,
+    16
+  ]
+}

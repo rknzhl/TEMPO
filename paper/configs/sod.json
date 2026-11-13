@@ -1,0 +1,1398 @@
+{
+  "task": "sod",
+  "dataset": {
+    "generate": "python scripts/paper/sod.py --out data/sod512.npz --groups 512 --nx 128 --nt 16 --data-seed 2026 --split-seed 143 --final-time 0.12",
+    "prepare": "python scripts/paper/sod.py --source data/sod512.npz --out data/sod_fullstate.npz",
+    "groups": 512,
+    "grid": [
+      16,
+      128
+    ],
+    "train": 1232,
+    "val": 408,
+    "test": 1024,
+    "metric": "Joint q=(rho,u/sqrt(1.4),p) per-trajectory relative L2; full primitive state.",
+    "source_sha256": "b2e6be36139bd9fbc1bcc85031b9028f40669758d57d4306b45ceec41b2d7c38",
+    "test_scope": "Independent 256-group confirmation, four seen pressure ratios, not internal validation or the original density-only split.",
+    "test_data": {
+      "path": "data/sod_confirmation.npz",
+      "sha256": "a235f4c6ef21bdfca756ad0df12594c15bb3233542b65833e2f81db57eaa4599"
+    },
+    "train_val_prepared_sha256": "de5d76c71134893476e45ce0dcfdd3637634edc9f6643b5efaee7cc6a9128515"
+  },
+  "models": [
+    {
+      "id": "baseline_sod_deeponet_seed17_20261108",
+      "task": "sod",
+      "method": "deeponet",
+      "seed": 17,
+      "sha256": "a470924dcf9a3e95bdbbafa2b3e0f18c1cc8fc67078097cd2c03935c69f4d68a",
+      "bytes": 2249288,
+      "local_path": "artifacts/checkpoints/sod/baseline_sod_deeponet_seed17_20261108/weights.pt",
+      "training_recipe_status": "saved_checkpoint_metadata",
+      "training_recipe": {
+        "arguments": {
+          "data": "artifacts/data/sod_fullstate_20261106/prepared_train_val.npz",
+          "expected_data_sha256": null,
+          "seed": 17,
+          "epochs": 500,
+          "batch_size": 64,
+          "coordinate_batch": 2048,
+          "hidden_dim": 256,
+          "latent_dim": 256,
+          "layers": 4,
+          "lr": 0.0003,
+          "smoke": false,
+          "check_only": false
+        },
+        "data_sha256": "de5d76c71134893476e45ce0dcfdd3637634edc9f6643b5efaee7cc6a9128515",
+        "normalization": {
+          "x_mean": 0.4394367137853896,
+          "x_scale": 0.43268265070214135,
+          "y_scale": 0.5927838603236572,
+          "p_mean": 0.18750000279396772,
+          "p_scale": 0.1340475681820095
+        },
+        "architecture": {
+          "input_dim": 6,
+          "coordinate_dim": 3,
+          "hidden_dim": 256,
+          "latent_dim": 256,
+          "layers": 4,
+          "activation": "Tanh",
+          "parameter_dim": 1,
+          "component_policy": "Saved component ID is an ordinary coordinate; scalar output contraction."
+        },
+        "historical_recipe": "Tanh width/latent256, 4 hidden layers, AdamW lr3e-4/wd1e-4; original scripts used one random update per named epoch."
+      }
+    },
+    {
+      "id": "baseline_sod_deeponet_seed29_20261108",
+      "task": "sod",
+      "method": "deeponet",
+      "seed": 29,
+      "sha256": "2915b8f6aa291755fa5d17644627641fbd67378ade75d083040165d1149de503",
+      "bytes": 2249288,
+      "local_path": "artifacts/checkpoints/sod/baseline_sod_deeponet_seed29_20261108/weights.pt",
+      "training_recipe_status": "saved_checkpoint_metadata",
+      "training_recipe": {
+        "arguments": {
+          "data": "artifacts/data/sod_fullstate_20261106/prepared_train_val.npz",
+          "expected_data_sha256": null,
+          "seed": 29,
+          "epochs": 500,
+          "batch_size": 64,
+          "coordinate_batch": 2048,
+          "hidden_dim": 256,
+          "latent_dim": 256,
+          "layers": 4,
+          "lr": 0.0003,
+          "smoke": false,
+          "check_only": false
+        },
+        "data_sha256": "de5d76c71134893476e45ce0dcfdd3637634edc9f6643b5efaee7cc6a9128515",
+        "normalization": {
+          "x_mean": 0.4394367137853896,
+          "x_scale": 0.43268265070214135,
+          "y_scale": 0.5927838603236572,
+          "p_mean": 0.18750000279396772,
+          "p_scale": 0.1340475681820095
+        },
+        "architecture": {
+          "input_dim": 6,
+          "coordinate_dim": 3,
+          "hidden_dim": 256,
+          "latent_dim": 256,
+          "layers": 4,
+          "activation": "Tanh",
+          "parameter_dim": 1,
+          "component_policy": "Saved component ID is an ordinary coordinate; scalar output contraction."
+        },
+        "historical_recipe": "Tanh width/latent256, 4 hidden layers, AdamW lr3e-4/wd1e-4; original scripts used one random update per named epoch."
+      }
+    },
+    {
+      "id": "baseline_sod_deeponet_seed43_20261108",
+      "task": "sod",
+      "method": "deeponet",
+      "seed": 43,
+      "sha256": "54096d85071e06225ec35fec5ad5a937cd90196a6b8fc16db60e30e3bda6bd80",
+      "bytes": 2249288,
+      "local_path": "artifacts/checkpoints/sod/baseline_sod_deeponet_seed43_20261108/weights.pt",
+      "training_recipe_status": "saved_checkpoint_metadata",
+      "training_recipe": {
+        "arguments": {
+          "data": "artifacts/data/sod_fullstate_20261106/prepared_train_val.npz",
+          "expected_data_sha256": null,
+          "seed": 43,
+          "epochs": 500,
+          "batch_size": 64,
+          "coordinate_batch": 2048,
+          "hidden_dim": 256,
+          "latent_dim": 256,
+          "layers": 4,
+          "lr": 0.0003,
+          "smoke": false,
+          "check_only": false
+        },
+        "data_sha256": "de5d76c71134893476e45ce0dcfdd3637634edc9f6643b5efaee7cc6a9128515",
+        "normalization": {
+          "x_mean": 0.4394367137853896,
+          "x_scale": 0.43268265070214135,
+          "y_scale": 0.5927838603236572,
+          "p_mean": 0.18750000279396772,
+          "p_scale": 0.1340475681820095
+        },
+        "architecture": {
+          "input_dim": 6,
+          "coordinate_dim": 3,
+          "hidden_dim": 256,
+          "latent_dim": 256,
+          "layers": 4,
+          "activation": "Tanh",
+          "parameter_dim": 1,
+          "component_policy": "Saved component ID is an ordinary coordinate; scalar output contraction."
+        },
+        "historical_recipe": "Tanh width/latent256, 4 hidden layers, AdamW lr3e-4/wd1e-4; original scripts used one random update per named epoch."
+      }
+    },
+    {
+      "id": "sod_fullstate_globalK24_cpuoffline_seed17_v1",
+      "task": "sod",
+      "method": "global_pod_k",
+      "seed": 17,
+      "sha256": "9ccd0d3b7a90b4675e3f0f580419e38aa608c202f80b2979c2d7a4a168eefb6d",
+      "bytes": 1229167,
+      "local_path": "artifacts/checkpoints/sod/sod_fullstate_globalK24_cpuoffline_seed17_v1/weights.pt",
+      "training_recipe_status": "saved_checkpoint_metadata",
+      "training_recipe": {
+        "fit": {
+          "method": "global_pod_k",
+          "m": 1,
+          "k": 24,
+          "seed": 17,
+          "ranks": [
+            24
+          ],
+          "basis_config": {
+            "max_modes": 24,
+            "tol": 0.9999,
+            "log_every": 1,
+            "fixed_rank": true
+          },
+          "online_config": {
+            "lr": 0.001,
+            "n_epochs": 500,
+            "batch_size": 128,
+            "hidden_dim": 128,
+            "n_layers": 3,
+            "sensor_stride": 1,
+            "lambda_kl": 0.01,
+            "lambda_ent": 0.0,
+            "log_every": 100,
+            "val_every": 50,
+            "data_loss": "mse",
+            "relative_loss_eps": 1e-12
+          },
+          "offline_config": null,
+          "sigma2_calibrated": null,
+          "sigma2_multiplier_after_initialize": 1.0
+        },
+        "arguments": {
+          "handoff": "artifacts/capacity_handoff.json",
+          "method": "global_pod_k",
+          "seed": "17",
+          "check_only": "False"
+        },
+        "data_sha256": "de5d76c71134893476e45ce0dcfdd3637634edc9f6643b5efaee7cc6a9128515",
+        "normalization": {
+          "x_mean": 0.4394367039203644,
+          "x_scale": 0.43268266320228577,
+          "y_scale": 0.5927838683128357,
+          "p_mean": 0.18749999999999997,
+          "p_scale": 0.1340475661845451,
+          "channel_scales": [
+            1.0,
+            1.1832159566199232,
+            1.0
+          ],
+          "channels": [
+            "rho",
+            "u",
+            "p"
+          ],
+          "shape_time_space": [
+            16,
+            128
+          ]
+        },
+        "online_config": {
+          "lr": 0.001,
+          "n_epochs": 500,
+          "batch_size": 128,
+          "hidden_dim": 128,
+          "n_layers": 3,
+          "sensor_stride": 1,
+          "lambda_kl": 0.01,
+          "lambda_ent": 0.0,
+          "log_every": 100,
+          "val_every": 50,
+          "data_loss": "mse",
+          "relative_loss_eps": 1e-12
+        }
+      }
+    },
+    {
+      "id": "sod_fullstate_globalK24_cpuoffline_seed29_v1",
+      "task": "sod",
+      "method": "global_pod_k",
+      "seed": 29,
+      "sha256": "1023253020264b9ca1a903f8076402f3c16286d0fe756fbfad997df6e5b682ed",
+      "bytes": 1229167,
+      "local_path": "artifacts/checkpoints/sod/sod_fullstate_globalK24_cpuoffline_seed29_v1/weights.pt",
+      "training_recipe_status": "saved_checkpoint_metadata",
+      "training_recipe": {
+        "fit": {
+          "method": "global_pod_k",
+          "m": 1,
+          "k": 24,
+          "seed": 29,
+          "ranks": [
+            24
+          ],
+          "basis_config": {
+            "max_modes": 24,
+            "tol": 0.9999,
+            "log_every": 1,
+            "fixed_rank": true
+          },
+          "online_config": {
+            "lr": 0.001,
+            "n_epochs": 500,
+            "batch_size": 128,
+            "hidden_dim": 128,
+            "n_layers": 3,
+            "sensor_stride": 1,
+            "lambda_kl": 0.01,
+            "lambda_ent": 0.0,
+            "log_every": 100,
+            "val_every": 50,
+            "data_loss": "mse",
+            "relative_loss_eps": 1e-12
+          },
+          "offline_config": null,
+          "sigma2_calibrated": null,
+          "sigma2_multiplier_after_initialize": 1.0
+        },
+        "arguments": {
+          "handoff": "artifacts/capacity_handoff.json",
+          "method": "global_pod_k",
+          "seed": "29",
+          "check_only": "False"
+        },
+        "data_sha256": "de5d76c71134893476e45ce0dcfdd3637634edc9f6643b5efaee7cc6a9128515",
+        "normalization": {
+          "x_mean": 0.4394367039203644,
+          "x_scale": 0.43268266320228577,
+          "y_scale": 0.5927838683128357,
+          "p_mean": 0.18749999999999997,
+          "p_scale": 0.1340475661845451,
+          "channel_scales": [
+            1.0,
+            1.1832159566199232,
+            1.0
+          ],
+          "channels": [
+            "rho",
+            "u",
+            "p"
+          ],
+          "shape_time_space": [
+            16,
+            128
+          ]
+        },
+        "online_config": {
+          "lr": 0.001,
+          "n_epochs": 500,
+          "batch_size": 128,
+          "hidden_dim": 128,
+          "n_layers": 3,
+          "sensor_stride": 1,
+          "lambda_kl": 0.01,
+          "lambda_ent": 0.0,
+          "log_every": 100,
+          "val_every": 50,
+          "data_loss": "mse",
+          "relative_loss_eps": 1e-12
+        }
+      }
+    },
+    {
+      "id": "sod_fullstate_globalK24_cpuoffline_seed43_v1",
+      "task": "sod",
+      "method": "global_pod_k",
+      "seed": 43,
+      "sha256": "d3b94a340ecd0e0f7c333934a6705a97ca82c378a77090b3a9f98470349dfa80",
+      "bytes": 1229167,
+      "local_path": "artifacts/checkpoints/sod/sod_fullstate_globalK24_cpuoffline_seed43_v1/weights.pt",
+      "training_recipe_status": "saved_checkpoint_metadata",
+      "training_recipe": {
+        "fit": {
+          "method": "global_pod_k",
+          "m": 1,
+          "k": 24,
+          "seed": 43,
+          "ranks": [
+            24
+          ],
+          "basis_config": {
+            "max_modes": 24,
+            "tol": 0.9999,
+            "log_every": 1,
+            "fixed_rank": true
+          },
+          "online_config": {
+            "lr": 0.001,
+            "n_epochs": 500,
+            "batch_size": 128,
+            "hidden_dim": 128,
+            "n_layers": 3,
+            "sensor_stride": 1,
+            "lambda_kl": 0.01,
+            "lambda_ent": 0.0,
+            "log_every": 100,
+            "val_every": 50,
+            "data_loss": "mse",
+            "relative_loss_eps": 1e-12
+          },
+          "offline_config": null,
+          "sigma2_calibrated": null,
+          "sigma2_multiplier_after_initialize": 1.0
+        },
+        "arguments": {
+          "handoff": "artifacts/capacity_handoff.json",
+          "method": "global_pod_k",
+          "seed": "43",
+          "check_only": "False"
+        },
+        "data_sha256": "de5d76c71134893476e45ce0dcfdd3637634edc9f6643b5efaee7cc6a9128515",
+        "normalization": {
+          "x_mean": 0.4394367039203644,
+          "x_scale": 0.43268266320228577,
+          "y_scale": 0.5927838683128357,
+          "p_mean": 0.18749999999999997,
+          "p_scale": 0.1340475661845451,
+          "channel_scales": [
+            1.0,
+            1.1832159566199232,
+            1.0
+          ],
+          "channels": [
+            "rho",
+            "u",
+            "p"
+          ],
+          "shape_time_space": [
+            16,
+            128
+          ]
+        },
+        "online_config": {
+          "lr": 0.001,
+          "n_epochs": 500,
+          "batch_size": 128,
+          "hidden_dim": 128,
+          "n_layers": 3,
+          "sensor_stride": 1,
+          "lambda_kl": 0.01,
+          "lambda_ent": 0.0,
+          "log_every": 100,
+          "val_every": 50,
+          "data_loss": "mse",
+          "relative_loss_eps": 1e-12
+        }
+      }
+    },
+    {
+      "id": "sod_fno_seed17",
+      "task": "sod",
+      "method": "fno",
+      "seed": 17,
+      "sha256": "cc7b4b22bdae248f0de4da2ce9a5792efa39e1e219ae25a890272375faf34cf8",
+      "bytes": 4850069,
+      "local_path": "artifacts/checkpoints/sod/sod_fno_seed17/weights.pt",
+      "training_recipe_status": "saved_checkpoint_metadata",
+      "training_recipe": {
+        "fit": {},
+        "arguments": {},
+        "data_sha256": "de5d76c71134893476e45ce0dcfdd3637634edc9f6643b5efaee7cc6a9128515",
+        "normalization": null,
+        "config": {
+          "optimizer": "Adam",
+          "lr": 0.001,
+          "loss": "mse",
+          "batch_size": 128,
+          "epochs": 100,
+          "lr_step": 40,
+          "lr_gamma": 0.5,
+          "weight_decay": 0.0,
+          "gradient_clip": null,
+          "model_config": {
+            "dataset": "sod",
+            "nx": 128,
+            "nt": 16,
+            "in_channels": 9,
+            "out_channels": 3,
+            "flatten_order": "component,time,space",
+            "native_shape": [
+              3,
+              16,
+              128
+            ],
+            "model": "fno"
+          }
+        }
+      }
+    },
+    {
+      "id": "sod_fno_seed29",
+      "task": "sod",
+      "method": "fno",
+      "seed": 29,
+      "sha256": "6ef9fb2234deec74ea11dda55d4f5c7747ba744d7f9eec084d03f569aa299fff",
+      "bytes": 4850069,
+      "local_path": "artifacts/checkpoints/sod/sod_fno_seed29/weights.pt",
+      "training_recipe_status": "saved_checkpoint_metadata",
+      "training_recipe": {
+        "fit": {},
+        "arguments": {},
+        "data_sha256": "de5d76c71134893476e45ce0dcfdd3637634edc9f6643b5efaee7cc6a9128515",
+        "normalization": null,
+        "config": {
+          "optimizer": "Adam",
+          "lr": 0.001,
+          "loss": "mse",
+          "batch_size": 128,
+          "epochs": 100,
+          "lr_step": 40,
+          "lr_gamma": 0.5,
+          "weight_decay": 0.0,
+          "gradient_clip": null,
+          "model_config": {
+            "dataset": "sod",
+            "nx": 128,
+            "nt": 16,
+            "in_channels": 9,
+            "out_channels": 3,
+            "flatten_order": "component,time,space",
+            "native_shape": [
+              3,
+              16,
+              128
+            ],
+            "model": "fno"
+          }
+        }
+      }
+    },
+    {
+      "id": "sod_fno_seed43",
+      "task": "sod",
+      "method": "fno",
+      "seed": 43,
+      "sha256": "18bd2347337e4bc30aab41bd6cb402c27695d1622dc3d7935dde4b4583655a1e",
+      "bytes": 4850069,
+      "local_path": "artifacts/checkpoints/sod/sod_fno_seed43/weights.pt",
+      "training_recipe_status": "saved_checkpoint_metadata",
+      "training_recipe": {
+        "fit": {},
+        "arguments": {},
+        "data_sha256": "de5d76c71134893476e45ce0dcfdd3637634edc9f6643b5efaee7cc6a9128515",
+        "normalization": null,
+        "config": {
+          "optimizer": "Adam",
+          "lr": 0.001,
+          "loss": "mse",
+          "batch_size": 128,
+          "epochs": 100,
+          "lr_step": 40,
+          "lr_gamma": 0.5,
+          "weight_decay": 0.0,
+          "gradient_clip": null,
+          "model_config": {
+            "dataset": "sod",
+            "nx": 128,
+            "nt": 16,
+            "in_channels": 9,
+            "out_channels": 3,
+            "flatten_order": "component,time,space",
+            "native_shape": [
+              3,
+              16,
+              128
+            ],
+            "model": "fno"
+          }
+        }
+      }
+    },
+    {
+      "id": "sod_cno_seed17",
+      "task": "sod",
+      "method": "cno",
+      "seed": 17,
+      "sha256": "1f1f7cda2c4fa93619caebd430b53f8e51283e13d5d241298d8829efe06665d0",
+      "bytes": 8145992,
+      "local_path": "artifacts/checkpoints/sod/sod_cno_seed17/weights.pt",
+      "training_recipe_status": "saved_checkpoint_metadata",
+      "training_recipe": {
+        "fit": {},
+        "arguments": {},
+        "data_sha256": "de5d76c71134893476e45ce0dcfdd3637634edc9f6643b5efaee7cc6a9128515",
+        "normalization": null,
+        "config": {
+          "optimizer": "AdamW",
+          "lr": 0.0005,
+          "loss": "l1",
+          "batch_size": 64,
+          "epochs": 100,
+          "lr_step": 40,
+          "lr_gamma": 0.5,
+          "weight_decay": 1e-08,
+          "gradient_clip": 1.0,
+          "model_config": {
+            "dataset": "sod",
+            "nx": 128,
+            "nt": 16,
+            "in_channels": 9,
+            "out_channels": 3,
+            "flatten_order": "component,time,space",
+            "native_shape": [
+              3,
+              16,
+              128
+            ],
+            "model": "cno"
+          }
+        }
+      }
+    },
+    {
+      "id": "sod_cno_seed29",
+      "task": "sod",
+      "method": "cno",
+      "seed": 29,
+      "sha256": "1ccf6fbb2a97d4cc77d8bb493dde339b4926c73d110989dffeca8b49e20d0496",
+      "bytes": 8145992,
+      "local_path": "artifacts/checkpoints/sod/sod_cno_seed29/weights.pt",
+      "training_recipe_status": "saved_checkpoint_metadata",
+      "training_recipe": {
+        "fit": {},
+        "arguments": {},
+        "data_sha256": "de5d76c71134893476e45ce0dcfdd3637634edc9f6643b5efaee7cc6a9128515",
+        "normalization": null,
+        "config": {
+          "optimizer": "AdamW",
+          "lr": 0.0005,
+          "loss": "l1",
+          "batch_size": 64,
+          "epochs": 100,
+          "lr_step": 40,
+          "lr_gamma": 0.5,
+          "weight_decay": 1e-08,
+          "gradient_clip": 1.0,
+          "model_config": {
+            "dataset": "sod",
+            "nx": 128,
+            "nt": 16,
+            "in_channels": 9,
+            "out_channels": 3,
+            "flatten_order": "component,time,space",
+            "native_shape": [
+              3,
+              16,
+              128
+            ],
+            "model": "cno"
+          }
+        }
+      }
+    },
+    {
+      "id": "sod_cno_seed43",
+      "task": "sod",
+      "method": "cno",
+      "seed": 43,
+      "sha256": "5083b2e3b1aa83a086f6f98cac123f4338d6a21730aca1c8b0e8708b23f43126",
+      "bytes": 8145992,
+      "local_path": "artifacts/checkpoints/sod/sod_cno_seed43/weights.pt",
+      "training_recipe_status": "saved_checkpoint_metadata",
+      "training_recipe": {
+        "fit": {},
+        "arguments": {},
+        "data_sha256": "de5d76c71134893476e45ce0dcfdd3637634edc9f6643b5efaee7cc6a9128515",
+        "normalization": null,
+        "config": {
+          "optimizer": "AdamW",
+          "lr": 0.0005,
+          "loss": "l1",
+          "batch_size": 64,
+          "epochs": 100,
+          "lr_step": 40,
+          "lr_gamma": 0.5,
+          "weight_decay": 1e-08,
+          "gradient_clip": 1.0,
+          "model_config": {
+            "dataset": "sod",
+            "nx": 128,
+            "nt": 16,
+            "in_channels": 9,
+            "out_channels": 3,
+            "flatten_order": "component,time,space",
+            "native_shape": [
+              3,
+              16,
+              128
+            ],
+            "model": "cno"
+          }
+        }
+      }
+    },
+    {
+      "id": "sod_fullstate_fixed_gmm_m2k24_cpuoffline_seed17_v1",
+      "task": "sod",
+      "method": "fixed_gmm",
+      "seed": 17,
+      "sha256": "3c1430af5216e47206d2e96f61e798f87d60051f71132f4cae94f6ef38f87fd1",
+      "bytes": 2505398,
+      "local_path": "artifacts/checkpoints/sod/sod_fullstate_fixed_gmm_m2k24_cpuoffline_seed17_v1/weights.pt",
+      "training_recipe_status": "saved_checkpoint_metadata",
+      "training_recipe": {
+        "fit": {
+          "method": "fixed_gmm",
+          "m": 2,
+          "k": 24,
+          "seed": 17,
+          "ranks": [
+            24,
+            24
+          ],
+          "basis_config": {
+            "max_modes": 24,
+            "tol": 0.9999,
+            "log_every": 1,
+            "fixed_rank": true
+          },
+          "online_config": {
+            "lr": 0.001,
+            "n_epochs": 500,
+            "batch_size": 128,
+            "hidden_dim": 128,
+            "n_layers": 3,
+            "sensor_stride": 1,
+            "lambda_kl": 0.01,
+            "lambda_ent": 0.0,
+            "log_every": 100,
+            "val_every": 50,
+            "data_loss": "mse",
+            "relative_loss_eps": 1e-12
+          },
+          "offline_config": {
+            "M": 2,
+            "sigma2": 0.00047429311452070616,
+            "P_global": 16,
+            "max_em_iters": 0,
+            "eps_skip": 0.0,
+            "eps_large": 0.1,
+            "eps_prune": 0.0,
+            "eps_conv": 0.005,
+            "heteroscedastic": false,
+            "kappa_init": false,
+            "kappa_prior_weight": 0.0,
+            "kappa_init_noise": 0.05,
+            "basis_config": {
+              "max_modes": 24,
+              "tol": 0.9999,
+              "log_every": 1,
+              "fixed_rank": true
+            },
+            "basis_factory": "models.tempo.pod_factory",
+            "kappa_prior_with_gmm": false
+          },
+          "sigma2_calibrated": 0.00047429311452070616,
+          "sigma2_multiplier_after_initialize": 1.0
+        },
+        "arguments": {
+          "handoff": "artifacts/capacity_handoff.json",
+          "method": "fixed_gmm",
+          "seed": "17",
+          "check_only": "False"
+        },
+        "data_sha256": "de5d76c71134893476e45ce0dcfdd3637634edc9f6643b5efaee7cc6a9128515",
+        "normalization": {
+          "x_mean": 0.4394367039203644,
+          "x_scale": 0.43268266320228577,
+          "y_scale": 0.5927838683128357,
+          "p_mean": 0.18749999999999997,
+          "p_scale": 0.1340475661845451,
+          "channel_scales": [
+            1.0,
+            1.1832159566199232,
+            1.0
+          ],
+          "channels": [
+            "rho",
+            "u",
+            "p"
+          ],
+          "shape_time_space": [
+            16,
+            128
+          ]
+        },
+        "online_config": {
+          "lr": 0.001,
+          "n_epochs": 500,
+          "batch_size": 128,
+          "hidden_dim": 128,
+          "n_layers": 3,
+          "sensor_stride": 1,
+          "lambda_kl": 0.01,
+          "lambda_ent": 0.0,
+          "log_every": 100,
+          "val_every": 50,
+          "data_loss": "mse",
+          "relative_loss_eps": 1e-12
+        }
+      }
+    },
+    {
+      "id": "sod_fullstate_fixed_gmm_m2k24_cpuoffline_seed29_v1",
+      "task": "sod",
+      "method": "fixed_gmm",
+      "seed": 29,
+      "sha256": "31342ad60b392d5b42f7470ea5a722aba9f3e863b03194d741ba9dac754cd656",
+      "bytes": 2505398,
+      "local_path": "artifacts/checkpoints/sod/sod_fullstate_fixed_gmm_m2k24_cpuoffline_seed29_v1/weights.pt",
+      "training_recipe_status": "saved_checkpoint_metadata",
+      "training_recipe": {
+        "fit": {
+          "method": "fixed_gmm",
+          "m": 2,
+          "k": 24,
+          "seed": 29,
+          "ranks": [
+            24,
+            24
+          ],
+          "basis_config": {
+            "max_modes": 24,
+            "tol": 0.9999,
+            "log_every": 1,
+            "fixed_rank": true
+          },
+          "online_config": {
+            "lr": 0.001,
+            "n_epochs": 500,
+            "batch_size": 128,
+            "hidden_dim": 128,
+            "n_layers": 3,
+            "sensor_stride": 1,
+            "lambda_kl": 0.01,
+            "lambda_ent": 0.0,
+            "log_every": 100,
+            "val_every": 50,
+            "data_loss": "mse",
+            "relative_loss_eps": 1e-12
+          },
+          "offline_config": {
+            "M": 2,
+            "sigma2": 0.0004743052459043729,
+            "P_global": 16,
+            "max_em_iters": 0,
+            "eps_skip": 0.0,
+            "eps_large": 0.1,
+            "eps_prune": 0.0,
+            "eps_conv": 0.005,
+            "heteroscedastic": false,
+            "kappa_init": false,
+            "kappa_prior_weight": 0.0,
+            "kappa_init_noise": 0.05,
+            "basis_config": {
+              "max_modes": 24,
+              "tol": 0.9999,
+              "log_every": 1,
+              "fixed_rank": true
+            },
+            "basis_factory": "models.tempo.pod_factory",
+            "kappa_prior_with_gmm": false
+          },
+          "sigma2_calibrated": 0.0004743052459043729,
+          "sigma2_multiplier_after_initialize": 1.0
+        },
+        "arguments": {
+          "handoff": "artifacts/capacity_handoff.json",
+          "method": "fixed_gmm",
+          "seed": "29",
+          "check_only": "False"
+        },
+        "data_sha256": "de5d76c71134893476e45ce0dcfdd3637634edc9f6643b5efaee7cc6a9128515",
+        "normalization": {
+          "x_mean": 0.4394367039203644,
+          "x_scale": 0.43268266320228577,
+          "y_scale": 0.5927838683128357,
+          "p_mean": 0.18749999999999997,
+          "p_scale": 0.1340475661845451,
+          "channel_scales": [
+            1.0,
+            1.1832159566199232,
+            1.0
+          ],
+          "channels": [
+            "rho",
+            "u",
+            "p"
+          ],
+          "shape_time_space": [
+            16,
+            128
+          ]
+        },
+        "online_config": {
+          "lr": 0.001,
+          "n_epochs": 500,
+          "batch_size": 128,
+          "hidden_dim": 128,
+          "n_layers": 3,
+          "sensor_stride": 1,
+          "lambda_kl": 0.01,
+          "lambda_ent": 0.0,
+          "log_every": 100,
+          "val_every": 50,
+          "data_loss": "mse",
+          "relative_loss_eps": 1e-12
+        }
+      }
+    },
+    {
+      "id": "sod_fullstate_fixed_gmm_m2k24_cpuoffline_seed43_v1",
+      "task": "sod",
+      "method": "fixed_gmm",
+      "seed": 43,
+      "sha256": "c1498edd164e945ee68c3585ce76e99de2db51cfc68900e4b345b6aedaf09409",
+      "bytes": 2505398,
+      "local_path": "artifacts/checkpoints/sod/sod_fullstate_fixed_gmm_m2k24_cpuoffline_seed43_v1/weights.pt",
+      "training_recipe_status": "saved_checkpoint_metadata",
+      "training_recipe": {
+        "fit": {
+          "method": "fixed_gmm",
+          "m": 2,
+          "k": 24,
+          "seed": 43,
+          "ranks": [
+            24,
+            24
+          ],
+          "basis_config": {
+            "max_modes": 24,
+            "tol": 0.9999,
+            "log_every": 1,
+            "fixed_rank": true
+          },
+          "online_config": {
+            "lr": 0.001,
+            "n_epochs": 500,
+            "batch_size": 128,
+            "hidden_dim": 128,
+            "n_layers": 3,
+            "sensor_stride": 1,
+            "lambda_kl": 0.01,
+            "lambda_ent": 0.0,
+            "log_every": 100,
+            "val_every": 50,
+            "data_loss": "mse",
+            "relative_loss_eps": 1e-12
+          },
+          "offline_config": {
+            "M": 2,
+            "sigma2": 0.0004743097150432212,
+            "P_global": 16,
+            "max_em_iters": 0,
+            "eps_skip": 0.0,
+            "eps_large": 0.1,
+            "eps_prune": 0.0,
+            "eps_conv": 0.005,
+            "heteroscedastic": false,
+            "kappa_init": false,
+            "kappa_prior_weight": 0.0,
+            "kappa_init_noise": 0.05,
+            "basis_config": {
+              "max_modes": 24,
+              "tol": 0.9999,
+              "log_every": 1,
+              "fixed_rank": true
+            },
+            "basis_factory": "models.tempo.pod_factory",
+            "kappa_prior_with_gmm": false
+          },
+          "sigma2_calibrated": 0.0004743097150432212,
+          "sigma2_multiplier_after_initialize": 1.0
+        },
+        "arguments": {
+          "handoff": "artifacts/capacity_handoff.json",
+          "method": "fixed_gmm",
+          "seed": "43",
+          "check_only": "False"
+        },
+        "data_sha256": "de5d76c71134893476e45ce0dcfdd3637634edc9f6643b5efaee7cc6a9128515",
+        "normalization": {
+          "x_mean": 0.4394367039203644,
+          "x_scale": 0.43268266320228577,
+          "y_scale": 0.5927838683128357,
+          "p_mean": 0.18749999999999997,
+          "p_scale": 0.1340475661845451,
+          "channel_scales": [
+            1.0,
+            1.1832159566199232,
+            1.0
+          ],
+          "channels": [
+            "rho",
+            "u",
+            "p"
+          ],
+          "shape_time_space": [
+            16,
+            128
+          ]
+        },
+        "online_config": {
+          "lr": 0.001,
+          "n_epochs": 500,
+          "batch_size": 128,
+          "hidden_dim": 128,
+          "n_layers": 3,
+          "sensor_stride": 1,
+          "lambda_kl": 0.01,
+          "lambda_ent": 0.0,
+          "log_every": 100,
+          "val_every": 50,
+          "data_loss": "mse",
+          "relative_loss_eps": 1e-12
+        }
+      }
+    },
+    {
+      "id": "neuralpod_sod_matched_width_20261112",
+      "task": "sod",
+      "method": "npod_deeponet_coeff",
+      "seed": 17,
+      "sha256": "0d6eee81ceda8b6ab09063b143d62f47b043cc00c48544b8f7da928c3c9d5e95",
+      "bytes": 5181603,
+      "local_path": "artifacts/checkpoints/sod/neuralpod_sod_matched_width_20261112/checkpoint.pt",
+      "training_recipe_status": "saved_completed_fixed_recipe",
+      "training_recipe": {
+        "task": "sod",
+        "method": "NeuralPOD-DeepONet",
+        "seed": 17,
+        "rank": 48,
+        "width": 256,
+        "layers": 3,
+        "epochs": 500,
+        "batch": 128,
+        "lr": 0.001,
+        "optimizer": "AdamW",
+        "weight_decay": 0.0001,
+        "gradient_clip": null,
+        "scheduler": null,
+        "objective": "Original MSE on saved offline lambda",
+        "online_parameters": 145968,
+        "basis_refitted": false,
+        "hyperparameter_search": false,
+        "selection": "final fixed epoch",
+        "source_sha256": "88bd9847b589b1ea14a94032ea66c4d0197cbb5edf5443a3745411333767a69d"
+      }
+    },
+    {
+      "id": "tempo_npod_joint_seed17",
+      "task": "sod",
+      "method": "tempo_npod",
+      "seed": 17,
+      "path": "artifacts/checkpoints/sod/tempo_npod_joint_seed17/checkpoint.pt",
+      "sha256": "925f1cff39fb7d4c92aea7a8a71029ba7dc27294ee62662f249148387bde8a71",
+      "bytes": 5410942,
+      "config": "paper/configs/refinement/sod.json",
+      "ranks": [
+        16,
+        16,
+        16
+      ],
+      "grid": [
+        3,
+        16,
+        128
+      ],
+      "split": {
+        "train": 1232,
+        "validation": 408,
+        "test": 1024
+      },
+      "initial_checkpoint": "artifacts/checkpoints/sod/sod_fullstate_npod_tempo_mode1200_seed17_v1_online_refined_20261111/checkpoint.pt",
+      "initial_sha256": "7bf71b1b4999636c6a76bc2405a694aa8879422e52d1c493d017e9b3b652d383",
+      "validation_relative_l2": 0.041909026278625035,
+      "test_relative_l2": 0.042429214396055744,
+      "baseline_test_relative_l2": 0.059674358815794866,
+      "error_data": "paper/results/refinement/sod_test.npz",
+      "selection": "validation",
+      "scope": "joint_refinement",
+      "error_key": "joint_relative_l2",
+      "field_examples": "paper/figures/data/refinement/sod_fields.npz",
+      "local_path": "artifacts/checkpoints/sod/tempo_npod_joint_seed17/checkpoint.pt",
+      "training_recipe_status": "saved_joint_refinement",
+      "training_recipe": {
+        "seed": 17,
+        "target_units": "prepared",
+        "phases": [
+          {
+            "name": "joint",
+            "seed": 17,
+            "source_sha256": "7bf71b1b4999636c6a76bc2405a694aa8879422e52d1c493d017e9b3b652d383",
+            "target_units": "prepared",
+            "basis": {
+              "steps": 600,
+              "lr": 0.0001,
+              "coefficient_every": 50,
+              "trajectory_batch": 64,
+              "coordinate_batch": 4096,
+              "relative": true,
+              "normalize_modes": false,
+              "patience": 150
+            },
+            "em_steps": 0,
+            "online": {
+              "epochs": 300,
+              "batch_size": 256,
+              "gate_lr": 3e-05,
+              "hidden_lr": 0.0001,
+              "head_lr": 0.0003,
+              "patience": 60
+            }
+          },
+          {
+            "name": "mode_normalization",
+            "seed": 17,
+            "source_sha256": "adb5d0e04893291c6d427402e18a306f017f4b2a96f7c6aa3aed7467c60ebd93",
+            "target_units": "prepared",
+            "basis": {
+              "steps": 2000,
+              "lr": 0.0001,
+              "coefficient_every": 50,
+              "trajectory_batch": 64,
+              "coordinate_batch": 6144,
+              "relative": true,
+              "normalize_modes": true,
+              "patience": 250
+            },
+            "em_steps": 0,
+            "online": {
+              "epochs": 600,
+              "batch_size": 256,
+              "gate_lr": 3e-05,
+              "hidden_lr": 0.0001,
+              "head_lr": 0.0003,
+              "patience": 100
+            }
+          },
+          {
+            "name": "relative_EM",
+            "seed": 17,
+            "source_sha256": "16630930126c31f917836c2bc6e85d43a3fad419dd4c116fb86ff9cd6b564953",
+            "target_units": "prepared",
+            "basis": {
+              "steps": 1500,
+              "lr": 0.0001,
+              "coefficient_every": 50,
+              "trajectory_batch": 64,
+              "coordinate_batch": 6144,
+              "relative": true,
+              "normalize_modes": true,
+              "patience": 250
+            },
+            "em_steps": 2,
+            "subsequent_steps": 1000,
+            "online": {
+              "epochs": 800,
+              "batch_size": 256,
+              "gate_lr": 0.0001,
+              "hidden_lr": 0.0003,
+              "head_lr": 0.0003,
+              "patience": 150
+            },
+            "recalibrate_noise": true
+          }
+        ],
+        "selection": "minimum validation relative L2",
+        "grid": [
+          3,
+          16,
+          128
+        ],
+        "ranks": [
+          16,
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "id": "tempo_pod_small_seed17",
+      "method": "tempo_pod",
+      "path": "artifacts/checkpoints/sod/tempo_pod_small_seed17/checkpoint.pt",
+      "sha256": "11e8f1b31aab783045e1301ec8d96348f4c8039ecba86e68d5255c2cd4763c51",
+      "neural_parameters": 11866,
+      "ranks": [
+        24,
+        24
+      ],
+      "test_relative_l2": 0.03270029038138407,
+      "validation_relative_l2": 0.032113311631875585,
+      "error_data": "paper/results/sod_capacity/tempo_test.npz",
+      "training": {
+        "seed": 17,
+        "architecture": {
+          "lr": 0.001,
+          "n_epochs": 2400,
+          "batch_size": 256,
+          "hidden_dim": 46,
+          "n_layers": 3,
+          "sensor_stride": 1,
+          "lambda_kl": 0.0,
+          "lambda_ent": 0.0,
+          "log_every": 50,
+          "val_every": 50,
+          "data_loss": "relative",
+          "relative_loss_eps": 1e-12,
+          "gate_hidden_dim": 8
+        },
+        "ranks": [
+          24,
+          24
+        ],
+        "stages": [
+          {
+            "optimizer": "AdamW",
+            "phase": "offline coefficient pretraining",
+            "epochs": 400,
+            "lr": 0.001,
+            "batch_size": 256
+          },
+          {
+            "optimizer": "AdamW",
+            "epochs": 2400,
+            "gate_lr": 0.0003,
+            "hidden_lr": 0.001,
+            "head_lr": 0.001,
+            "batch_size": 256,
+            "scheduler": "cosine",
+            "patience": 300
+          },
+          {
+            "optimizer": "AdamW",
+            "epochs": 3000,
+            "gate_lr": 0.0001,
+            "hidden_lr": 0.0003,
+            "head_lr": 0.0003,
+            "batch_size": 256,
+            "scheduler": "cosine",
+            "patience": 300,
+            "feature_standardization": "train only, folded into first layers"
+          },
+          {
+            "optimizer": "LBFGS",
+            "max_iterations": [
+              2000,
+              10000
+            ],
+            "lr": 0.5,
+            "history_size": 20,
+            "line_search": "strong_wolfe",
+            "input_and_coefficient_conditioning": true,
+            "conditioning_folded": true,
+            "patience_iterations": 300
+          }
+        ],
+        "loss": "mean relative squared field error",
+        "selection": "validation",
+        "source_checkpoint_sha256": "a9c821cc3da9d5d64fdd68ffe68e94cbe64f04c1e668590f77e8917e0f373c86"
+      },
+      "task": "sod",
+      "seed": 17,
+      "local_path": "artifacts/checkpoints/sod/tempo_pod_small_seed17/checkpoint.pt",
+      "bytes": 1609333,
+      "config": "paper/configs/sod_capacity.json",
+      "training_recipe": {
+        "seed": 17,
+        "architecture": {
+          "lr": 0.001,
+          "n_epochs": 2400,
+          "batch_size": 256,
+          "hidden_dim": 46,
+          "n_layers": 3,
+          "sensor_stride": 1,
+          "lambda_kl": 0.0,
+          "lambda_ent": 0.0,
+          "log_every": 50,
+          "val_every": 50,
+          "data_loss": "relative",
+          "relative_loss_eps": 1e-12,
+          "gate_hidden_dim": 8
+        },
+        "ranks": [
+          24,
+          24
+        ],
+        "stages": [
+          {
+            "optimizer": "AdamW",
+            "phase": "offline coefficient pretraining",
+            "epochs": 400,
+            "lr": 0.001,
+            "batch_size": 256
+          },
+          {
+            "optimizer": "AdamW",
+            "epochs": 2400,
+            "gate_lr": 0.0003,
+            "hidden_lr": 0.001,
+            "head_lr": 0.001,
+            "batch_size": 256,
+            "scheduler": "cosine",
+            "patience": 300
+          },
+          {
+            "optimizer": "AdamW",
+            "epochs": 3000,
+            "gate_lr": 0.0001,
+            "hidden_lr": 0.0003,
+            "head_lr": 0.0003,
+            "batch_size": 256,
+            "scheduler": "cosine",
+            "patience": 300,
+            "feature_standardization": "train only, folded into first layers"
+          },
+          {
+            "optimizer": "LBFGS",
+            "max_iterations": [
+              2000,
+              10000
+            ],
+            "lr": 0.5,
+            "history_size": 20,
+            "line_search": "strong_wolfe",
+            "input_and_coefficient_conditioning": true,
+            "conditioning_folded": true,
+            "patience_iterations": 300
+          }
+        ],
+        "loss": "mean relative squared field error",
+        "selection": "validation",
+        "source_checkpoint_sha256": "a9c821cc3da9d5d64fdd68ffe68e94cbe64f04c1e668590f77e8917e0f373c86"
+      },
+      "training_recipe_status": "saved_final_small_capacity_recipe"
+    },
+    {
+      "id": "global_pod48_width64_seed17",
+      "method": "global_pod_total",
+      "path": "artifacts/checkpoints/sod/global_pod48_width64_seed17/checkpoint.pt",
+      "sha256": "47f7e4e200432dd0fde0b8a85921084781dc8841dfa4de7f2fd9f2779a135215",
+      "neural_parameters": 11952,
+      "ranks": [
+        48
+      ],
+      "test_relative_l2": 0.033692425717760335,
+      "validation_relative_l2": 0.03317970111834992,
+      "error_data": "paper/results/sod_capacity/pod_test.npz",
+      "training": {
+        "seed": 17,
+        "architecture": {
+          "lr": 0.001,
+          "n_epochs": 2000,
+          "batch_size": 128,
+          "hidden_dim": 64,
+          "n_layers": 3,
+          "sensor_stride": 1,
+          "lambda_kl": 0.0,
+          "lambda_ent": 0.0,
+          "log_every": 50,
+          "val_every": 50,
+          "data_loss": "mse",
+          "relative_loss_eps": 1e-12,
+          "gate_hidden_dim": null
+        },
+        "ranks": [
+          48
+        ],
+        "stages": [
+          {
+            "optimizer": "AdamW",
+            "epochs": 2000,
+            "lr": 0.001,
+            "batch_size": 128,
+            "weight_decay": 0.0001,
+            "gradient_clip": 1.0
+          }
+        ],
+        "loss": "mean squared field error",
+        "selection": "fixed final epoch",
+        "source_checkpoint_sha256": "a8fdb548ea1c2635b2a35e27fc21ac87f0fdcb1b5250e3296c6b0c824aefb8a8"
+      },
+      "task": "sod",
+      "seed": 17,
+      "local_path": "artifacts/checkpoints/sod/global_pod48_width64_seed17/checkpoint.pt",
+      "bytes": 1573685,
+      "config": "paper/configs/sod_capacity.json",
+      "training_recipe": {
+        "seed": 17,
+        "architecture": {
+          "lr": 0.001,
+          "n_epochs": 2000,
+          "batch_size": 128,
+          "hidden_dim": 64,
+          "n_layers": 3,
+          "sensor_stride": 1,
+          "lambda_kl": 0.0,
+          "lambda_ent": 0.0,
+          "log_every": 50,
+          "val_every": 50,
+          "data_loss": "mse",
+          "relative_loss_eps": 1e-12,
+          "gate_hidden_dim": null
+        },
+        "ranks": [
+          48
+        ],
+        "stages": [
+          {
+            "optimizer": "AdamW",
+            "epochs": 2000,
+            "lr": 0.001,
+            "batch_size": 128,
+            "weight_decay": 0.0001,
+            "gradient_clip": 1.0
+          }
+        ],
+        "loss": "mean squared field error",
+        "selection": "fixed final epoch",
+        "source_checkpoint_sha256": "a8fdb548ea1c2635b2a35e27fc21ac87f0fdcb1b5250e3296c6b0c824aefb8a8"
+      },
+      "training_recipe_status": "saved_final_small_capacity_recipe"
+    }
+  ],
+  "reported_series_selection": {
+    "policy": "paper/results/online_refinement/selection.json",
+    "uses_test": true,
+    "all_seeds_retained": true
+  }
+}

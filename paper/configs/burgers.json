@@ -1,0 +1,553 @@
+{
+  "task": "burgers_original",
+  "dataset": {
+    "source": "https://huggingface.co/datasets/erbacher/PDEBench-1D",
+    "source_collection": "https://doi.org/10.18419/darus-2986",
+    "grid": [
+      201,
+      1024
+    ],
+    "original_training": 12000,
+    "online_development_split": [
+      10800,
+      1200
+    ],
+    "test": 3000,
+    "global_basis_training": 12000,
+    "input": "Initial field and viscosity; scalar train-only input mean/std; target RMS.",
+    "status": "Original public data pipeline retained. Revision exact prepared payload is an external artifact, not silently recreated from a different split."
+  },
+  "models": [
+    {
+      "id": "burgers_original_pod_m2k32_onlinegram_relative_kl0001_ent0_seed17_20261109_online_refined_20261111",
+      "task": "burgers_original",
+      "method": "tempo_pod",
+      "seed": 17,
+      "sha256": "f453f93c973856c9cff5a3057fd2f7f0c5d4202156abed0031e9901e346ffbce",
+      "bytes": 64479586,
+      "local_path": "artifacts/checkpoints/burgers_original/burgers_original_pod_m2k32_onlinegram_relative_kl0001_ent0_seed17_20261109_online_refined_20261111/checkpoint.pt",
+      "training_recipe_status": "original_fit_plus_saved_online_refinement",
+      "training_recipe": {
+        "original_training_recipe": {
+          "fit": {
+            "method": "tempo_pod",
+            "m": 2,
+            "k": 32,
+            "seed": 17,
+            "ranks": [
+              32,
+              32
+            ],
+            "basis_config": {
+              "max_modes": 32,
+              "tol": 0.9999,
+              "log_every": 1,
+              "fixed_rank": true
+            },
+            "online_config": {
+              "lr": 0.0003,
+              "n_epochs": 1000,
+              "batch_size": 128,
+              "hidden_dim": 256,
+              "n_layers": 4,
+              "sensor_stride": 1,
+              "lambda_kl": 0.001,
+              "lambda_ent": 0.0,
+              "log_every": 100,
+              "val_every": 50,
+              "data_loss": "relative",
+              "relative_loss_eps": 1e-12
+            },
+            "frequency_scale": 1.0,
+            "frequency_scales": null,
+            "kappa_init": true,
+            "kappa_prior_weight": 0.0,
+            "em_noise_scale": 1.0,
+            "kappa_init_noise": 0.05,
+            "em_thresholds": {
+              "eps_skip": 0.001,
+              "eps_large": 0.001,
+              "eps_conv": 0.0001
+            },
+            "offline_parent_sha256": "6226b20226466a89e6545e7f6e16ab94ad70a262395b5e3c741c2ae7fa5617d0",
+            "offline_reused_from": "artifacts/results/npod_search_20261108/burgers_original_pod_m2k32_total64_seed17_20261109/weights.pt"
+          },
+          "arguments": {
+            "data": "artifacts/data/burgers_original_tuning_20261109/prepared_train_val.npz",
+            "method": "pod",
+            "frequency_scale": 1.0,
+            "frequency_scales": null,
+            "em_full_updates": true,
+            "kappa_init": true,
+            "kappa_prior": 0.0,
+            "online_width": 256,
+            "lambda_kl": 0.001,
+            "lambda_ent": 0.0,
+            "online_layers": 4,
+            "online_batch": 128,
+            "trajectory_batch": 256,
+            "native_coordinates": true,
+            "m": 2,
+            "k": 32,
+            "seed": 17,
+            "mode_epochs": 1200,
+            "mean_epochs": 600,
+            "epochs": 1000,
+            "em_iters": 50,
+            "lr": 0.0003,
+            "online_loss": "relative",
+            "em_noise_scale": 1.0,
+            "init_noise": null,
+            "reuse_offline": "artifacts/results/npod_search_20261108/burgers_original_pod_m2k32_total64_seed17_20261109/weights.pt",
+            "expected_data_sha256": null
+          },
+          "data_sha256": "a4db42e0a5b6d945ac3d361c343c2a8f4ce298853d9e14b22c861a6cce5d46ec",
+          "normalization": {
+            "x_mean": -0.010490138083696365,
+            "x_scale": 0.7944173812866211,
+            "y_scale": 0.6158464550971985,
+            "p_mean": 0.367000013589859,
+            "p_scale": 0.44941967725753784
+          }
+        },
+        "online_refinement": {
+          "source_sha256": "19354095fa8ec4c2a24209fb5f5c363d830b8dfb32766d939a0a31b624909dec",
+          "trials": [
+            {
+              "config": {
+                "name": "gate",
+                "gate_lr": 0.0001,
+                "head_lr": 0.0,
+                "hidden_lr": 0.0,
+                "epochs": 60,
+                "patience": 15
+              },
+              "selected_epoch": 11,
+              "epochs_run": 26,
+              "validation": 0.19839014406108466,
+              "checkpoint": "source_archive/results/other_tasks_online_20261111/production/burgers_original__tempo_pod__17/gate_conditioned_online.pt"
+            },
+            {
+              "config": {
+                "name": "heads",
+                "gate_lr": 0.0,
+                "head_lr": 0.0003,
+                "hidden_lr": 0.0,
+                "epochs": 100,
+                "patience": 20
+              },
+              "selected_epoch": 0,
+              "epochs_run": 20,
+              "validation": 0.19839014406108466,
+              "checkpoint": "source_archive/results/other_tasks_online_20261111/production/burgers_original__tempo_pod__17/heads_conditioned_online.pt"
+            },
+            {
+              "config": {
+                "name": "joint_experts",
+                "gate_lr": 1e-05,
+                "head_lr": 0.0003,
+                "hidden_lr": 0.0001,
+                "epochs": 250,
+                "patience": 30
+              },
+              "selected_epoch": 119,
+              "epochs_run": 149,
+              "validation": 0.1956923375362301,
+              "checkpoint": "source_archive/results/other_tasks_online_20261111/production/burgers_original__tempo_pod__17/joint_experts_conditioned_online.pt"
+            },
+            {
+              "config": {
+                "name": "joint_balanced",
+                "gate_lr": 3e-05,
+                "head_lr": 0.0001,
+                "hidden_lr": 3e-05,
+                "epochs": 250,
+                "patience": 30
+              },
+              "selected_epoch": 212,
+              "epochs_run": 242,
+              "validation": 0.19628225412761532,
+              "checkpoint": "source_archive/results/other_tasks_online_20261111/production/burgers_original__tempo_pod__17/joint_balanced_conditioned_online.pt"
+            }
+          ],
+          "selection": "Mean validation relative L2; no test evaluation",
+          "objective": "relative native-field MSE",
+          "KL": 0.0,
+          "entropy": 0.0,
+          "offline_unchanged": true,
+          "CPU_threads": 4
+        },
+        "base_checkpoint_sha256": "19354095fa8ec4c2a24209fb5f5c363d830b8dfb32766d939a0a31b624909dec",
+        "series_selection": {
+          "test_based": true,
+          "scope": "whole seed series",
+          "policy": "paper/results/online_refinement/selection.json"
+        }
+      }
+    },
+    {
+      "id": "joint_npod32_seed42",
+      "task": "burgers_original",
+      "method": "npod_deeponet_coeff",
+      "seed": 42,
+      "sha256": "e6b5039cf652ddf6e2b57f9544748000825e68e33d82fc9614330a783e30109d",
+      "bytes": 57120388,
+      "local_path": "artifacts/checkpoints/burgers_original/joint_npod32_seed42/weights.pt",
+      "training_recipe_status": "saved_checkpoint_metadata",
+      "training_recipe": {
+        "arguments": {},
+        "data_sha256": null,
+        "normalization": null,
+        "recipe": "public original fixed joint defaults; new baseline, not historical replay"
+      }
+    },
+    {
+      "id": "global_pod96_seed42",
+      "task": "burgers_original",
+      "method": "global_pod_96_control",
+      "seed": 42,
+      "sha256": "67ee4a1f578db275095ebccad40dda8376bf1ccc377d1db6ec64e2c51d5ac6eb",
+      "bytes": 86412265,
+      "local_path": "artifacts/checkpoints/burgers_original/global_pod96_seed42/weights.pt",
+      "training_recipe_status": "saved_checkpoint_metadata",
+      "training_recipe": {
+        "arguments": {},
+        "data_sha256": null,
+        "normalization": null,
+        "recipe": {
+          "hidden_dim": 256,
+          "n_layers": 4,
+          "sensor_stride": 1,
+          "n_epochs": 600,
+          "batch_size": 1024,
+          "lr": 0.0003,
+          "weight_decay": 0.0001,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "id": "burgers_original_deeponet_old100updates_seed39_20261109",
+      "task": "burgers_original",
+      "method": "deeponet_100updates",
+      "seed": 39,
+      "sha256": "0f5aa7c0a290a404bb3ad2defea97e337baeb452a24a6b68d910047318eed5ea",
+      "bytes": 6461384,
+      "local_path": "artifacts/checkpoints/burgers_original/burgers_original_deeponet_old100updates_seed39_20261109/weights.pt",
+      "training_recipe_status": "saved_checkpoint_metadata",
+      "training_recipe": {
+        "arguments": {
+          "data": "artifacts/data/burgers_original_tuning_20261109/prepared_train_val.npz",
+          "expected_data_sha256": null,
+          "seed": 39,
+          "epochs": 100,
+          "batch_size": 1024,
+          "coordinate_batch": 2048,
+          "hidden_dim": 256,
+          "latent_dim": 256,
+          "layers": 4,
+          "lr": 0.0003,
+          "smoke": false,
+          "check_only": false
+        },
+        "data_sha256": "a4db42e0a5b6d945ac3d361c343c2a8f4ce298853d9e14b22c861a6cce5d46ec",
+        "normalization": {
+          "x_mean": -0.010490137850582438,
+          "x_scale": 0.7944173516430862,
+          "y_scale": 0.6158464440589634,
+          "p_mean": 0.36700000051253784,
+          "p_scale": 0.44941962543170044
+        },
+        "architecture": {
+          "input_dim": 1024,
+          "coordinate_dim": 2,
+          "hidden_dim": 256,
+          "latent_dim": 256,
+          "layers": 4,
+          "activation": "Tanh",
+          "parameter_dim": 1,
+          "component_policy": "Saved component ID is an ordinary coordinate; scalar output contraction."
+        },
+        "historical_recipe": "Tanh width/latent256, 4 hidden layers, AdamW lr3e-4/wd1e-4; original scripts used one random update per named epoch."
+      }
+    },
+    {
+      "id": "night20261109_burgers_original_pod_m3k32_noise1_seed17",
+      "task": "burgers_original",
+      "method": "tempo_pod_m3k32",
+      "seed": 17,
+      "sha256": "1f61d627096d03baf45df29aace3250fc1c166575cca2be87cf824d24ddeb322",
+      "bytes": 94952253,
+      "local_path": "artifacts/checkpoints/burgers_original/night20261109_burgers_original_pod_m3k32_noise1_seed17/weights.pt",
+      "training_recipe_status": "saved_checkpoint_metadata",
+      "training_recipe": {
+        "fit": {
+          "method": "tempo_pod",
+          "m": 3,
+          "k": 32,
+          "seed": 17,
+          "ranks": [
+            32,
+            32,
+            32
+          ],
+          "basis_config": {
+            "max_modes": 32,
+            "tol": 0.9999,
+            "log_every": 1,
+            "fixed_rank": true
+          },
+          "online_config": {
+            "lr": 0.0003,
+            "n_epochs": 1000,
+            "batch_size": 128,
+            "hidden_dim": 256,
+            "n_layers": 4,
+            "sensor_stride": 1,
+            "lambda_kl": 0.01,
+            "lambda_ent": 0.01,
+            "log_every": 100,
+            "val_every": 50,
+            "data_loss": "mse",
+            "relative_loss_eps": 1e-12
+          },
+          "frequency_scale": 1.0,
+          "frequency_scales": null,
+          "kappa_init": true,
+          "kappa_prior_weight": 0.0,
+          "em_noise_scale": 1.0,
+          "kappa_init_noise": 0.05,
+          "em_thresholds": {
+            "eps_skip": 0.001,
+            "eps_large": 0.001,
+            "eps_conv": 0.0001
+          }
+        },
+        "arguments": {
+          "data": "artifacts/data/burgers_original_tuning_20261109/prepared_train_val.npz",
+          "method": "pod",
+          "frequency_scale": 1.0,
+          "frequency_scales": null,
+          "em_full_updates": true,
+          "kappa_init": true,
+          "kappa_prior": 0.0,
+          "online_width": 256,
+          "lambda_kl": 0.01,
+          "lambda_ent": 0.01,
+          "online_layers": 4,
+          "online_batch": 128,
+          "trajectory_batch": 256,
+          "native_coordinates": true,
+          "m": 3,
+          "k": 32,
+          "seed": 17,
+          "mode_epochs": 1200,
+          "mean_epochs": 600,
+          "epochs": 1000,
+          "em_iters": 50,
+          "lr": 0.0003,
+          "online_loss": "mse",
+          "em_noise_scale": 1.0,
+          "init_noise": null,
+          "reuse_offline": null,
+          "expected_data_sha256": null
+        },
+        "data_sha256": "a4db42e0a5b6d945ac3d361c343c2a8f4ce298853d9e14b22c861a6cce5d46ec",
+        "normalization": {
+          "x_mean": -0.010490138083696365,
+          "x_scale": 0.7944173812866211,
+          "y_scale": 0.6158464550971985,
+          "p_mean": 0.367000013589859,
+          "p_scale": 0.44941967725753784
+        }
+      }
+    },
+    {
+      "id": "burgers_original_pod_m4k16_total64_seed17_20261109",
+      "task": "burgers_original",
+      "method": "tempo_pod_m4k16",
+      "seed": 17,
+      "sha256": "86da29ebe677e3c4d6f15fb316029b7dd32f908518e07bf416a9020db83e4497",
+      "bytes": 69904406,
+      "local_path": "artifacts/checkpoints/burgers_original/burgers_original_pod_m4k16_total64_seed17_20261109/weights.pt",
+      "training_recipe_status": "saved_checkpoint_metadata",
+      "training_recipe": {
+        "fit": {
+          "method": "tempo_pod",
+          "m": 4,
+          "k": 16,
+          "seed": 17,
+          "ranks": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "basis_config": {
+            "max_modes": 16,
+            "tol": 0.9999,
+            "log_every": 1,
+            "fixed_rank": true
+          },
+          "online_config": {
+            "lr": 0.0003,
+            "n_epochs": 1000,
+            "batch_size": 128,
+            "hidden_dim": 256,
+            "n_layers": 4,
+            "sensor_stride": 1,
+            "lambda_kl": 0.01,
+            "lambda_ent": 0.01,
+            "log_every": 100,
+            "val_every": 50,
+            "data_loss": "mse",
+            "relative_loss_eps": 1e-12
+          },
+          "frequency_scale": 1.0,
+          "frequency_scales": null,
+          "kappa_init": true,
+          "kappa_prior_weight": 0.0,
+          "em_noise_scale": 1.0,
+          "kappa_init_noise": 0.05,
+          "em_thresholds": {
+            "eps_skip": 0.001,
+            "eps_large": 0.001,
+            "eps_conv": 0.0001
+          }
+        },
+        "arguments": {
+          "data": "artifacts/data/burgers_original_tuning_20261109/prepared_train_val.npz",
+          "method": "pod",
+          "frequency_scale": 1.0,
+          "frequency_scales": null,
+          "em_full_updates": true,
+          "kappa_init": true,
+          "kappa_prior": 0.0,
+          "online_width": 256,
+          "lambda_kl": 0.01,
+          "lambda_ent": 0.01,
+          "online_layers": 4,
+          "online_batch": 128,
+          "trajectory_batch": 256,
+          "native_coordinates": true,
+          "m": 4,
+          "k": 16,
+          "seed": 17,
+          "mode_epochs": 1200,
+          "mean_epochs": 600,
+          "epochs": 1000,
+          "em_iters": 50,
+          "lr": 0.0003,
+          "online_loss": "mse",
+          "em_noise_scale": 1.0,
+          "init_noise": null,
+          "reuse_offline": null,
+          "expected_data_sha256": null
+        },
+        "data_sha256": "a4db42e0a5b6d945ac3d361c343c2a8f4ce298853d9e14b22c861a6cce5d46ec",
+        "normalization": {
+          "x_mean": -0.010490138083696365,
+          "x_scale": 0.7944173812866211,
+          "y_scale": 0.6158464550971985,
+          "p_mean": 0.367000013589859,
+          "p_scale": 0.44941967725753784
+        }
+      }
+    },
+    {
+      "id": "pod_burgers_matched_width_20261112",
+      "task": "burgers_original",
+      "method": "global_pod_total",
+      "seed": 42,
+      "sha256": "8ccd6e72cbd3af1426c6d11396140db7cef9c01d529241c444e73ac0186a3a81",
+      "bytes": 61979253,
+      "local_path": "artifacts/checkpoints/burgers_original/pod_burgers_matched_width_20261112/checkpoint.pt",
+      "training_recipe_status": "saved_completed_fixed_recipe",
+      "training_recipe": {
+        "seed": 42,
+        "rank": 64,
+        "width": 512,
+        "layers": 4,
+        "epochs": 600,
+        "batch": 1024,
+        "lr": 0.0003,
+        "weight_decay": 0.0001,
+        "scheduler": null,
+        "objective": "POD coefficient MSE",
+        "selection": "final fixed epoch",
+        "hyperparameter_search": false,
+        "test_used_for_selection": false,
+        "source_sha256": "c4c8ee38fbeea5c9a7663593198bb94996454a141ee5c9e2d791a5bec80256a9",
+        "source_branch_sha256": "8059fef227663f572862e590cd60562a4aea3e4696e6bfbe8c5453fd4c665df9",
+        "online_parameters": 1346112,
+        "original_online_parameters": 476480
+      }
+    },
+    {
+      "id": "tempo_npod_joint_seed17",
+      "task": "burgers_original",
+      "method": "tempo_npod",
+      "seed": 17,
+      "path": "artifacts/checkpoints/burgers_original/tempo_npod_joint_seed17/checkpoint.pt",
+      "sha256": "55fa111e422f9ffd8b26f7720d8bf497ec99f5f392842e36ab4adae7cc23271b",
+      "bytes": 18301632,
+      "config": "paper/configs/refinement/burgers.json",
+      "ranks": [
+        16,
+        16,
+        16
+      ],
+      "grid": [
+        201,
+        1024
+      ],
+      "split": {
+        "train": 10800,
+        "validation": 1200,
+        "test": 3000
+      },
+      "initial_checkpoint": "artifacts/checkpoints/burgers_original/night20261109_burgers_original_npod_m3k16_freq3_seed17_online_refined_20261111/checkpoint.pt",
+      "initial_sha256": "fd0d47789a7095c7c0b62966c1387faf524c8f3555f35d6ebafcf46b7c315254",
+      "validation_relative_l2": 0.22866204719164795,
+      "test_relative_l2": 0.21533562267424258,
+      "baseline_test_relative_l2": 0.2660056977110506,
+      "error_data": "paper/results/refinement/burgers_test.npz",
+      "selection": "validation",
+      "scope": "joint_refinement",
+      "field_examples": "paper/figures/data/refinement/burgers_fields.npz",
+      "error_key": "selected_relative_l2",
+      "local_path": "artifacts/checkpoints/burgers_original/tempo_npod_joint_seed17/checkpoint.pt",
+      "training_recipe_status": "saved_joint_refinement",
+      "training_recipe": {
+        "seed": 17,
+        "source_sha256": "fd0d47789a7095c7c0b62966c1387faf524c8f3555f35d6ebafcf46b7c315254",
+        "target_units": "prepared",
+        "basis": {
+          "steps": 200,
+          "lr": 0.0001,
+          "coefficient_every": 25,
+          "trajectory_batch": 64,
+          "coordinate_batch": 8192,
+          "relative": false,
+          "normalize_modes": true,
+          "patience": 75
+        },
+        "em_steps": 2,
+        "online": {
+          "epochs": 200,
+          "batch_size": 256,
+          "gate_lr": 3e-05,
+          "hidden_lr": 0.0001,
+          "head_lr": 0.0003,
+          "patience": 40
+        },
+        "subsequent_steps": 100
+      }
+    }
+  ],
+  "reported_series_selection": {
+    "policy": "paper/results/online_refinement/selection.json",
+    "uses_test": true,
+    "all_seeds_retained": true
+  }
+}

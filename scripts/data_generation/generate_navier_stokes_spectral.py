@@ -45,7 +45,7 @@ def _forcing(N):
 
 
 def _omega_to_vel(omega_hat, kx, ky, k2):
-    """Return (u, v) in physical space from vorticity Fourier coefficients."""
+    """Recover velocity; the solver stores omega = -curl(u)."""
     # psi = -omega / k^2,  u = d(psi)/dy,  v = -d(psi)/dx
     psi_hat = -omega_hat / k2
     u = np.fft.irfft2(1j * ky[:, :omega_hat.shape[1]] * psi_hat)
@@ -54,7 +54,7 @@ def _omega_to_vel(omega_hat, kx, ky, k2):
 
 
 def _nonlinear(omega_hat, kx, ky, k2, mask):
-    """Compute -u·∇ω in Fourier space (dealiased)."""
+    """Compute dealiased spectral advection -u·∇omega."""
     Nk = omega_hat.shape[1]
     u, v = _omega_to_vel(omega_hat, kx[:, :Nk], ky[:, :Nk], k2[:, :Nk])
     omega = np.fft.irfft2(omega_hat)

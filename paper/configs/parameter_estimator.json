@@ -1,0 +1,68 @@
+{
+  "task": "navier_stokes",
+  "table": "tab:viscosity_trace",
+  "observation": "Initial saved velocity field after five time units of spin-up",
+  "input_shape": [
+    64,
+    64,
+    2
+  ],
+  "train_rows": 16000,
+  "test_rows": 4000,
+  "parameters": 28,
+  "weights": "artifacts/checkpoints/parameter_estimator/ns_linear/weights.pt",
+  "weights_sha256": "7946a44ebc0b491ede03b76a1d591b50c4553daefad13a36640522bd07d44d66",
+  "training": {
+    "seed": 17,
+    "features": "Six log Fourier band powers of both initial velocity components only",
+    "radial_bands": [
+      [
+        0,
+        2
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        4,
+        8
+      ],
+      [
+        8,
+        16
+      ],
+      [
+        16,
+        32
+      ],
+      [
+        32,
+        46
+      ]
+    ],
+    "fft_normalization": "ortho, conjugate symmetry accounted for",
+    "power_floor": 1e-20,
+    "standardization": "training feature mean and population std, floor1e-6",
+    "classifier": "Linear(6,4), softmax",
+    "optimizer": "Adam",
+    "learning_rate": 0.03,
+    "weight_decay": 0.0001,
+    "epochs": 500,
+    "batch": "full training set",
+    "Re_classes": [
+      100.0,
+      1000.0,
+      3600.0,
+      10000.0
+    ],
+    "prediction": "exp(posterior weighted log Re)",
+    "selection": false,
+    "hyperparameter_search": false,
+    "TEMPO_training": false,
+    "future_fields_used": false
+  },
+  "source_training_features": "paper/results/parameter_estimation/ns_training_features.npz",
+  "source_test_predictions": "paper/results/parameter_estimation/ns_parameter_predictions.npz",
+  "accuracy": 0.66275
+}

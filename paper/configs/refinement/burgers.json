@@ -1,0 +1,25 @@
+{
+  "seed": 17,
+  "source_sha256": "fd0d47789a7095c7c0b62966c1387faf524c8f3555f35d6ebafcf46b7c315254",
+  "target_units": "prepared",
+  "basis": {
+    "steps": 200,
+    "lr": 0.0001,
+    "coefficient_every": 25,
+    "trajectory_batch": 64,
+    "coordinate_batch": 8192,
+    "relative": false,
+    "normalize_modes": true,
+    "patience": 75
+  },
+  "em_steps": 2,
+  "online": {
+    "epochs": 200,
+    "batch_size": 256,
+    "gate_lr": 3e-05,
+    "hidden_lr": 0.0001,
+    "head_lr": 0.0003,
+    "patience": 40
+  },
+  "subsequent_steps": 100
+}

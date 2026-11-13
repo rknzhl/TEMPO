@@ -1,0 +1,836 @@
+{
+  "task": "navier_stokes",
+  "dataset": {
+    "status": "Original physical dataset; both selected TEMPO variants use validation-selected online refinement with frozen offline spaces.",
+    "historical_exact_offline_parameters": "Unrecovered; no claim that a later retraining reproduces the old result.",
+    "new_original_data_result": {
+      "n_train": 16000,
+      "n_validation": 512,
+      "n_test": 4000,
+      "test_rows_per_Re": 1000,
+      "Re": [
+        100,
+        1000,
+        3600,
+        10000
+      ],
+      "models": [
+        {
+          "task": "navier_stokes",
+          "method": "tempo_pod",
+          "id": "ns_original_improved_seed42_online_refined_20261111",
+          "seed": 42,
+          "path": "artifacts/checkpoints/navier_stokes/ns_original_improved_seed42_online_refined_20261111/checkpoint.pt",
+          "local_path": "artifacts/checkpoints/navier_stokes/ns_original_improved_seed42_online_refined_20261111/checkpoint.pt",
+          "bytes": 241816565,
+          "sha256": "903c42efc4b0c0c2db098fe94d90b4efe69edf7f88549ca9a96c2ad6c3767a78",
+          "available_in_local_archive": true,
+          "scope": "final_article",
+          "config": "paper/configs/navier_stokes.json",
+          "supersedes_checkpoint_sha256": "1d248063351de9237a6f97e1a2e86f5c40ebe8c499b7b4610531e82169b66f30"
+        },
+        {
+          "task": "navier_stokes",
+          "method": "tempo_npod",
+          "id": "ns_tempo_npod_m4k64_seed42_online_refined_20261111",
+          "seed": 42,
+          "path": "artifacts/checkpoints/navier_stokes/ns_tempo_npod_m4k64_seed42_online_refined_20261111/checkpoint.pt",
+          "local_path": "artifacts/checkpoints/navier_stokes/ns_tempo_npod_m4k64_seed42_online_refined_20261111/checkpoint.pt",
+          "bytes": 74306223,
+          "sha256": "7eef61351c52566cd9bfb9ffe83ea7940fb60e806ed89242b4dfa43b19337369",
+          "available_in_local_archive": true,
+          "scope": "final_article",
+          "config": "paper/configs/navier_stokes.json"
+        }
+      ],
+      "recipe": "paper/configs/navier_stokes.json"
+    }
+  },
+  "models": [
+    {
+      "id": "ns_original_improved_seed42_online_refined_20261111",
+      "task": "navier_stokes",
+      "method": "tempo_pod",
+      "seed": 42,
+      "sha256": "903c42efc4b0c0c2db098fe94d90b4efe69edf7f88549ca9a96c2ad6c3767a78",
+      "bytes": 241816565,
+      "local_path": "artifacts/checkpoints/navier_stokes/ns_original_improved_seed42_online_refined_20261111/checkpoint.pt",
+      "training_recipe_status": "original_fit_plus_saved_online_refinement",
+      "training_recipe": {
+        "original_training_recipe": {
+          "status": "article_selected",
+          "checkpoint_sha256": "1d248063351de9237a6f97e1a2e86f5c40ebe8c499b7b4610531e82169b66f30",
+          "authoritative_actual_training_stages": [
+            {
+              "directory": "artifacts/results/ns_improve_20261110/final_restart_fulltrain_v2",
+              "fixed_epochs": 100,
+              "batch": 64,
+              "initial_lr": 0.0003,
+              "min_lr": 1e-05,
+              "cosine": false,
+              "cosine_T_max": 100,
+              "lambda_kl": 0.01,
+              "lambda_entropy": 0.01,
+              "data_loss": "relative",
+              "train_rows": 16000,
+              "checkpoint_selection": "Fixed final epoch count selected on paired internal train calibration before all16k refit."
+            },
+            {
+              "directory": "artifacts/results/ns_improve_20261110/final_refine_fulltrain_v3",
+              "fixed_epochs": 100,
+              "batch": 64,
+              "initial_lr": 0.0001,
+              "min_lr": 5e-06,
+              "cosine": true,
+              "cosine_T_max": 100,
+              "lambda_kl": 0.01,
+              "lambda_entropy": 0.01,
+              "data_loss": "relative",
+              "train_rows": 16000,
+              "checkpoint_selection": "Fixed final epoch count selected on paired internal train calibration before all16k refit."
+            },
+            {
+              "directory": "artifacts/results/ns_improve_20261110/extra_B_fulltrain_v4",
+              "fixed_epochs": 100,
+              "batch": 64,
+              "initial_lr": 3e-05,
+              "min_lr": 1e-06,
+              "cosine": true,
+              "cosine_T_max": 100,
+              "lambda_kl": 0.001,
+              "lambda_entropy": 0.0,
+              "data_loss": "relative",
+              "train_rows": 16000,
+              "checkpoint_selection": "Fixed final epoch count selected on paired internal train calibration before all16k refit."
+            }
+          ],
+          "total_online_epochs": 300,
+          "architecture": {
+            "M": 4,
+            "ranks": [
+              64,
+              64,
+              64,
+              64
+            ],
+            "input_u0": 8192,
+            "parameter": 1,
+            "hidden_width": 128,
+            "hidden_layers": 4,
+            "activation": "Tanh"
+          },
+          "optimizer": {
+            "name": "AdamW",
+            "weight_decay": 0.0001,
+            "gradient_clip_norm": 1.0,
+            "seed": 42,
+            "shuffle": "Each epoch torch.randperm on CUDA; RNG state saved."
+          },
+          "input_scaling": {
+            "logRe_train_mean": 7.2279887199401855,
+            "logRe_train_std_population": 1.7200573682785034,
+            "u0_transform": "identity",
+            "Re_transform": "log then training-population-standardization"
+          },
+          "s_scale": 0.4643641710281372,
+          "coefficient_conditioning": "Per-regime gamma-weighted coefficient mean/populationstd from original16000train; explicit inverse folded into branch last Linear for inference.",
+          "implementation": "Exact float64 full-native Gram loss; float32 network/AdamW; TF32off; CPU2threads;7GBallocatorcap (measured1.103GBreserved).",
+          "configuration_note": "online_config in checkpoint preserves original architecture-builder snapshot with nominal batch32/lr3e-4. Actual optimizer uses the authoritative per-stage args above, batch64. This addendum does not modify locked weights or data.",
+          "basis_gamma_data_grid_split_changed": false,
+          "baselines_retrained": false,
+          "test_chosen": false,
+          "source_recipe_sha256": "be8d2860b67c08c2a5d91dddee35916607cf36f05c1f57f129b4da6dd88e44f5",
+          "optimizer_reset_each_stage": true,
+          "network_weights_continued": true,
+          "setup_seed_each_stage": 42,
+          "shuffle_rng_seed_each_stage": 42,
+          "previous_stage_rng_restored": false,
+          "optimized_inference": {
+            "status": "verified_inference_only_not_training",
+            "latency_ms": 0.3392185,
+            "matched_standard_ms": 0.704653,
+            "matched_speedup": 2.0772835207985416,
+            "dtype": "float32",
+            "TF32": false,
+            "all_experts_active": true,
+            "all4000_parity": true,
+            "max_per_case_relative_l2_error_delta": 3.016595135560407e-07,
+            "checkpoint_sha256": "1d248063351de9237a6f97e1a2e86f5c40ebe8c499b7b4610531e82169b66f30",
+            "recipe": "paper/results/raw_logs.tar.gz#results/timing_data/ns_optimized.json",
+            "training": false
+          }
+        },
+        "saved_recipe": {
+          "seed": 42,
+          "M": 4,
+          "P_global": 25,
+          "max_modes": 64,
+          "POD_tol": 0.9999,
+          "POD_q_extra": 10,
+          "POD_niter": 4,
+          "max_em_iters": 30,
+          "eps_skip": 1e-10,
+          "eps_large": 0.1,
+          "eps_conv": 0.0,
+          "eps_prune": 0.01,
+          "heteroscedastic": true,
+          "kappa_init": true,
+          "kappa_prior_weight": 1.0,
+          "kappa_init_noise": 0.05,
+          "online_epochs": 300,
+          "online_lr": 0.0003,
+          "online_batch": 32,
+          "online_width": 128,
+          "online_hidden_layers": 4,
+          "sensor_stride": 1,
+          "lambda_kl": 0.001,
+          "lambda_ent": 0.0,
+          "online_data_loss": "relative",
+          "weight_decay": 0.0001,
+          "gradient_clip": 1.0,
+          "input": "Raw8192 velocity sensors; online parameter=(logRe-train_mean)/train_std.",
+          "target": "All21 native64x64 two-component velocity frames; physical data unchanged",
+          "normalization": "Target/basis divided by train.std(correction=1), no target centering; rawu0 unchanged; logRe standardized using training parameters only.",
+          "identity": "New source-default resolved fit, not an exact replay of unknown historical CLI",
+          "online_arithmetic": "Existing float64 Gram/cross-target form of same native MSE; float32 core model/AdamW.",
+          "online_coefficient_conditioning": "train gamma-weighted mean/std; inverse affine folded into output layer for serialization",
+          "online_optimization": "Same fixed all16000 training run:100epochs at3e-4 +100cosine1e-4to5e-6, followed by paired-train-calibration selected small-lr extra continuation. Exact settings and fixed steps in final_online_run summary.",
+          "checkpoint_selection": "Finite internal calibration only, followed by all16000 fulltrain fixed-epoch refit; no test tuning"
+        },
+        "online_config": {
+          "lr": 0.0003,
+          "n_epochs": 300,
+          "batch_size": 32,
+          "hidden_dim": 128,
+          "n_layers": 4,
+          "sensor_stride": 1,
+          "lambda_kl": 0.001,
+          "lambda_ent": 0.0,
+          "log_every": 20,
+          "val_every": 50,
+          "data_loss": "relative",
+          "relative_loss_eps": 1e-12
+        },
+        "online_refinement": {
+          "train_rows": 16000,
+          "validation_rows": 512,
+          "selected_using": "validation mean relativeL2",
+          "selected_conditioned_checkpoint": "source_archive/paper-revision/r27_e2e_polish_20261111/joint_polish/best_conditioned_online.pt",
+          "run_results": {
+            "source_archive/paper-revision/r27_e2e_20261111": {
+              "status": "complete",
+              "baseline": {
+                "mean_relative_L2": 0.11554990980429163,
+                "by_Re": {
+                  "100": 0.08373767231816273,
+                  "1000": 0.12310899728297695,
+                  "3600": 0.12799803883087077,
+                  "10000": 0.12735493078515608
+                },
+                "mean_gate_entropy": 1.2423914670944214
+              },
+              "selected_validation_error": 0.10880895273898664,
+              "selected_conditioned_checkpoint": "source_archive/paper-revision/r27_e2e_20261111/joint_medium/best_conditioned_online.pt",
+              "trials": [
+                {
+                  "config": {
+                    "name": "heads_lr0001",
+                    "stage": "heads",
+                    "head_lr": 0.0001,
+                    "hidden_lr": 0.0,
+                    "gate_lr": 0.0,
+                    "epochs": 35,
+                    "patience": 7
+                  },
+                  "selected_epoch": 35,
+                  "epochs_run": 35,
+                  "validation": {
+                    "mean_relative_L2": 0.11256965698337645,
+                    "by_Re": {
+                      "100": 0.07624891593969753,
+                      "1000": 0.12080590451231922,
+                      "3600": 0.1268306136789006,
+                      "10000": 0.12639319380258845
+                    },
+                    "mean_gate_entropy": 1.2423914670944214
+                  },
+                  "train": {
+                    "mean_relative_L2": 0.10776793223119532,
+                    "by_Re": {
+                      "100": 0.06931272230631395,
+                      "1000": 0.11608469171430359,
+                      "3600": 0.12137381928573458,
+                      "10000": 0.12430049561842912
+                    },
+                    "mean_gate_entropy": 1.2422585487365723
+                  },
+                  "checkpoint": "source_archive/paper-revision/r27_e2e_20261111/heads_lr0001/best_conditioned_online.pt",
+                  "sha256": "a9ed82924c48cd282dd7532d2e38c3e03a8680b114ca5e2d4eaf7e0a50d2756b",
+                  "trainable_parameters": 33024,
+                  "POD_bases_changed": false
+                },
+                {
+                  "config": {
+                    "name": "heads_lr0003",
+                    "stage": "heads",
+                    "head_lr": 0.0003,
+                    "hidden_lr": 0.0,
+                    "gate_lr": 0.0,
+                    "epochs": 35,
+                    "patience": 7
+                  },
+                  "selected_epoch": 34,
+                  "epochs_run": 35,
+                  "validation": {
+                    "mean_relative_L2": 0.1115559939937135,
+                    "by_Re": {
+                      "100": 0.07512929702084656,
+                      "1000": 0.11953884727653195,
+                      "3600": 0.12586857569510107,
+                      "10000": 0.12568725598237446
+                    },
+                    "mean_gate_entropy": 1.2423914670944214
+                  },
+                  "train": {
+                    "mean_relative_L2": 0.10662921944735265,
+                    "by_Re": {
+                      "100": 0.06814618114625551,
+                      "1000": 0.11475162016569657,
+                      "3600": 0.1202793668915348,
+                      "10000": 0.1233397095859237
+                    },
+                    "mean_gate_entropy": 1.2422585487365723
+                  },
+                  "checkpoint": "source_archive/paper-revision/r27_e2e_20261111/heads_lr0003/best_conditioned_online.pt",
+                  "sha256": "d9ed4443f2b737bc32845129f3fbb2f844be93ddecfad1ea6aaedf8554b13047",
+                  "trainable_parameters": 33024,
+                  "POD_bases_changed": false
+                },
+                {
+                  "config": {
+                    "name": "joint_low",
+                    "stage": "joint",
+                    "head_lr": 3e-05,
+                    "hidden_lr": 1e-05,
+                    "gate_lr": 3e-06,
+                    "epochs": 30,
+                    "patience": 7
+                  },
+                  "selected_epoch": 30,
+                  "epochs_run": 30,
+                  "validation": {
+                    "mean_relative_L2": 0.11008633299261258,
+                    "by_Re": {
+                      "100": 0.07231420099521457,
+                      "1000": 0.11812912541692329,
+                      "3600": 0.12499786362923335,
+                      "10000": 0.12490414192907912
+                    },
+                    "mean_gate_entropy": 1.2418582439422607
+                  },
+                  "train": {
+                    "mean_relative_L2": 0.10473050465193268,
+                    "by_Re": {
+                      "100": 0.06551615756032116,
+                      "1000": 0.11231140728093598,
+                      "3600": 0.11888244271470284,
+                      "10000": 0.12221201105177076
+                    },
+                    "mean_gate_entropy": 1.2417527437210083
+                  },
+                  "checkpoint": "source_archive/paper-revision/r27_e2e_20261111/joint_low/best_conditioned_online.pt",
+                  "sha256": "4ed0a631258292e597eb06d5d81443081abaefe2835021a059cc9b12da82d539",
+                  "trainable_parameters": 5525380,
+                  "POD_bases_changed": false
+                },
+                {
+                  "config": {
+                    "name": "joint_medium",
+                    "stage": "joint",
+                    "head_lr": 0.0001,
+                    "hidden_lr": 3e-05,
+                    "gate_lr": 1e-05,
+                    "epochs": 30,
+                    "patience": 7
+                  },
+                  "selected_epoch": 30,
+                  "epochs_run": 30,
+                  "validation": {
+                    "mean_relative_L2": 0.10880895273898664,
+                    "by_Re": {
+                      "100": 0.06940568202210275,
+                      "1000": 0.11718474710354156,
+                      "3600": 0.12437270721460576,
+                      "10000": 0.12427267461569644
+                    },
+                    "mean_gate_entropy": 1.2245945930480957
+                  },
+                  "train": {
+                    "mean_relative_L2": 0.10318072329490033,
+                    "by_Re": {
+                      "100": 0.0633066639217899,
+                      "1000": 0.11050434025853965,
+                      "3600": 0.11770345163560109,
+                      "10000": 0.12120843736367072
+                    },
+                    "mean_gate_entropy": 1.2242827415466309
+                  },
+                  "checkpoint": "source_archive/paper-revision/r27_e2e_20261111/joint_medium/best_conditioned_online.pt",
+                  "sha256": "e0a58edab65327a52166c69691689543a2004679387bacba6ca27e3ffd7a9f48",
+                  "trainable_parameters": 5525380,
+                  "POD_bases_changed": false
+                }
+              ],
+              "plan": {
+                "status": "fixed_before_training",
+                "CPU_threads": 4,
+                "batch_size": 256,
+                "seed": 42,
+                "base_checkpoint_sha256": "1d248063351de9237a6f97e1a2e86f5c40ebe8c499b7b4610531e82169b66f30",
+                "starting_gate_sha256": "f5a801e98cbe61363802dcb36dec93358e47eee1639ee9a5d41dc0896eb7b0fa",
+                "train_rows": 16000,
+                "validation_rows": 512,
+                "validation_source": "Unused original raw6000+ fields prepared in gate pilot",
+                "selection": "Lowest validation mean relativeL2; retain previous model if no improvement; no test use",
+                "POD_bases": "Frozen original4x64; offline responsibilities unchanged",
+                "objective": "Exact relative full-field MSE using the native Gram/cross-target cache; KL0,entropy0",
+                "coefficient_coordinates": "Reuse original train-only coefficient affine conditioning, folded back at export",
+                "optimizer": "AdamW,weight_decay1e-4,gradient_clip1; cosine schedule to0.1 initial groupLR",
+                "configurations": [
+                  {
+                    "name": "heads_lr0001",
+                    "stage": "heads",
+                    "head_lr": 0.0001,
+                    "hidden_lr": 0.0,
+                    "gate_lr": 0.0,
+                    "epochs": 35,
+                    "patience": 7
+                  },
+                  {
+                    "name": "heads_lr0003",
+                    "stage": "heads",
+                    "head_lr": 0.0003,
+                    "hidden_lr": 0.0,
+                    "gate_lr": 0.0,
+                    "epochs": 35,
+                    "patience": 7
+                  },
+                  {
+                    "name": "joint_low",
+                    "stage": "joint",
+                    "head_lr": 3e-05,
+                    "hidden_lr": 1e-05,
+                    "gate_lr": 3e-06,
+                    "epochs": 30,
+                    "patience": 7
+                  },
+                  {
+                    "name": "joint_medium",
+                    "stage": "joint",
+                    "head_lr": 0.0001,
+                    "hidden_lr": 3e-05,
+                    "gate_lr": 1e-05,
+                    "epochs": 30,
+                    "patience": 7
+                  }
+                ],
+                "stage_order": "Head trials start from original experts plus selected gate; joint trials start from best head-stage model"
+              },
+              "test_targets_read": false,
+              "POD_bases_and_offline_assignments_unchanged": true,
+              "source_checkpoints_unchanged": true,
+              "CPU_threads": 4,
+              "GPU_initialized": false,
+              "elapsed_seconds": 77.77875470800063
+            },
+            "source_archive/paper-revision/r27_e2e_continuation_20261111": {
+              "status": "complete",
+              "baseline": {
+                "mean_relative_L2": 0.10880895273898664,
+                "by_Re": {
+                  "100": 0.06940568202210275,
+                  "1000": 0.11718474710354156,
+                  "3600": 0.12437270721460576,
+                  "10000": 0.12427267461569644
+                },
+                "mean_gate_entropy": 1.2245945930480957
+              },
+              "selected_validation_error": 0.10729847020638286,
+              "selected_conditioned_checkpoint": "source_archive/paper-revision/r27_e2e_continuation_20261111/joint_continue/best_conditioned_online.pt",
+              "trials": [
+                {
+                  "config": {
+                    "name": "joint_continue",
+                    "stage": "joint",
+                    "head_lr": 3e-05,
+                    "hidden_lr": 1e-05,
+                    "gate_lr": 3e-06,
+                    "epochs": 80,
+                    "patience": 10
+                  },
+                  "selected_epoch": 80,
+                  "epochs_run": 80,
+                  "validation": {
+                    "mean_relative_L2": 0.10729847020638286,
+                    "by_Re": {
+                      "100": 0.0673476828134988,
+                      "1000": 0.11594412281928423,
+                      "3600": 0.12290990679385064,
+                      "10000": 0.12299216839889777
+                    },
+                    "mean_gate_entropy": 1.2093640565872192
+                  },
+                  "train": {
+                    "mean_relative_L2": 0.10161204001079958,
+                    "by_Re": {
+                      "100": 0.06130318996753456,
+                      "1000": 0.108747398583423,
+                      "3600": 0.11642140151220537,
+                      "10000": 0.11997616998003542
+                    },
+                    "mean_gate_entropy": 1.2089717388153076
+                  },
+                  "checkpoint": "source_archive/paper-revision/r27_e2e_continuation_20261111/joint_continue/best_conditioned_online.pt",
+                  "sha256": "685013dd4dea8fee0455fba8f07a7b17d1e4e54a5fb7cc55f88b55de38a53cf9",
+                  "trainable_parameters": 5525380,
+                  "POD_bases_changed": false
+                }
+              ],
+              "plan": {
+                "status": "fixed_before_training",
+                "CPU_threads": 4,
+                "batch_size": 256,
+                "seed": 42,
+                "base_checkpoint_sha256": "1d248063351de9237a6f97e1a2e86f5c40ebe8c499b7b4610531e82169b66f30",
+                "starting_gate_sha256": "f5a801e98cbe61363802dcb36dec93358e47eee1639ee9a5d41dc0896eb7b0fa",
+                "train_rows": 16000,
+                "validation_rows": 512,
+                "validation_source": "Unused original raw6000+ fields prepared in gate pilot",
+                "selection": "Lowest validation mean relativeL2; retain previous model if no improvement; no test use",
+                "POD_bases": "Frozen original4x64; offline responsibilities unchanged",
+                "objective": "Exact relative full-field MSE using the native Gram/cross-target cache; KL0,entropy0",
+                "coefficient_coordinates": "Reuse original train-only coefficient affine conditioning, folded back at export",
+                "optimizer": "AdamW,weight_decay1e-4,gradient_clip1; cosine schedule to0.1 initial groupLR",
+                "configurations": [
+                  {
+                    "name": "joint_continue",
+                    "stage": "joint",
+                    "head_lr": 3e-05,
+                    "hidden_lr": 1e-05,
+                    "gate_lr": 3e-06,
+                    "epochs": 80,
+                    "patience": 10
+                  }
+                ],
+                "stage_order": "Continue previous validation-selected joint model at smaller learning rates",
+                "starting_conditioned_checkpoint": "source_archive/paper-revision/r27_e2e_20261111/joint_medium/best_conditioned_online.pt"
+              },
+              "test_targets_read": false,
+              "POD_bases_and_offline_assignments_unchanged": true,
+              "source_checkpoints_unchanged": true,
+              "CPU_threads": 4,
+              "GPU_initialized": false,
+              "elapsed_seconds": 95.32989774999987
+            },
+            "source_archive/paper-revision/r27_e2e_extended_20261111": {
+              "status": "complete",
+              "baseline": {
+                "mean_relative_L2": 0.10729847020638286,
+                "by_Re": {
+                  "100": 0.0673476828134988,
+                  "1000": 0.11594412281928423,
+                  "3600": 0.12290990679385064,
+                  "10000": 0.12299216839889777
+                },
+                "mean_gate_entropy": 1.2093640565872192
+              },
+              "selected_validation_error": 0.10294086612341598,
+              "selected_conditioned_checkpoint": "source_archive/paper-revision/r27_e2e_extended_20261111/joint_extended/best_conditioned_online.pt",
+              "trials": [
+                {
+                  "config": {
+                    "name": "joint_extended",
+                    "stage": "joint",
+                    "head_lr": 0.0001,
+                    "hidden_lr": 3e-05,
+                    "gate_lr": 1e-05,
+                    "epochs": 100,
+                    "patience": 12
+                  },
+                  "selected_epoch": 99,
+                  "epochs_run": 100,
+                  "validation": {
+                    "mean_relative_L2": 0.10294086612341598,
+                    "by_Re": {
+                      "100": 0.06302648196934843,
+                      "1000": 0.11169062907484728,
+                      "3600": 0.11836413387891598,
+                      "10000": 0.11868221957055222
+                    },
+                    "mean_gate_entropy": 1.2138645648956299
+                  },
+                  "train": {
+                    "mean_relative_L2": 0.09753309400556963,
+                    "by_Re": {
+                      "100": 0.056857034552296,
+                      "1000": 0.10438994808341938,
+                      "3600": 0.11266054655510686,
+                      "10000": 0.11622484683145627
+                    },
+                    "mean_gate_entropy": 1.213472843170166
+                  },
+                  "checkpoint": "source_archive/paper-revision/r27_e2e_extended_20261111/joint_extended/best_conditioned_online.pt",
+                  "sha256": "e02baf368769a347ef62a229c6c0934518f2efda2d86a0289a81242ca9463ff7",
+                  "trainable_parameters": 5525380,
+                  "POD_bases_changed": false
+                }
+              ],
+              "plan": {
+                "status": "fixed_before_training",
+                "CPU_threads": 4,
+                "batch_size": 256,
+                "seed": 42,
+                "base_checkpoint_sha256": "1d248063351de9237a6f97e1a2e86f5c40ebe8c499b7b4610531e82169b66f30",
+                "starting_gate_sha256": "f5a801e98cbe61363802dcb36dec93358e47eee1639ee9a5d41dc0896eb7b0fa",
+                "train_rows": 16000,
+                "validation_rows": 512,
+                "validation_source": "Unused original raw6000+ fields prepared in gate pilot",
+                "selection": "Lowest validation mean relativeL2; retain previous model if no improvement; no test use",
+                "POD_bases": "Frozen original4x64; offline responsibilities unchanged",
+                "objective": "Exact relative full-field MSE using the native Gram/cross-target cache; KL0,entropy0",
+                "coefficient_coordinates": "Reuse original train-only coefficient affine conditioning, folded back at export",
+                "optimizer": "AdamW,weight_decay1e-4,gradient_clip1; cosine schedule to0.1 initial groupLR",
+                "configurations": [
+                  {
+                    "name": "joint_extended",
+                    "stage": "joint",
+                    "head_lr": 0.0001,
+                    "hidden_lr": 3e-05,
+                    "gate_lr": 1e-05,
+                    "epochs": 100,
+                    "patience": 12
+                  }
+                ],
+                "stage_order": "Continue previous validation-selected joint model at smaller learning rates",
+                "starting_conditioned_checkpoint": "source_archive/paper-revision/r27_e2e_continuation_20261111/joint_continue/best_conditioned_online.pt"
+              },
+              "test_targets_read": false,
+              "POD_bases_and_offline_assignments_unchanged": true,
+              "source_checkpoints_unchanged": true,
+              "CPU_threads": 4,
+              "GPU_initialized": false,
+              "elapsed_seconds": 98.82892633400115
+            },
+            "source_archive/paper-revision/r27_e2e_polish_20261111": {
+              "status": "complete",
+              "baseline": {
+                "mean_relative_L2": 0.10294086612341598,
+                "by_Re": {
+                  "100": 0.06302648196934843,
+                  "1000": 0.11169062907484728,
+                  "3600": 0.11836413387891598,
+                  "10000": 0.11868221957055222
+                },
+                "mean_gate_entropy": 1.2138645648956299
+              },
+              "selected_validation_error": 0.09692121836379045,
+              "selected_conditioned_checkpoint": "source_archive/paper-revision/r27_e2e_polish_20261111/joint_polish/best_conditioned_online.pt",
+              "trials": [
+                {
+                  "config": {
+                    "name": "joint_polish",
+                    "stage": "joint",
+                    "head_lr": 0.0001,
+                    "hidden_lr": 3e-05,
+                    "gate_lr": 1e-05,
+                    "epochs": 200,
+                    "patience": 15
+                  },
+                  "selected_epoch": 199,
+                  "epochs_run": 200,
+                  "validation": {
+                    "mean_relative_L2": 0.09692121836379045,
+                    "by_Re": {
+                      "100": 0.05763266350916632,
+                      "1000": 0.10538860579654638,
+                      "3600": 0.11199914587548723,
+                      "10000": 0.11266445827396183
+                    },
+                    "mean_gate_entropy": 1.2450658082962036
+                  },
+                  "train": {
+                    "mean_relative_L2": 0.09176399798991304,
+                    "by_Re": {
+                      "100": 0.05150515317747861,
+                      "1000": 0.09839896474103951,
+                      "3600": 0.10687685340612058,
+                      "10000": 0.11027502063501342
+                    },
+                    "mean_gate_entropy": 1.2448681592941284
+                  },
+                  "checkpoint": "source_archive/paper-revision/r27_e2e_polish_20261111/joint_polish/best_conditioned_online.pt",
+                  "sha256": "72ec6b70aba76f1650630138ffab97ccc246c7e2a6e346b34390dbbf1d1713a7",
+                  "trainable_parameters": 5525380,
+                  "POD_bases_changed": false
+                }
+              ],
+              "plan": {
+                "status": "fixed_before_training",
+                "CPU_threads": 4,
+                "batch_size": 256,
+                "seed": 42,
+                "base_checkpoint_sha256": "1d248063351de9237a6f97e1a2e86f5c40ebe8c499b7b4610531e82169b66f30",
+                "starting_gate_sha256": "f5a801e98cbe61363802dcb36dec93358e47eee1639ee9a5d41dc0896eb7b0fa",
+                "train_rows": 16000,
+                "validation_rows": 512,
+                "validation_source": "Unused original raw6000+ fields prepared in gate pilot",
+                "selection": "Lowest validation mean relativeL2; retain previous model if no improvement; no test use",
+                "POD_bases": "Frozen original4x64; offline responsibilities unchanged",
+                "objective": "Exact relative full-field MSE using the native Gram/cross-target cache; KL0,entropy0",
+                "coefficient_coordinates": "Reuse original train-only coefficient affine conditioning, folded back at export",
+                "optimizer": "AdamW,weight_decay1e-4,gradient_clip1; cosine schedule to0.1 initial groupLR",
+                "configurations": [
+                  {
+                    "name": "joint_polish",
+                    "stage": "joint",
+                    "head_lr": 0.0001,
+                    "hidden_lr": 3e-05,
+                    "gate_lr": 1e-05,
+                    "epochs": 200,
+                    "patience": 15
+                  }
+                ],
+                "stage_order": "Continue previous validation-selected joint model with the group learning rates specified above",
+                "starting_conditioned_checkpoint": "source_archive/paper-revision/r27_e2e_extended_20261111/joint_extended/best_conditioned_online.pt"
+              },
+              "test_targets_read": false,
+              "POD_bases_and_offline_assignments_unchanged": true,
+              "source_checkpoints_unchanged": true,
+              "CPU_threads": 4,
+              "GPU_initialized": false,
+              "elapsed_seconds": 195.50956637499985
+            }
+          },
+          "normalization_folded": true,
+          "expert_and_gate_architecture_unchanged": true,
+          "POD_bases_and_offline_assignments_unchanged": true,
+          "note": "online_config retained for architecture construction; effective optimizer/group learning rates are in run_results; no stale optimizer state exported"
+        },
+        "normalization": {
+          "logRe_train_mean": 7.2279887199401855,
+          "logRe_train_std_population": 1.7200573682785034,
+          "u0_transform": "identity",
+          "Re_transform": "log then training-population-standardization"
+        },
+        "model_selection": "Validation-selected refinement, fixed before the paired test.",
+        "train_trajectories": 16000,
+        "validation_trajectories": 512,
+        "test_trajectories": 4000,
+        "frozen_bases": true,
+        "frozen_architecture": true
+      }
+    },
+    {
+      "id": "tempo_npod_joint_seed42",
+      "task": "navier_stokes",
+      "method": "tempo_npod",
+      "seed": 42,
+      "path": "artifacts/checkpoints/navier_stokes/tempo_npod_joint_seed42/checkpoint.pt",
+      "sha256": "35116e5a4fc15bfaa83d85c9e64391885612f69246f20d1d5992795a097e8366",
+      "bytes": 74306652,
+      "config": "paper/configs/refinement/navier_stokes.json",
+      "ranks": [
+        64,
+        64,
+        64,
+        64
+      ],
+      "grid": [
+        21,
+        64,
+        64,
+        2
+      ],
+      "split": {
+        "train": 16000,
+        "validation": 512,
+        "test": 4000
+      },
+      "initial_checkpoint": "artifacts/checkpoints/navier_stokes/ns_tempo_npod_m4k64_seed42_online_refined_20261111/checkpoint.pt",
+      "initial_sha256": "7eef61351c52566cd9bfb9ffe83ea7940fb60e806ed89242b4dfa43b19337369",
+      "validation_relative_l2": 0.08989393907860782,
+      "test_relative_l2": 0.08955736569898959,
+      "baseline_test_relative_l2": 0.09131241534771363,
+      "error_data": "paper/results/refinement/navier_stokes_test.npz",
+      "selection": "validation",
+      "scope": "joint_refinement",
+      "field_examples": "paper/figures/data/refinement/navier_stokes_fields.npz",
+      "error_key": "selected_relative_l2",
+      "local_path": "artifacts/checkpoints/navier_stokes/tempo_npod_joint_seed42/checkpoint.pt",
+      "training_recipe_status": "saved_joint_refinement",
+      "training_recipe": {
+        "seed": 42,
+        "source_sha256": "7eef61351c52566cd9bfb9ffe83ea7940fb60e806ed89242b4dfa43b19337369",
+        "target_units": "prepared",
+        "basis": {
+          "steps": 100,
+          "lr": 0.0001,
+          "coefficient_every": 25,
+          "trajectory_batch": 64,
+          "coordinate_batch": 4096,
+          "relative": true,
+          "normalize_modes": true,
+          "patience": 75
+        },
+        "em_steps": 0,
+        "online": {
+          "epochs": 100,
+          "batch_size": 256,
+          "gate_lr": 3e-05,
+          "hidden_lr": 0.0001,
+          "head_lr": 0.0003,
+          "patience": 40
+        }
+      }
+    },
+    {
+      "id": "pod_ns_matched_width_20261112",
+      "task": "navier_stokes",
+      "method": "global_pod_total",
+      "seed": 39,
+      "sha256": "a6221f7bcb31f0e3084057cc56c8cf662b7557a18d8e4b46fbe3c28aa02bf482",
+      "bytes": 198804341,
+      "local_path": "artifacts/checkpoints/navier_stokes/pod_ns_matched_width_20261112/checkpoint.pt",
+      "training_recipe_status": "saved_completed_fixed_recipe",
+      "training_recipe": {
+        "seed": 39,
+        "rank": 256,
+        "width": 544,
+        "layers": 4,
+        "epochs": 600,
+        "batch": 64,
+        "lr": 0.0003,
+        "weight_decay": 0.01,
+        "scheduler": "original cosine, eta_min=1e-5",
+        "objective": "train-standardized POD coefficient MSE",
+        "baseline": "Existing global POD256, not the historical POD80",
+        "selection": "final fixed epoch",
+        "hyperparameter_search": false,
+        "test_used_for_selection": false,
+        "source_sha256": "cfff1bbc55a6e2e83056c339a369e4d3489803115bc7bb9592bfd8026453a38b",
+        "source_branch_sha256": "8059fef227663f572862e590cd60562a4aea3e4696e6bfbe8c5453fd4c665df9",
+        "online_parameters": 5486496,
+        "original_online_parameters": 2360832
+      },
+      "path": "artifacts/checkpoints/navier_stokes/pod_ns_matched_width_20261112/checkpoint.pt",
+      "config": "paper/configs/navier_stokes.json",
+      "available_in_local_archive": true,
+      "scope": "final_article",
+      "reconstruction_provenance": "artifacts/checkpoints/navier_stokes/pod_ns_matched_width_20261112/reconstruction_20261112/reconstruction_provenance.json",
+      "test_errors": "artifacts/checkpoints/navier_stokes/pod_ns_matched_width_20261112/reconstruction_20261112/test_errors.npz",
+      "history": "artifacts/checkpoints/navier_stokes/pod_ns_matched_width_20261112/reconstruction_20261112/history.json",
+      "training_protocol": "artifacts/checkpoints/navier_stokes/pod_ns_matched_width_20261112/reconstruction_20261112/training_protocol.json",
+      "timed_source_identity": "artifacts/checkpoints/navier_stokes/pod_ns_matched_width_20261112/reconstruction_20261112/timed_source_tensor_identity.json"
+    }
+  ]
+}

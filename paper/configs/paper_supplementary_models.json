@@ -1,0 +1,99 @@
+{
+  "path_base": "repository root",
+  "models": [
+    {
+      "id": "adaptive_pod_m3",
+      "task": "burgers",
+      "paper_tables": [
+        "tab:adaptive",
+        "tab:gating"
+      ],
+      "path": "artifacts/old_artifacts/checkpoints/burgers/tempo_pod_M3_v1/model_online.pt",
+      "basis_path": "artifacts/old_artifacts/checkpoints/burgers/tempo_pod_M3_v1/trainer.pt",
+      "config": "artifacts/old_artifacts/configs/burgers/adaptive_pod_m3/config.json",
+      "metrics": "artifacts/old_artifacts/results/burgers/tempo_pod_M3_v1/metrics.json"
+    },
+    {
+      "id": "kappa_pod_m3",
+      "task": "burgers",
+      "paper_tables": [],
+      "path": "artifacts/checkpoints/burgers_supplementary/kappa_pod_m3/model_online.pt",
+      "basis_path": "artifacts/checkpoints/burgers_supplementary/kappa_pod_m3/trainer.pt",
+      "config": "artifacts/checkpoints/burgers_supplementary/kappa_pod_m3/config.json",
+      "metrics": "artifacts/checkpoints/burgers_supplementary/kappa_pod_m3/metrics.json"
+    },
+    {
+      "id": "viscosity_trace_pod_m4",
+      "task": "burgers",
+      "paper_tables": [
+        "tab:viscosity_trace"
+      ],
+      "path": "artifacts/checkpoints/burgers_supplementary/viscosity_trace_pod_m4/model_online.pt",
+      "basis_path": "artifacts/checkpoints/burgers_supplementary/viscosity_trace_pod_m4/trainer.pt",
+      "config": "artifacts/checkpoints/burgers_supplementary/viscosity_trace_pod_m4/config.json",
+      "metrics": "artifacts/checkpoints/burgers_supplementary/viscosity_trace_pod_m4/metrics.json"
+    },
+    {
+      "id": "viscosity_classifier_seed17",
+      "task": "burgers",
+      "seed": 17,
+      "paper_tables": [
+        "tab:viscosity_trace"
+      ],
+      "path": "artifacts/checkpoints/burgers_supplementary/viscosity_classifier_seed17/weights.pt",
+      "config": "artifacts/checkpoints/burgers_supplementary/viscosity_classifier_seed17/config.json",
+      "metrics": "artifacts/checkpoints/burgers_supplementary/viscosity_classifier_seed17/metrics.json",
+      "scaler_path": "artifacts/checkpoints/burgers_supplementary/viscosity_classifier_seed17/scaler.npz"
+    },
+    {
+      "id": "viscosity_classifier_seed29",
+      "task": "burgers",
+      "seed": 29,
+      "paper_tables": [
+        "tab:viscosity_trace"
+      ],
+      "path": "artifacts/checkpoints/burgers_supplementary/viscosity_classifier_seed29/weights.pt",
+      "config": "artifacts/checkpoints/burgers_supplementary/viscosity_classifier_seed29/config.json",
+      "metrics": "artifacts/checkpoints/burgers_supplementary/viscosity_classifier_seed29/metrics.json",
+      "scaler_path": "artifacts/checkpoints/burgers_supplementary/viscosity_classifier_seed29/scaler.npz"
+    },
+    {
+      "id": "viscosity_classifier_seed43",
+      "task": "burgers",
+      "seed": 43,
+      "paper_tables": [
+        "tab:viscosity_trace"
+      ],
+      "path": "artifacts/checkpoints/burgers_supplementary/viscosity_classifier_seed43/weights.pt",
+      "config": "artifacts/checkpoints/burgers_supplementary/viscosity_classifier_seed43/config.json",
+      "metrics": "artifacts/checkpoints/burgers_supplementary/viscosity_classifier_seed43/metrics.json",
+      "scaler_path": "artifacts/checkpoints/burgers_supplementary/viscosity_classifier_seed43/scaler.npz"
+    },
+    {
+      "id": "ns_parameter_estimator",
+      "task": "navier_stokes",
+      "paper_tables": [
+        "tab:viscosity_trace"
+      ],
+      "path": "artifacts/checkpoints/parameter_estimator/ns_linear/weights.pt",
+      "config": "paper/configs/parameter_estimator.json",
+      "metrics": "paper/results/parameter_estimation/summary.json"
+    },
+    {
+      "id": "adaptive_npod_m3_repeat",
+      "task": "burgers",
+      "paper_tables": [
+        "tab:adaptive"
+      ],
+      "scope": "fixed_recipe_repeat",
+      "path": "artifacts/checkpoints/burgers_supplementary/tempo_npod_burgers_m3_seed42_repeat_20261113/weights.pt",
+      "config": "artifacts/checkpoints/burgers_supplementary/tempo_npod_burgers_m3_seed42_repeat_20261113/config.json",
+      "metrics": "artifacts/checkpoints/burgers_supplementary/tempo_npod_burgers_m3_seed42_repeat_20261113/metrics.json"
+    }
+  ],
+  "table_data": {
+    "tab:kappa_abl": "paper/results/parameter_ablation/summary.json",
+    "tab:viscosity_trace": "paper/results/parameter_estimation/summary.json",
+    "tab:adaptive": "paper/results/supplementary/adaptive_update_counts.json"
+  }
+}

@@ -1,0 +1,1043 @@
+{
+  "task": "darcy",
+  "path_base": "repository root",
+  "dataset": {
+    "equation": "-div(a grad u)=beta; zero Dirichlet boundary",
+    "permeability_source": "PDEBench",
+    "reference": "float64 conservative finite volume, harmonic interior faces, native uniform128x128 cells",
+    "data_manifest_sha256": "e67b8206d6bb6ead86a1171f1a9e06ab160d6ecdc97c344f4ffbc0005329d51f",
+    "target_payload_sha256": "24c3d0683ba850f2a407eef96e723e1d982b9857e0ffcf6f766e8483cb911790",
+    "split": {
+      "train": 7000,
+      "validation": 1000,
+      "test": 1000
+    },
+    "training_rows": [
+      0,
+      6999
+    ],
+    "validation_rows": [
+      7000,
+      7999
+    ],
+    "test_rows": [
+      8000,
+      8999
+    ]
+  },
+  "common_decoder": "u(a,beta)=beta*v(a); no learned beta extrapolation",
+  "inputs": {
+    "reduced": "1024 disjoint4x4 block means from raw128x128 a",
+    "ordinary": "full raw128x128 a; each loader applies its saved normalization",
+    "cno": "original4-channel CNO with log10(beta)/2 fixed to0; external beta multiplier"
+  },
+  "example": "paper/examples/darcy/input.npz",
+  "models": [
+    {
+      "id": "global_pod64_seed17",
+      "method": "global_pod_total",
+      "label": "POD-DeepONet",
+      "seed": 17,
+      "path": "artifacts/checkpoints/darcy/global_pod64_seed17/checkpoint.pt",
+      "bytes": 11644422,
+      "sha256": "34637e6c409b0cff85186a8708b782ecdea428af7dabfb53064ad4859a60bf0a",
+      "parameters_real": 1345600,
+      "ranks": [
+        64
+      ],
+      "normalization": {
+        "x_mean": 0.5419958250816922,
+        "x_std_population": 0.44992880825903714,
+        "y_rms": 0.18970076583983878,
+        "train_rows": 7000,
+        "target_centered": false,
+        "beta_input": false
+      },
+      "training": {
+        "basis": [
+          {
+            "kind": "pod",
+            "rank": 64,
+            "config": {
+              "max_modes": 64,
+              "tol": 0.9999,
+              "log_every": 1,
+              "fixed_rank": true
+            },
+            "architecture": {}
+          }
+        ],
+        "online_config": {
+          "lr": 0.0003,
+          "n_epochs": 500,
+          "batch_size": 64,
+          "hidden_dim": 512,
+          "n_layers": 4,
+          "sensor_stride": 1,
+          "lambda_kl": 0.0,
+          "lambda_ent": 0.0,
+          "log_every": 50,
+          "val_every": 50,
+          "data_loss": "relative",
+          "relative_loss_eps": 1e-12
+        },
+        "EM": {
+          "EM_thresholds": {
+            "max_iters": 30,
+            "eps_skip": 0.001,
+            "eps_large": 0.1,
+            "eps_conv": 0.0001,
+            "eps_prune": 0.0
+          },
+          "initialization": "GMM on row-unit-normalized global16 coefficients of training unit-pressure shapes; no beta features/prior",
+          "fixed_rank": true,
+          "iterations": 0
+        },
+        "training_stages": [
+          {
+            "max_epochs": 500,
+            "lr": 0.0003
+          },
+          {
+            "max_epochs": 200,
+            "lr": 3e-05
+          }
+        ]
+      },
+      "selection": {
+        "mean_relative_l2": 0.022692375054062835,
+        "selected_epoch": 700,
+        "test_accessed": false
+      },
+      "loader": {
+        "file": "scripts/paper/darcy.py",
+        "function": "load_model(checkpoint, device)",
+        "predict": "fitted.predict(raw_a, beta) returns pressure and gate"
+      },
+      "test_errors": "paper/results/darcy/global_pod64_seed17_test.npz",
+      "test_relative_l2": 0.022539307284390575
+    },
+    {
+      "id": "global_neuralpod64_seed17",
+      "method": "npod_deeponet_coeff",
+      "label": "NeuralPOD-DeepONet",
+      "seed": 17,
+      "path": "artifacts/checkpoints/darcy/global_neuralpod64_seed17/checkpoint.pt",
+      "bytes": 31354082,
+      "sha256": "c05fb5d996d6cc536cc75f5e5c720203d0be37f963a326f48b8344b04c62503f",
+      "parameters_real": 3234305,
+      "ranks": [
+        64
+      ],
+      "normalization": {
+        "x_mean": 0.5419958250816922,
+        "x_std_population": 0.44992880825903714,
+        "y_rms": 0.18970076583983878,
+        "train_rows": 7000,
+        "target_centered": false,
+        "beta_input": false
+      },
+      "training": {
+        "basis": [
+          {
+            "kind": "fourier",
+            "rank": 64,
+            "config": {
+              "tol": 0.0,
+              "lr": 0.0005,
+              "lr_lambda": 0.01,
+              "max_lr": 0.009,
+              "max_modes": 64,
+              "n_epochs_mean": 400,
+              "n_epochs_mode": 800,
+              "traj_batch_size": 1024,
+              "epoch_subset": 1.0,
+              "grad_clip_norm": 1.0,
+              "pct_start": 0.1,
+              "div_factor": 25.0,
+              "log_every": 40
+            },
+            "architecture": {
+              "d_x": 2,
+              "M": 7000,
+              "hidden_dim": 128,
+              "num_frequencies": 48,
+              "scale": 10.0,
+              "scales": [
+                0.5,
+                2.0,
+                6.0
+              ],
+              "n_layers": 2
+            }
+          }
+        ],
+        "online_config": {
+          "lr": 0.0003,
+          "n_epochs": 500,
+          "batch_size": 64,
+          "hidden_dim": 512,
+          "n_layers": 4,
+          "sensor_stride": 1,
+          "lambda_kl": 0.0,
+          "lambda_ent": 0.0,
+          "log_every": 50,
+          "val_every": 50,
+          "data_loss": "relative",
+          "relative_loss_eps": 1e-12
+        },
+        "EM": {
+          "EM_thresholds": {
+            "max_iters": 30,
+            "eps_skip": 0.001,
+            "eps_large": 0.1,
+            "eps_conv": 0.0001,
+            "eps_prune": 0.0
+          },
+          "initialization": "GMM on row-unit-normalized global16 coefficients of training unit-pressure shapes; no beta features/prior",
+          "fixed_rank": true,
+          "iterations": 0
+        },
+        "training_protocol": {
+          "task": "darcy",
+          "seed": 17,
+          "online_parameters": 1345600,
+          "total_modes": 64,
+          "total_neural_parameters": 3234305,
+          "phases": [
+            {
+              "epochs": 500,
+              "lr": 0.0003
+            },
+            {
+              "epochs": 200,
+              "lr": 3e-05
+            }
+          ],
+          "batch_size": 64,
+          "width": 512,
+          "layers": 4,
+          "objective": "Relative native unit-source pressure MSE; exact beta decoder, no beta network input",
+          "weight_decay": 0.0001,
+          "gradient_clip": 1.0,
+          "validation_every": 10,
+          "selection": "Lowest validation mean per-trajectory relative L2 across epochs of this single fixed recipe",
+          "optimizer": "AdamW; reset at the one predeclared LR-stage transition",
+          "basis_retrained": false,
+          "offline_assignments_changed": false,
+          "hyperparameter_search": false,
+          "test_accessed": false,
+          "script_sha256": "46f027ca5aca083707caafc11fd43da4f88b2b7e14a25d49905deb9350e52b68",
+          "train_rows": 7000,
+          "validation_rows": 1000
+        }
+      },
+      "selection": {
+        "selected_epoch": 700,
+        "rule": "minimum saved validation relative L2 across the fixed700-epoch two-stage schedule"
+      },
+      "loader": {
+        "file": "scripts/paper/darcy.py",
+        "function": "load_model(checkpoint, device)",
+        "predict": "fitted.predict(raw_a, beta) returns pressure and gate"
+      },
+      "test_errors": "paper/results/darcy/global_neuralpod64_seed17_test.npz",
+      "test_relative_l2": 0.022798611654417104
+    },
+    {
+      "id": "tempo_pod2x32_seed17",
+      "method": "tempo_pod",
+      "label": "TEMPO(POD)",
+      "seed": 17,
+      "path": "artifacts/checkpoints/darcy/tempo_pod2x32_seed17/checkpoint.pt",
+      "bytes": 12228706,
+      "sha256": "37c9d7035b5048d8dc66010bfe2f29aa1d12abd6dcc95e5f6d7353e8070085b9",
+      "parameters_real": 1343312,
+      "ranks": [
+        32,
+        32
+      ],
+      "normalization": {
+        "x_mean": 0.5419958250816922,
+        "x_std_population": 0.44992880825903714,
+        "y_rms": 0.18970076583983878,
+        "train_rows": 7000,
+        "target_centered": false,
+        "beta_input": false
+      },
+      "training": {
+        "basis": [
+          {
+            "kind": "pod",
+            "rank": 32,
+            "config": {
+              "max_modes": 32,
+              "tol": 0.9999,
+              "log_every": 1,
+              "fixed_rank": true
+            },
+            "architecture": {}
+          },
+          {
+            "kind": "pod",
+            "rank": 32,
+            "config": {
+              "max_modes": 32,
+              "tol": 0.9999,
+              "log_every": 1,
+              "fixed_rank": true
+            },
+            "architecture": {}
+          }
+        ],
+        "online_config": {
+          "lr": 0.0003,
+          "n_epochs": 1000,
+          "batch_size": 256,
+          "hidden_dim": 327,
+          "n_layers": 4,
+          "sensor_stride": 1,
+          "lambda_kl": 0.0,
+          "lambda_ent": 0.0,
+          "log_every": 50,
+          "val_every": 50,
+          "data_loss": "relative",
+          "relative_loss_eps": 1e-12,
+          "gate_hidden_dim": 8
+        },
+        "EM": {
+          "EM_thresholds": {
+            "max_iters": 30,
+            "eps_skip": 0.001,
+            "eps_large": 0.1,
+            "eps_conv": 0.0001,
+            "eps_prune": 0.0
+          },
+          "initialization": "GMM on row-unit-normalized global16 coefficients of training unit-pressure shapes; no beta features/prior",
+          "fixed_rank": true,
+          "iterations": 30
+        },
+        "training_stages": [
+          {
+            "epochs": 500,
+            "lr": 0.0003,
+            "scope": "online branches and gate"
+          },
+          {
+            "base_epochs": 500,
+            "base_lr": 0.0003,
+            "extra_lr": 3e-05,
+            "extra_attempted_epochs": 200,
+            "selected_extra_epochs": 190,
+            "total_selected_epochs": 690,
+            "optimizer": "AdamW",
+            "resumed_branch_moments": true,
+            "initial_optimizer_step": 55000,
+            "selected_optimizer_step": 75900,
+            "shuffle_rng_resumed": true,
+            "batch_size": 64,
+            "clip": 1.0,
+            "weight_decay": 0.0001,
+            "freeze": "all gate parameters and spatial bases",
+            "optimizer_parameters": "expert branches only",
+            "validation_cadence": 10,
+            "patience_extra_epochs": 20,
+            "max_extra_epochs": 200
+          }
+        ],
+        "online_KL_restart": {
+          "neural_parameters": 1343312,
+          "config": {
+            "seed": 17,
+            "epochs": 1000,
+            "batch_size": 256,
+            "gate_lr": 0.0001,
+            "hidden_lr": 0.0003,
+            "head_lr": 0.001,
+            "patience": 150,
+            "manifest_sha256": "e67b8206d6bb6ead86a1171f1a9e06ab160d6ecdc97c344f4ffbc0005329d51f",
+            "gate_width": 8,
+            "expert_width": 327
+          },
+          "lambda_kl": 0.0,
+          "lambda_ent": 0.0,
+          "initial": 0.4706186558814517,
+          "final": 0.025501539061888012,
+          "selected_epoch": 980,
+          "gate": {
+            "train": {
+              "mass": [
+                0.5931200385093689,
+                0.4068799614906311
+              ],
+              "entropy": 0.6687881946563721
+            },
+            "val": {
+              "mass": [
+                0.5939874649047852,
+                0.40601256489753723
+              ],
+              "entropy": 0.6684333086013794
+            }
+          },
+          "offline_gamma": {
+            "mass": [
+              0.5249649882316589,
+              0.4750349819660187
+            ],
+            "entropy": 0.0023400215432047844
+          },
+          "parent_sha256": "61e94e0fa5e38c0b14ea19ac5f1af1b51b8e17695516acd41c388d1882469f55",
+          "basis_sha256": "dac732f8bb23a80fb664612d733e6a82e2f55db83760f505fabd06b36de06cd5",
+          "driver_sha256": "466adef1a66635f3c56abf12041113a2c62b92a5540c56d484f19e13fa128198",
+          "test_used": false,
+          "selection": "Pure validation mean relative L2; no regularization term",
+          "fresh_online_seed": 17,
+          "gamma_sha256": "f3c5ed38a4b8dfef6672711da51ff6e68b9575bf892208ebad65dbabdefcee5f"
+        },
+        "mode_budget_trial": {
+          "total_modes": 64,
+          "ranks": [
+            32,
+            32
+          ],
+          "EM_repeated": true,
+          "noise_multiplier": 0.01,
+          "online_initialization": "fresh seed17",
+          "online": {
+            "epochs": 1000,
+            "batch_size": 256,
+            "gate_lr": 0.0001,
+            "hidden_lr": 0.0003,
+            "head_lr": 0.001,
+            "patience": 150
+          },
+          "test_used": false
+        }
+      },
+      "selection": {
+        "validation_mean_relative_l2": 0.025501539061888012,
+        "selected_epoch": 980
+      },
+      "loader": {
+        "file": "scripts/paper/darcy.py",
+        "function": "load_model(checkpoint, device)",
+        "predict": "fitted.predict(raw_a, beta) returns pressure and gate"
+      },
+      "test_errors": "paper/results/darcy/tempo_pod2x32_seed17_test.npz",
+      "test_relative_l2": 0.0252830012086071
+    },
+    {
+      "id": "tempo_neuralpod2x32_seed17",
+      "method": "tempo_npod",
+      "label": "TEMPO(NeuralPOD)",
+      "seed": 17,
+      "path": "artifacts/checkpoints/darcy/tempo_neuralpod2x32_seed17/checkpoint.pt",
+      "bytes": 16082278,
+      "sha256": "ec49412c374c8306dc4162df196e3c491465e1e437537120d8604807ef431431",
+      "parameters_real": 3314052,
+      "ranks": [
+        32,
+        32
+      ],
+      "normalization": {
+        "x_mean": 0.5419958250816922,
+        "x_std_population": 0.44992880825903714,
+        "y_rms": 0.18970076583983878,
+        "train_rows": 7000,
+        "target_centered": false,
+        "beta_input": false
+      },
+      "training": {
+        "basis": [
+          {
+            "kind": "fourier",
+            "rank": 32,
+            "config": {
+              "tol": 0.0,
+              "lr": 0.0005,
+              "lr_lambda": 0.01,
+              "max_lr": 0.009,
+              "max_modes": 32,
+              "n_epochs_mean": 400,
+              "n_epochs_mode": 800,
+              "traj_batch_size": 1024,
+              "epoch_subset": 1.0,
+              "grad_clip_norm": 1.0,
+              "pct_start": 0.1,
+              "div_factor": 25.0,
+              "log_every": 40
+            },
+            "architecture": {
+              "d_x": 2,
+              "M": 7000,
+              "hidden_dim": 128,
+              "num_frequencies": 48,
+              "scale": 10.0,
+              "scales": [
+                0.5,
+                2.0,
+                6.0
+              ],
+              "n_layers": 2
+            }
+          },
+          {
+            "kind": "fourier",
+            "rank": 32,
+            "config": {
+              "tol": 0.0,
+              "lr": 0.0005,
+              "lr_lambda": 0.01,
+              "max_lr": 0.009,
+              "max_modes": 32,
+              "n_epochs_mean": 400,
+              "n_epochs_mode": 800,
+              "traj_batch_size": 1024,
+              "epoch_subset": 1.0,
+              "grad_clip_norm": 1.0,
+              "pct_start": 0.1,
+              "div_factor": 25.0,
+              "log_every": 40
+            },
+            "architecture": {
+              "d_x": 2,
+              "M": 7000,
+              "hidden_dim": 128,
+              "num_frequencies": 48,
+              "scale": 10.0,
+              "scales": [
+                0.5,
+                2.0,
+                6.0
+              ],
+              "n_layers": 2
+            }
+          }
+        ],
+        "online_config": {
+          "lr": 0.0003,
+          "n_epochs": 300,
+          "batch_size": 64,
+          "hidden_dim": 256,
+          "n_layers": 4,
+          "sensor_stride": 1,
+          "lambda_kl": 0.0,
+          "lambda_ent": 0.0,
+          "log_every": 50,
+          "val_every": 50,
+          "data_loss": "relative",
+          "relative_loss_eps": 1e-12
+        },
+        "EM": {
+          "EM_thresholds": {
+            "max_iters": 30,
+            "eps_skip": 0.001,
+            "eps_large": 0.1,
+            "eps_conv": 0.0001,
+            "eps_prune": 0.0
+          },
+          "initialization": "GMM on row-unit-normalized global16 coefficients of training unit-pressure shapes; no beta features/prior",
+          "fixed_rank": true,
+          "iterations": 6
+        },
+        "joint_refinement": {
+          "basis": [
+            {
+              "initial": 0.0004586627269356214,
+              "final": 0.00043661102106440364,
+              "selected_step": 600,
+              "steps_run": 600
+            },
+            {
+              "initial": 0.00060522008846986,
+              "final": 0.0005861905513577792,
+              "selected_step": 600,
+              "steps_run": 600
+            }
+          ],
+          "config": {
+            "model": "TEMPO NeuralPOD",
+            "ranks": [
+              32,
+              32
+            ],
+            "native_grid": [
+              128,
+              128
+            ],
+            "input_sensors": 1024,
+            "split": {
+              "train": 7000,
+              "validation": 1000,
+              "test": 1000
+            },
+            "method": "Reuse fixed-rank joint mean/mode refinement and online fine-tuning; no TEMPO core changes.",
+            "basis": {
+              "steps": 600,
+              "lr": 0.0001,
+              "coefficient_every": 25,
+              "trajectory_batch": 64,
+              "coordinate_batch": 4096,
+              "relative": true,
+              "normalize_modes": true,
+              "patience": 150,
+              "coefficient_solver": "svd",
+              "rtol": 1e-07
+            },
+            "online": {
+              "epochs": 300,
+              "batch_size": 256,
+              "gate_lr": 3e-05,
+              "hidden_lr": 0.0001,
+              "head_lr": 0.0003,
+              "patience": 60,
+              "loss": "relative field MSE",
+              "lambda_kl": 0.0,
+              "lambda_ent": 0.0,
+              "optimizer": "AdamW",
+              "weight_decay": 0.0001,
+              "scheduler": "cosine"
+            },
+            "responsibilities": "Keep saved responsibilities fixed for the first comparison.",
+            "selection": "Validation only, unchanged initial checkpoint eligible.",
+            "decoder": "u(a,beta)=beta*v(a), shared with the current stationary Darcy models.",
+            "evaluation": {
+              "cohort": "same test1000",
+              "beta": [
+                1.0,
+                0.01
+              ],
+              "relative_error_beta_dependence": "None except rounding",
+              "retrain_baselines": false,
+              "extra_test_sets": false
+            },
+            "manuscript_changes": false,
+            "commits": false,
+            "pushes": false
+          },
+          "test_used": false,
+          "online": {
+            "initial": 0.03279202339714935,
+            "final": 0.029397870555539243,
+            "selected_epoch": 290
+          }
+        }
+      },
+      "selection": {
+        "test_accessed": false,
+        "validation_mean_relative_l2": 0.029397870555539243,
+        "selected_epoch": 290
+      },
+      "loader": {
+        "file": "scripts/paper/darcy.py",
+        "function": "load_model(checkpoint, device)",
+        "predict": "fitted.predict(raw_a, beta) returns pressure and gate"
+      },
+      "test_errors": "paper/results/darcy/tempo_neuralpod2x32_seed17_test.npz",
+      "test_relative_l2": 0.02949776093595592
+    },
+    {
+      "id": "fixed_gmm2x32_seed17",
+      "method": "fixed_gmm",
+      "label": "Fixed GMM + POD",
+      "seed": 17,
+      "path": "artifacts/checkpoints/darcy/fixed_gmm2x32_seed17/checkpoint.pt",
+      "bytes": 12408538,
+      "sha256": "8782a6d1dcd882735661108d02ce1622a891e2c101161e41898222171559da8f",
+      "parameters_real": 1396290,
+      "ranks": [
+        32,
+        32
+      ],
+      "normalization": {
+        "x_mean": 0.5419958250816922,
+        "x_std_population": 0.44992880825903714,
+        "y_rms": 0.18970076583983878,
+        "train_rows": 7000,
+        "target_centered": false,
+        "beta_input": false
+      },
+      "training": {
+        "basis": [
+          {
+            "kind": "pod",
+            "rank": 32,
+            "config": {
+              "max_modes": 32,
+              "tol": 0.9999,
+              "log_every": 1,
+              "fixed_rank": true
+            },
+            "architecture": {}
+          },
+          {
+            "kind": "pod",
+            "rank": 32,
+            "config": {
+              "max_modes": 32,
+              "tol": 0.9999,
+              "log_every": 1,
+              "fixed_rank": true
+            },
+            "architecture": {}
+          }
+        ],
+        "online_config": {
+          "lr": 0.0003,
+          "n_epochs": 500,
+          "batch_size": 64,
+          "hidden_dim": 256,
+          "n_layers": 4,
+          "sensor_stride": 1,
+          "lambda_kl": 0.0,
+          "lambda_ent": 0.01,
+          "log_every": 50,
+          "val_every": 50,
+          "data_loss": "relative",
+          "relative_loss_eps": 1e-12
+        },
+        "EM": {
+          "EM_thresholds": {
+            "max_iters": 30,
+            "eps_skip": 0.001,
+            "eps_large": 0.1,
+            "eps_conv": 0.0001,
+            "eps_prune": 0.0
+          },
+          "initialization": "GMM on row-unit-normalized global16 coefficients of training unit-pressure shapes; no beta features/prior",
+          "fixed_rank": true,
+          "iterations": 0
+        },
+        "training_stages": [
+          {
+            "epochs": 500,
+            "lr": 0.0003,
+            "scope": "online branches and gate"
+          },
+          {
+            "base_epochs": 500,
+            "base_lr": 0.0003,
+            "extra_lr": 3e-05,
+            "extra_attempted_epochs": 50,
+            "selected_extra_epochs": 30,
+            "total_selected_epochs": 530,
+            "optimizer": "AdamW",
+            "resumed_branch_moments": true,
+            "initial_optimizer_step": 55000,
+            "selected_optimizer_step": 58300,
+            "shuffle_rng_resumed": true,
+            "batch_size": 64,
+            "clip": 1.0,
+            "weight_decay": 0.0001,
+            "freeze": "all gate parameters and spatial bases",
+            "optimizer_parameters": "expert branches only",
+            "validation_cadence": 10,
+            "patience_extra_epochs": 20,
+            "max_extra_epochs": 200
+          }
+        ]
+      },
+      "selection": {
+        "n": 1000,
+        "seed": 17,
+        "epochs": 530,
+        "mean_relative_l2": 0.02765785727367863,
+        "initial_mean_relative_l2": 0.02864430473239826,
+        "selected_extra_epoch": 30,
+        "attempted_extra_epochs": 50,
+        "gate_hash_before": "763664cf2529f0acbd9c14f99402814157446153e65da8bfa6813798ffb7440a",
+        "gate_hash_after": "763664cf2529f0acbd9c14f99402814157446153e65da8bfa6813798ffb7440a",
+        "basis_hash_before": "56bfa56d29b0a86b76279574d03ab856b27d82a7cb6f6d58742d5d28838fb432",
+        "unchanged_1000_validation_gate_values": true,
+        "refinement": {
+          "base_epochs": 500,
+          "base_lr": 0.0003,
+          "extra_lr": 3e-05,
+          "extra_attempted_epochs": 50,
+          "selected_extra_epochs": 30,
+          "total_selected_epochs": 530,
+          "optimizer": "AdamW",
+          "resumed_branch_moments": true,
+          "initial_optimizer_step": 55000,
+          "selected_optimizer_step": 58300,
+          "shuffle_rng_resumed": true,
+          "batch_size": 64,
+          "clip": 1.0,
+          "weight_decay": 0.0001,
+          "freeze": "all gate parameters and spatial bases",
+          "optimizer_parameters": "expert branches only",
+          "validation_cadence": 10,
+          "patience_extra_epochs": 20,
+          "max_extra_epochs": 200
+        },
+        "official_test_accessed": false,
+        "elapsed_seconds": 12.952767499999027
+      },
+      "loader": {
+        "file": "scripts/paper/darcy.py",
+        "function": "load_model(checkpoint, device)",
+        "predict": "fitted.predict(raw_a, beta) returns pressure and gate"
+      },
+      "test_errors": "paper/results/darcy/fixed_gmm2x32_seed17_test.npz",
+      "test_relative_l2": 0.027673267125931544,
+      "test_error_replay_mean_relative_l2": 0.027673267612352632,
+      "test_error_replay_abs_difference": 4.864210874366837e-10,
+      "metric_binding": "Locked frozen evaluation receipt binds checkpoint8782a6d1; compact CPU replay errors agree within4.87e-10 in mean."
+    },
+    {
+      "id": "deeponet_seed17",
+      "method": "deeponet",
+      "label": "DeepONet",
+      "seed": 17,
+      "path": "artifacts/checkpoints/darcy/deeponet_seed17/checkpoint.pt",
+      "bytes": 9076514,
+      "sha256": "d153ac0315c6f06d4ca8b895824dc600b9e86572366fc01e3b6df2468130474d",
+      "parameters_real": 2196737,
+      "ranks": [],
+      "normalization": {
+        "x_mean": 0.5419958250816922,
+        "x_std_population": 0.44992880825903714,
+        "y_rms": 0.18970076583983878,
+        "train_rows": 7000,
+        "target_centered": false,
+        "beta_input": false,
+        "x_arithmetic": "raw_float32_then_torch_float32_affine",
+        "target_arithmetic": "raw_float64_divide_train_RMS_then_cast_float32"
+      },
+      "training": {
+        "model": "deeponet",
+        "seed": 17,
+        "epochs": 500,
+        "optimizer": "AdamW",
+        "lr": 0.0003,
+        "weight_decay": 0.0001,
+        "effective_batch": 64,
+        "microbatch": 16,
+        "coordinate_batch": 16384,
+        "loss": "mean_per_trajectory_relative_squared_L2",
+        "relative_loss_eps_mean_energy": 1e-12,
+        "checkpoint_selection": "final_fixed_epoch",
+        "scheduler": null,
+        "beta_seen": [
+          0.1,
+          1.0,
+          10.0,
+          100.0
+        ],
+        "beta_unseen": [
+          0.01,
+          0.3
+        ],
+        "beta_input": false,
+        "physical_decoder": "u_beta = beta * unit_pressure_prediction",
+        "trainable_parameters": 2196737,
+        "unique_optimizer_inputs_per_epoch": 7000,
+        "architecture": {
+          "branch_input": 16384,
+          "hidden_dim": 128,
+          "layers": 3,
+          "latent_dim": 128,
+          "activation": "Tanh",
+          "trainable_trunk": true
+        }
+      },
+      "selection": {
+        "selected_epoch": 500
+      },
+      "loader": {
+        "file": "scripts/paper/darcy_baselines.py",
+        "function": "load_checkpoint(checkpoint, repository_root, cno_source=None, device)",
+        "predict": "FrozenPhysicalPredictor(model, state[normalization])(raw_a, beta_tensor)"
+      },
+      "test_errors": "paper/results/darcy/deeponet_seed17_test.npz",
+      "test_relative_l2": 0.05696630888492307
+    },
+    {
+      "id": "fno_seed17",
+      "method": "fno",
+      "label": "FNO",
+      "seed": 17,
+      "path": "artifacts/checkpoints/darcy/fno_seed17/checkpoint.pt",
+      "bytes": 5075042,
+      "sha256": "8812e438338bc87950ee608c1b26bf60bac6ca8b7c774d9798a1eab330f37494",
+      "parameters_real": 1192801,
+      "ranks": [],
+      "normalization": {
+        "x_mean": 0.5419958250816922,
+        "x_std_population": 0.44992880825903714,
+        "y_rms": 0.18970076583983878,
+        "train_rows": 7000,
+        "target_centered": false,
+        "beta_input": false,
+        "x_arithmetic": "raw_float32_then_torch_float32_affine",
+        "target_arithmetic": "raw_float64_divide_train_RMS_then_cast_float32"
+      },
+      "training": {
+        "model": "fno",
+        "seed": 17,
+        "epochs": 500,
+        "optimizer": "AdamW",
+        "lr": 0.001,
+        "weight_decay": 0.0001,
+        "effective_batch": 32,
+        "microbatch": 8,
+        "coordinate_batch": 16384,
+        "loss": "mean_per_trajectory_relative_squared_L2",
+        "relative_loss_eps_mean_energy": 1e-12,
+        "checkpoint_selection": "final_fixed_epoch",
+        "scheduler": null,
+        "beta_seen": [
+          0.1,
+          1.0,
+          10.0,
+          100.0
+        ],
+        "beta_unseen": [
+          0.01,
+          0.3
+        ],
+        "beta_input": false,
+        "physical_decoder": "u_beta = beta * unit_pressure_prediction",
+        "trainable_parameters": 602977,
+        "unique_optimizer_inputs_per_epoch": 7000,
+        "architecture": {
+          "input_channels": 3,
+          "output_channels": 1,
+          "native_shape": [
+            128,
+            128
+          ],
+          "resampling": false,
+          "n_modes": [
+            16,
+            16
+          ],
+          "width": 32,
+          "layers": 4
+        }
+      },
+      "selection": {
+        "selected_epoch": 500
+      },
+      "loader": {
+        "file": "scripts/paper/darcy_baselines.py",
+        "function": "load_checkpoint(checkpoint, repository_root, cno_source=None, device)",
+        "predict": "FrozenPhysicalPredictor(model, state[normalization])(raw_a, beta_tensor)"
+      },
+      "test_errors": "paper/results/darcy/fno_seed17_test.npz",
+      "test_relative_l2": 0.006278072626410718,
+      "numerical_replay": {
+        "rows": [
+          7000,
+          7001,
+          7002,
+          7003,
+          7004,
+          7005,
+          7006,
+          7007
+        ],
+        "same_device_repeat_max_abs": 0.0,
+        "same_device_reload_max_abs": 0.0,
+        "batch1_vs_batch8_max_abs": 4.76837158203125e-07,
+        "batch1_vs_batch8_relative_l2": 8.517466199009505e-08,
+        "rtol": 0.0005,
+        "atol": 5e-05,
+        "checkpoint_sha256": "8812e438338bc87950ee608c1b26bf60bac6ca8b7c774d9798a1eab330f37494",
+        "torch": "2.5.1+cu124",
+        "cuda": "12.4",
+        "TF32": false,
+        "original_author_CUDA_math": true,
+        "CPU_portability": "Non-Hermitian learned boundary spectrum; CPU/CUDA inverse-FFT conventions differ. No CPU parity criterion or boundary fix used.",
+        "training": false,
+        "test_read_during_gate": false
+      },
+      "stored_complex_parameter_entries": 589824,
+      "parameter_tensor_entries": 602977
+    },
+    {
+      "id": "cno_unit_beta1_seed42",
+      "method": "cno",
+      "label": "CNO",
+      "seed": 42,
+      "path": "artifacts/checkpoints/darcy/cno_unit_beta1_seed42/checkpoint.pt",
+      "bytes": 8333530,
+      "sha256": "a69e944953e54b651d0f577f29dec1177eaa86087efba6fb6b9dddea774f7b51",
+      "parameters_real": 2007209,
+      "ranks": [],
+      "normalization": {
+        "x_mean": 0.0,
+        "x_std_population": 1.0,
+        "y_rms": 1.0,
+        "target_centered": false,
+        "beta_log10_mean": 0.0,
+        "beta_log10_scale": 2.0,
+        "beta_input": true,
+        "output_beta_multiplier": false,
+        "train_unique": 7000,
+        "train_pairs": 7000,
+        "train_beta": [
+          1.0
+        ],
+        "input_transform": "raw_full128",
+        "input_channel_order": [
+          "a",
+          "log10_beta_divide_2",
+          "x",
+          "y"
+        ],
+        "beta_input_rule": "log10_beta_divide_2_fixed_historical",
+        "target_arithmetic": "rawF64_times_FP32beta_then_FP32",
+        "training_statistics": {
+          "x_mean": 0.5419958250816922,
+          "x_std_population": 0.44992880825903714,
+          "y_rms": 0.18970076583983878,
+          "train_rows": 7000,
+          "target_centered": false,
+          "beta_input": false,
+          "x_arithmetic": "raw_float32_then_torch_float32_affine",
+          "target_arithmetic": "raw_float64_divide_train_RMS_then_cast_float32",
+          "physical_train_y_rms": 0.18970076583983878
+        }
+      },
+      "training": {
+        "seed": 42,
+        "epochs": 200,
+        "effective_batch": 32,
+        "microbatch": 32,
+        "optimizer": "AdamW",
+        "lr": 0.0005,
+        "weight_decay": 1e-08,
+        "loss": "mean_absolute_error_physical_pressure",
+        "scheduler": "StepLR",
+        "scheduler_step_size": 80,
+        "scheduler_gamma": 0.5,
+        "gradient_clip_max_norm": 1.0,
+        "validation_every": 10,
+        "selection": "minimum_known_beta_validation_mean_earliest_tie",
+        "initialization": "fresh_seed42_no_historical_checkpoint_warmstart",
+        "training_cudnn_allow_tf32": true,
+        "evaluation_cudnn_allow_tf32": false,
+        "cuda_matmul_allow_tf32": false
+      },
+      "selection": {
+        "selected_epoch": 170
+      },
+      "loader": {
+        "file": "scripts/paper/frozen_cno_unit.py",
+        "function": "load_model(checkpoint, cno_source, device)",
+        "predict": "model(raw_a, beta)"
+      },
+      "test_errors": "paper/results/darcy/cno_unit_beta1_seed42_test.npz",
+      "test_relative_l2": 0.003965776821121831,
+      "reuse": {
+        "frozen_original_training_beta": 1.0,
+        "output_beta_multiplier": true,
+        "selected_epoch": 170,
+        "trained_epochs": 200,
+        "validation_relative_l2": 0.003817922682274565
+      }
+    }
+  ]
+}

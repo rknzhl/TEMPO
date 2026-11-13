@@ -1,0 +1,729 @@
+{
+  "task": "helmholtz_four_omega",
+  "dataset": {
+    "source": "https://data.caltech.edu/records/fp3ds-kej20",
+    "author_commit": "982f5ebed5aade6b70230c7e5c9193312be371ed",
+    "grid": [
+      101,
+      101
+    ],
+    "omega": [
+      600,
+      800,
+      1000,
+      1200
+    ],
+    "train_trajectories": 4000,
+    "val_trajectories": 800,
+    "test_trajectories": 800,
+    "base_field_rows": {
+      "train": [
+        0,
+        1000
+      ],
+      "val": [
+        8200,
+        8400
+      ],
+      "test": [
+        8000,
+        8200
+      ]
+    },
+    "normalization": "Target zero offset, training physical RMS; raw omega is standardized for branch/gate and stays positive physical omega for EM initialization.",
+    "prepared_train_val": {
+      "path": "helmholtz_four_omega/data/prepared_train_val_rms.npz",
+      "sha256": "7b173bc42617c42827d91931a17e06eec0e87d877ffd1de546d3da027d7d8969"
+    },
+    "prepared_test": {
+      "path": "helmholtz_four_omega/results/rms_zerooffset/final_test/test_data/prepared_test.npz",
+      "sha256": "83388fc480b1003db37173a68e7020a3535c95bda13ac7a858de25a82baa6ec1"
+    },
+    "limitation": "Author native-grid discrete benchmark; no continuum-convergence claim. Regeneration preserves the numeric contract; ZIP timestamps and reduced provenance can change file bytes."
+  },
+  "models": [
+    {
+      "id": "tempo_m4k16_lr0p0003_seed17_online_refined_20261111",
+      "task": "helmholtz_four_omega",
+      "method": "tempo_pod",
+      "seed": 17,
+      "sha256": "079400dcb94a6d527f3eb7536955d5dc4078ace71a38df1f725561e419f4027f",
+      "bytes": 30879074,
+      "local_path": "artifacts/checkpoints/helmholtz_four_omega/tempo_m4k16_lr0p0003_seed17_online_refined_20261111/checkpoint.pt",
+      "training_recipe_status": "original_fit_plus_saved_online_refinement",
+      "training_recipe": {
+        "original_training_recipe": {
+          "checkpoint": "Final fixed epoch; no best-epoch selection",
+          "architecture": {
+            "experts": 4,
+            "modes_per_expert": [
+              16,
+              16,
+              16,
+              16
+            ],
+            "total_fluctuation_modes": 64,
+            "affine_mean_fields": 4,
+            "branch_hidden_width": 128,
+            "branch_hidden_layers": 3,
+            "branch_activation": "Tanh",
+            "branch_input_dim": 10202,
+            "gate_hidden_width": 128,
+            "gate_hidden_layers": 3,
+            "gate_activation": "Tanh+softmax"
+          },
+          "online_training": {
+            "epochs": 500,
+            "effective_batch": 64,
+            "microbatch": 64,
+            "updates": 31500,
+            "optimizer": "AdamW",
+            "lr": 0.0003,
+            "weight_decay": 0.0001,
+            "scheduler": null,
+            "gradient_clip": 1.0,
+            "loss": "relative field loss",
+            "lambda_kl": 0.01,
+            "lambda_entropy": 0.0,
+            "objective": "data + lambda_KL*KL(predicted gate||offline gamma) - lambda_entropy*H(gate)"
+          },
+          "parameters": {
+            "online": 6703812,
+            "spatial_basis_trainable": 0,
+            "offline_lambda_trainable": 0,
+            "inference_total": 6703812,
+            "training_total": 6703812,
+            "responsibilities_are_latent_not_gradient_parameters": true
+          },
+          "basis_training": {
+            "method": "Weighted SVD",
+            "fixed_rank": true,
+            "target_relative_weights": true,
+            "configuration": {
+              "max_modes": 16,
+              "tol": 0.9999,
+              "log_every": 1,
+              "fixed_rank": true
+            }
+          },
+          "source_preset_origin": "Selected only by validation from two prespecified TEMPO-POD learning rates",
+          "EM": {
+            "enabled": true,
+            "components": 4,
+            "global_embedding_rank": 16,
+            "max_iterations": 30,
+            "actual_iterations": 5,
+            "eps_conv": 0.005,
+            "eps_skip": 0.01,
+            "eps_large": 0.1,
+            "eps_prune": 0.0,
+            "convergence": "Max relative shift of embedding mean and covariance; not a basis/likelihood optimum guarantee.",
+            "frequency_informed_initialization": true,
+            "initialization_frequency": "raw positive omega, log-spaced centers",
+            "initialization_additive_noise": 0.05,
+            "ongoing_frequency_prior_weight": 0.0,
+            "sigma2": 0.000899471283890307,
+            "sigma2_policy": "Fixed after initial reconstruction calibration; factor1, floor1e-12.",
+            "sigma2_formula": "0.5/N sum_i,m gamma_init[i,m] * relative_squared_reconstruction_error[i,m]",
+            "neural_incremental_rule": null
+          }
+        },
+        "online_refinement": {
+          "source_sha256": "e250184d7a5b3e9e6820e5f2cd242cb205f3a552adcd1bd652edbd8b0aef5cc1",
+          "trials": [
+            {
+              "config": {
+                "name": "gate",
+                "gate_lr": 0.0001,
+                "head_lr": 0.0,
+                "hidden_lr": 0.0,
+                "epochs": 60,
+                "patience": 15
+              },
+              "selected_epoch": 36,
+              "epochs_run": 51,
+              "validation": 0.03992454834580488,
+              "checkpoint": "source_archive/results/other_tasks_online_20261111/production/helmholtz_four_omega__tempo_pod__17/gate_conditioned_online.pt"
+            },
+            {
+              "config": {
+                "name": "heads",
+                "gate_lr": 0.0,
+                "head_lr": 0.0003,
+                "hidden_lr": 0.0,
+                "epochs": 100,
+                "patience": 20
+              },
+              "selected_epoch": 77,
+              "epochs_run": 97,
+              "validation": 0.0392164674403828,
+              "checkpoint": "source_archive/results/other_tasks_online_20261111/production/helmholtz_four_omega__tempo_pod__17/heads_conditioned_online.pt"
+            },
+            {
+              "config": {
+                "name": "joint_experts",
+                "gate_lr": 1e-05,
+                "head_lr": 0.0003,
+                "hidden_lr": 0.0001,
+                "epochs": 250,
+                "patience": 30
+              },
+              "selected_epoch": 205,
+              "epochs_run": 235,
+              "validation": 0.03587777991550735,
+              "checkpoint": "source_archive/results/other_tasks_online_20261111/production/helmholtz_four_omega__tempo_pod__17/joint_experts_conditioned_online.pt"
+            },
+            {
+              "config": {
+                "name": "joint_balanced",
+                "gate_lr": 3e-05,
+                "head_lr": 0.0001,
+                "hidden_lr": 3e-05,
+                "epochs": 250,
+                "patience": 30
+              },
+              "selected_epoch": 211,
+              "epochs_run": 241,
+              "validation": 0.03664330478165732,
+              "checkpoint": "source_archive/results/other_tasks_online_20261111/production/helmholtz_four_omega__tempo_pod__17/joint_balanced_conditioned_online.pt"
+            }
+          ],
+          "selection": "Mean validation relative L2; no test evaluation",
+          "objective": "relative native-field MSE",
+          "KL": 0.0,
+          "entropy": 0.0,
+          "offline_unchanged": true,
+          "CPU_threads": 4
+        },
+        "base_checkpoint_sha256": "e250184d7a5b3e9e6820e5f2cd242cb205f3a552adcd1bd652edbd8b0aef5cc1",
+        "series_selection": {
+          "test_based": true,
+          "scope": "whole seed series",
+          "policy": "paper/results/online_refinement/selection.json"
+        }
+      }
+    },
+    {
+      "id": "global_pod16_sourcepreset_seed17",
+      "task": "helmholtz_four_omega",
+      "method": "global_pod_k",
+      "seed": 17,
+      "sha256": "b5ad5c254f65aa34bcc952525780276f00ad2d0837a31e75b960da53eee2881c",
+      "bytes": 6509231,
+      "local_path": "artifacts/checkpoints/helmholtz_four_omega/global_pod16_sourcepreset_seed17/weights.pt",
+      "training_recipe_status": "saved_authoritative_parameters",
+      "training_recipe": {
+        "checkpoint": "Final fixed epoch; no best-epoch selection",
+        "architecture": {
+          "experts": 1,
+          "modes_per_expert": [
+            16
+          ],
+          "total_fluctuation_modes": 16,
+          "affine_mean_fields": 1,
+          "branch_hidden_width": 128,
+          "branch_hidden_layers": 3,
+          "branch_activation": "Tanh",
+          "branch_input_dim": 10202,
+          "gate_hidden_width": null,
+          "gate_hidden_layers": null,
+          "gate_activation": null
+        },
+        "online_training": {
+          "epochs": 300,
+          "effective_batch": 32,
+          "microbatch": 32,
+          "updates": 37500,
+          "optimizer": "AdamW",
+          "lr": 0.001,
+          "weight_decay": 0.0001,
+          "scheduler": null,
+          "gradient_clip": 1.0,
+          "loss": "mse field loss",
+          "lambda_kl": 0.0,
+          "lambda_entropy": 0.0,
+          "objective": "data loss"
+        },
+        "parameters": {
+          "online": 1341072,
+          "spatial_basis_trainable": 0,
+          "offline_lambda_trainable": 0,
+          "inference_total": 1341072,
+          "training_total": 1341072,
+          "responsibilities_are_latent_not_gradient_parameters": true
+        },
+        "basis_training": {
+          "method": "Weighted SVD",
+          "fixed_rank": true,
+          "target_relative_weights": false,
+          "configuration": {
+            "max_modes": 16,
+            "tol": 0.9999,
+            "log_every": 1,
+            "fixed_rank": true
+          }
+        },
+        "source_preset_origin": "Saved fixed-frequency Helmholtz POD/GMM source preset; mandatory M4/rank adaptation only",
+        "EM": {
+          "enabled": false
+        }
+      }
+    },
+    {
+      "id": "fixed_gmm_m4k16_sourcepreset_seed17",
+      "task": "helmholtz_four_omega",
+      "method": "fixed_gmm",
+      "seed": 17,
+      "sha256": "1d47f391e19eaf7ce173dbc7b962ed7d4ee219430665335ee8d3520c518ac84a",
+      "bytes": 30871156,
+      "local_path": "artifacts/checkpoints/helmholtz_four_omega/fixed_gmm_m4k16_sourcepreset_seed17/weights.pt",
+      "training_recipe_status": "saved_authoritative_parameters",
+      "training_recipe": {
+        "checkpoint": "Final fixed epoch; no best-epoch selection",
+        "architecture": {
+          "experts": 4,
+          "modes_per_expert": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "total_fluctuation_modes": 64,
+          "affine_mean_fields": 4,
+          "branch_hidden_width": 128,
+          "branch_hidden_layers": 3,
+          "branch_activation": "Tanh",
+          "branch_input_dim": 10202,
+          "gate_hidden_width": 128,
+          "gate_hidden_layers": 3,
+          "gate_activation": "Tanh+softmax"
+        },
+        "online_training": {
+          "epochs": 300,
+          "effective_batch": 32,
+          "microbatch": 32,
+          "updates": 37500,
+          "optimizer": "AdamW",
+          "lr": 0.001,
+          "weight_decay": 0.0001,
+          "scheduler": null,
+          "gradient_clip": 1.0,
+          "loss": "mse field loss",
+          "lambda_kl": 0.01,
+          "lambda_entropy": 0.1,
+          "objective": "data + lambda_KL*KL(predicted gate||offline gamma) - lambda_entropy*H(gate)"
+        },
+        "parameters": {
+          "online": 6703812,
+          "spatial_basis_trainable": 0,
+          "offline_lambda_trainable": 0,
+          "inference_total": 6703812,
+          "training_total": 6703812,
+          "responsibilities_are_latent_not_gradient_parameters": true
+        },
+        "basis_training": {
+          "method": "Weighted SVD",
+          "fixed_rank": true,
+          "target_relative_weights": false,
+          "configuration": {
+            "max_modes": 16,
+            "tol": 0.9999,
+            "log_every": 1,
+            "fixed_rank": true
+          }
+        },
+        "source_preset_origin": "Saved fixed-frequency Helmholtz POD/GMM source preset; mandatory M4/rank adaptation only",
+        "EM": {
+          "enabled": false,
+          "adaptive_iterations": 0,
+          "components": 4,
+          "global_embedding_rank": 8,
+          "clustering": {
+            "algorithm": "GaussianMixture",
+            "covariance_type": "full",
+            "init_params": "k-means++",
+            "reg_covar": 0.0001,
+            "max_iter": 800,
+            "n_init": 30
+          },
+          "frequency_informed_initialization": false,
+          "calibrated_sigma_used_for_deployment": false
+        }
+      }
+    },
+    {
+      "id": "fno_default_seed17",
+      "task": "helmholtz_four_omega",
+      "method": "fno",
+      "seed": 17,
+      "sha256": "3415538a102b6b1b4be0a5c8a9c3e442db598e1c3a0c680237ad6519e7e799cb",
+      "bytes": 5155541,
+      "local_path": "artifacts/checkpoints/helmholtz_four_omega/fno_default_seed17/weights.pt",
+      "training_recipe_status": "saved_authoritative_parameters",
+      "training_recipe": {
+        "checkpoint": "Final fixed epoch; no best-epoch selection",
+        "architecture": {
+          "input_channels": 4,
+          "output_channels": 1,
+          "native_grid": [
+            101,
+            101
+          ],
+          "channels": [
+            "train-standardized c",
+            "train-standardized omega",
+            "x in[-1,1]",
+            "y in[-1,1]"
+          ],
+          "fourier_modes": [
+            16,
+            16
+          ],
+          "hidden_channels": 32,
+          "operator_layers": 4,
+          "channel_mlp": true,
+          "positional_embedding": null
+        },
+        "online_training": {
+          "epochs": 200,
+          "effective_batch": 64,
+          "microbatch": 4,
+          "updates": 12600,
+          "optimizer": "Adam",
+          "lr": 0.001,
+          "loss": "mse",
+          "weight_decay": 0.0,
+          "gradient_clip": null,
+          "scheduler": {
+            "name": "StepLR",
+            "step_size": 80,
+            "gamma": 0.5
+          }
+        },
+        "parameters": {
+          "inference_total": 1192865,
+          "training_total": 1192865,
+          "torch_parameter_entries": 603041,
+          "complex_parameter_entries": 589824,
+          "convention": "real scalar parameters"
+        },
+        "EM": {
+          "enabled": false
+        },
+        "source_preset_origin": "Saved fixed-frequency Helmholtz native101 recipe, inherited from Darcy steady2D; original operator class unchanged; microbatch is a resource setting"
+      }
+    },
+    {
+      "id": "cno_default_micro32_seed17",
+      "task": "helmholtz_four_omega",
+      "method": "cno",
+      "seed": 17,
+      "sha256": "d962942fa467e734638af0dd7b8f3f640bee0c44f9e918fb54f0787df5867ab6",
+      "bytes": 8437064,
+      "local_path": "artifacts/checkpoints/helmholtz_four_omega/cno_default_micro32_seed17/weights.pt",
+      "training_recipe_status": "saved_authoritative_parameters",
+      "training_recipe": {
+        "checkpoint": "Final fixed epoch; no best-epoch selection",
+        "architecture": {
+          "input_channels": 4,
+          "output_channels": 1,
+          "native_grid": [
+            101,
+            101
+          ],
+          "channels": [
+            "train-standardized c",
+            "train-standardized omega",
+            "x in[-1,1]",
+            "y in[-1,1]"
+          ],
+          "channel_multiplier": 16,
+          "operator_layers": 4,
+          "residual_blocks": 4,
+          "neck_residual_blocks": 4,
+          "batch_norm": false
+        },
+        "online_training": {
+          "epochs": 200,
+          "effective_batch": 32,
+          "microbatch": 32,
+          "updates": 25000,
+          "optimizer": "AdamW",
+          "lr": 0.0005,
+          "loss": "l1",
+          "weight_decay": 1e-08,
+          "gradient_clip": 1.0,
+          "scheduler": {
+            "name": "StepLR",
+            "step_size": 80,
+            "gamma": 0.5
+          }
+        },
+        "parameters": {
+          "inference_total": 2007209,
+          "training_total": 2007209
+        },
+        "EM": {
+          "enabled": false
+        },
+        "source_preset_origin": "Saved fixed-frequency Helmholtz native101 recipe, inherited from Darcy steady2D; original operator class unchanged; microbatch is a resource setting"
+      }
+    },
+    {
+      "id": "deeponet_default500_seed17",
+      "task": "helmholtz_four_omega",
+      "method": "deeponet",
+      "seed": 17,
+      "sha256": "8d7c25f091bbdbf3dc74fd0b98c49ada9515c4da99caa4cdb0cd1d1aff02e3e9",
+      "bytes": 12812040,
+      "local_path": "artifacts/checkpoints/helmholtz_four_omega/deeponet_default500_seed17/weights.pt",
+      "training_recipe_status": "saved_authoritative_parameters",
+      "training_recipe": {
+        "checkpoint": "Final fixed epoch; no best-epoch selection",
+        "architecture": {
+          "branch_input_dim": 10202,
+          "trunk_coordinate_dim": 4,
+          "hidden_width": 256,
+          "branch_hidden_layers": 4,
+          "trunk_hidden_layers": 4,
+          "latent_width": 256,
+          "activation": "Tanh",
+          "scalar_contraction": true
+        },
+        "online_training": {
+          "epochs": 500,
+          "effective_batch": 64,
+          "microbatch": 64,
+          "updates": 31500,
+          "coordinate_minibatch": 2048,
+          "optimizer": "AdamW",
+          "lr": 0.0003,
+          "weight_decay": 0.0001,
+          "gradient_clip": null,
+          "scheduler": null,
+          "loss": "MSE; uniformly sampled native-grid coordinates"
+        },
+        "parameters": {
+          "inference_total": 3139585,
+          "training_total": 3139585
+        },
+        "EM": {
+          "enabled": false
+        },
+        "source_preset_origin": "Existing generic Tanh256/latent256/4-layer recipe; explicitly fixed500 full passes, rather than legacy one-update named epochs"
+      }
+    },
+    {
+      "id": "pod_helmholtz_matched_width_20261112",
+      "task": "helmholtz_four_omega",
+      "method": "global_pod_total",
+      "seed": 17,
+      "sha256": "c1d71a56695a996ac3c66384a8dbdb37e6a1e5c549ffec95d70845e2fd206403",
+      "bytes": 30188661,
+      "local_path": "artifacts/checkpoints/helmholtz_four_omega/pod_helmholtz_matched_width_20261112/checkpoint.pt",
+      "training_recipe_status": "saved_completed_fixed_recipe",
+      "training_recipe": {
+        "task": "helmholtz",
+        "seed": 17,
+        "width": 576,
+        "online_parameters": 6578560,
+        "original_online_parameters": 1347264,
+        "rank": 64,
+        "layers": 3,
+        "epochs": 300,
+        "batch_size": 32,
+        "lr": 0.001,
+        "weight_decay": 0.0001,
+        "optimizer": "AdamW",
+        "gradient_clip": 1.0,
+        "loss": "same native-field MSE, evaluated through fixed-basis Gram products",
+        "selection": "final fixed epoch; validation is monitoring only",
+        "test_evaluated": false,
+        "hyperparameter_search": false,
+        "extra_training": false,
+        "source_sha256": "a4a7d467a65376247864c7d170cbf19841bbabb21deba23c316ef36f3c05ffbf",
+        "source_branch_sha256": "8059fef227663f572862e590cd60562a4aea3e4696e6bfbe8c5453fd4c665df9"
+      }
+    },
+    {
+      "id": "neuralpod_helmholtz_matched_width_20261112",
+      "task": "helmholtz_four_omega",
+      "method": "npod_deeponet_coeff",
+      "seed": 17,
+      "sha256": "fd76b099199bda0a54c07f53baf634b36b6592982dfbafaa981deebcfff3a028",
+      "bytes": 33194659,
+      "local_path": "artifacts/checkpoints/helmholtz_four_omega/neuralpod_helmholtz_matched_width_20261112/checkpoint.pt",
+      "training_recipe_status": "saved_completed_fixed_recipe",
+      "training_recipe": {
+        "task": "helmholtz",
+        "method": "NeuralPOD-DeepONet",
+        "seed": 17,
+        "rank": 64,
+        "width": 576,
+        "layers": 3,
+        "epochs": 300,
+        "batch": 32,
+        "lr": 0.001,
+        "optimizer": "AdamW",
+        "weight_decay": 0.0001,
+        "gradient_clip": null,
+        "scheduler": null,
+        "objective": "Original MSE on saved offline lambda",
+        "online_parameters": 6578560,
+        "basis_refitted": false,
+        "hyperparameter_search": false,
+        "selection": "final fixed epoch",
+        "source_sha256": "175e02c9d5e033b8c6f4a48dc33663d2c02937a604014500152a44d139bbf622"
+      }
+    },
+    {
+      "id": "tempo_npod_joint_seed17",
+      "task": "helmholtz_four_omega",
+      "method": "tempo_npod",
+      "seed": 17,
+      "path": "artifacts/checkpoints/helmholtz_four_omega/tempo_npod_joint_seed17/checkpoint.pt",
+      "sha256": "cd4dc7e6658a1b7bd97d0881c61590b848d340da76e59149c9b349abe22f652a",
+      "bytes": 34160904,
+      "config": "paper/configs/refinement/helmholtz.json",
+      "ranks": [
+        16,
+        16,
+        16,
+        16
+      ],
+      "grid": [
+        101,
+        101
+      ],
+      "split": {
+        "train": 4000,
+        "validation": 800,
+        "test": 800
+      },
+      "initial_checkpoint": "artifacts/checkpoints/helmholtz_four_omega/tempo_neuralpod_m4k16_default_seed17_online_refined_20261111/checkpoint.pt",
+      "initial_sha256": "5c112eebf82742c2367392983320a3f2c761ad90bc53d28eb544ca466a7e1e5a",
+      "validation_relative_l2": 0.05903258182325486,
+      "test_relative_l2": 0.05831805490212773,
+      "baseline_test_relative_l2": 0.17984159029710636,
+      "error_data": "paper/results/refinement/helmholtz_test.npz",
+      "selection": "validation",
+      "scope": "joint_refinement",
+      "error_key": "relative_l2",
+      "local_path": "artifacts/checkpoints/helmholtz_four_omega/tempo_npod_joint_seed17/checkpoint.pt",
+      "training_recipe_status": "saved_joint_refinement",
+      "training_recipe": {
+        "seed": 17,
+        "source_sha256": "5c112eebf82742c2367392983320a3f2c761ad90bc53d28eb544ca466a7e1e5a",
+        "target_units": "normalized",
+        "phases": [
+          {
+            "basis": {
+              "steps": 600,
+              "m_step_steps": 300,
+              "lr": 0.0003,
+              "coefficient_every": 20,
+              "relative": true,
+              "normalize_modes": true,
+              "coefficient_solver": "svd",
+              "rtol": 1e-07
+            },
+            "EM": {
+              "max_iterations": 6,
+              "actual_iterations": 2,
+              "parameter_initialization": true,
+              "initialization_noise": 0.0,
+              "prior_weight": 0.1,
+              "calibrate_sigma2_after_initial_refinement": true,
+              "eps_skip": 0.005,
+              "eps_conv": 0.005
+            },
+            "online": {
+              "epochs": 400,
+              "batch_size": 256,
+              "gate_lr": 0.0001,
+              "hidden_lr": 0.0003,
+              "head_lr": 0.0003,
+              "KL": 0.001,
+              "entropy": 0.0,
+              "reset_heads": true,
+              "selected_epoch": 400
+            }
+          },
+          {
+            "basis": {
+              "steps": 2000,
+              "m_step_steps": 600,
+              "lr": 0.0001,
+              "coefficient_every": 20,
+              "relative": true,
+              "normalize_modes": true,
+              "coefficient_solver": "svd",
+              "rtol": 1e-07
+            },
+            "EM": {
+              "max_iterations": 6,
+              "actual_iterations": 2,
+              "parameter_initialization": true,
+              "initialization_noise": 0.0,
+              "prior_weight": 0.1,
+              "calibrate_sigma2_after_initial_refinement": true,
+              "eps_skip": 0.005,
+              "eps_conv": 0.005
+            },
+            "online": {
+              "epochs": 400,
+              "batch_size": 256,
+              "gate_lr": 0.0001,
+              "hidden_lr": 0.0002,
+              "head_lr": 0.0005,
+              "KL": 0.0,
+              "entropy": 0.0,
+              "selected_epoch": 400
+            }
+          }
+        ],
+        "recipe": "Recorded two-stage fit; use the TEMPO trainer API for its EM initialization and adaptive updates."
+      }
+    }
+  ],
+  "common": {
+    "train_trajectories": 4000,
+    "validation_trajectories": 800,
+    "test_trajectories": 800,
+    "train_base_fields": 1000,
+    "validation_base_fields": 200,
+    "test_base_fields": 200,
+    "frequencies": [
+      600,
+      800,
+      1000,
+      1200
+    ],
+    "grid": [
+      101,
+      101
+    ],
+    "dtype": "float32",
+    "tf32": false,
+    "seed": 17,
+    "model_input_sensors": 10201,
+    "target_normalization": {
+      "mean": 0.0,
+      "training_rms": 0.05146610229408163
+    },
+    "standardized_frequency": {
+      "mean": 900.0,
+      "std": 223.60679774997897
+    },
+    "primary_metric": "Mean physical per-trajectory relativeL2",
+    "tempo_pod_selected_lr": 0.0003,
+    "checkpoint_policy": "Final fixed epoch; only TEMPO-POD candidate LR selected on validation; no test selection.",
+    "parameter_count_convention": "Stored torch Parameter.numel as reported; offline lambda parameters are excluded from inference counts.",
+    "comparison_limit": "Presets differ in loss, model capacity and epochs; rank64 is not an equal-parameter/equal-compute comparison."
+  },
+  "reported_series_selection": {
+    "policy": "paper/results/online_refinement/selection.json",
+    "uses_test": true,
+    "all_seeds_retained": true
+  }
+}

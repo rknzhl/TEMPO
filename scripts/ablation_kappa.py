@@ -89,7 +89,6 @@ def _compute_bases(sub_trainers, x_flat, device):
 
 @torch.no_grad()
 def _predict_batched(model, u0_sensors, kappa, means, modes, batch=256):
-    """Run model.forward in batches to avoid OOM, concat results."""
     preds, ws = [], []
     for i in range(0, len(u0_sensors), batch):
         p, w = model(u0_sensors[i:i+batch], kappa[i:i+batch], means, modes)
@@ -99,7 +98,6 @@ def _predict_batched(model, u0_sensors, kappa, means, modes, batch=256):
 
 
 def _report(variant_label, err_vec, kappa_np, param_label, gating_w=None):
-    """Print per-variant summary: overall error + per-kappa breakdown with gates."""
     print(f"  {variant_label}: overall={err_vec.mean():.4f}")
     for v in np.unique(kappa_np):
         mask = kappa_np == v

@@ -1,0 +1,154 @@
+{
+  "task": "sod",
+  "grid": [
+    3,
+    16,
+    128
+  ],
+  "physical_fields": [
+    "density",
+    "velocity",
+    "pressure"
+  ],
+  "total_modes": 48,
+  "split": {
+    "train": 1232,
+    "validation": 408,
+    "test": 1024
+  },
+  "seed": 17,
+  "selection": "validation",
+  "models": [
+    {
+      "id": "tempo_pod_small_seed17",
+      "method": "tempo_pod",
+      "path": "artifacts/checkpoints/sod/tempo_pod_small_seed17/checkpoint.pt",
+      "sha256": "11e8f1b31aab783045e1301ec8d96348f4c8039ecba86e68d5255c2cd4763c51",
+      "neural_parameters": 11866,
+      "ranks": [
+        24,
+        24
+      ],
+      "test_relative_l2": 0.03270029038138407,
+      "validation_relative_l2": 0.032113311631875585,
+      "error_data": "paper/results/sod_capacity/tempo_test.npz",
+      "training": {
+        "seed": 17,
+        "architecture": {
+          "lr": 0.001,
+          "n_epochs": 2400,
+          "batch_size": 256,
+          "hidden_dim": 46,
+          "n_layers": 3,
+          "sensor_stride": 1,
+          "lambda_kl": 0.0,
+          "lambda_ent": 0.0,
+          "log_every": 50,
+          "val_every": 50,
+          "data_loss": "relative",
+          "relative_loss_eps": 1e-12,
+          "gate_hidden_dim": 8
+        },
+        "ranks": [
+          24,
+          24
+        ],
+        "stages": [
+          {
+            "optimizer": "AdamW",
+            "phase": "offline coefficient pretraining",
+            "epochs": 400,
+            "lr": 0.001,
+            "batch_size": 256
+          },
+          {
+            "optimizer": "AdamW",
+            "epochs": 2400,
+            "gate_lr": 0.0003,
+            "hidden_lr": 0.001,
+            "head_lr": 0.001,
+            "batch_size": 256,
+            "scheduler": "cosine",
+            "patience": 300
+          },
+          {
+            "optimizer": "AdamW",
+            "epochs": 3000,
+            "gate_lr": 0.0001,
+            "hidden_lr": 0.0003,
+            "head_lr": 0.0003,
+            "batch_size": 256,
+            "scheduler": "cosine",
+            "patience": 300,
+            "feature_standardization": "train only, folded into first layers"
+          },
+          {
+            "optimizer": "LBFGS",
+            "max_iterations": [
+              2000,
+              10000
+            ],
+            "lr": 0.5,
+            "history_size": 20,
+            "line_search": "strong_wolfe",
+            "input_and_coefficient_conditioning": true,
+            "conditioning_folded": true,
+            "patience_iterations": 300
+          }
+        ],
+        "loss": "mean relative squared field error",
+        "selection": "validation",
+        "source_checkpoint_sha256": "a9c821cc3da9d5d64fdd68ffe68e94cbe64f04c1e668590f77e8917e0f373c86"
+      }
+    },
+    {
+      "id": "global_pod48_width64_seed17",
+      "method": "global_pod_total",
+      "path": "artifacts/checkpoints/sod/global_pod48_width64_seed17/checkpoint.pt",
+      "sha256": "47f7e4e200432dd0fde0b8a85921084781dc8841dfa4de7f2fd9f2779a135215",
+      "neural_parameters": 11952,
+      "ranks": [
+        48
+      ],
+      "test_relative_l2": 0.033692425717760335,
+      "validation_relative_l2": 0.03317970111834992,
+      "error_data": "paper/results/sod_capacity/pod_test.npz",
+      "training": {
+        "seed": 17,
+        "architecture": {
+          "lr": 0.001,
+          "n_epochs": 2000,
+          "batch_size": 128,
+          "hidden_dim": 64,
+          "n_layers": 3,
+          "sensor_stride": 1,
+          "lambda_kl": 0.0,
+          "lambda_ent": 0.0,
+          "log_every": 50,
+          "val_every": 50,
+          "data_loss": "mse",
+          "relative_loss_eps": 1e-12,
+          "gate_hidden_dim": null
+        },
+        "ranks": [
+          48
+        ],
+        "stages": [
+          {
+            "optimizer": "AdamW",
+            "epochs": 2000,
+            "lr": 0.001,
+            "batch_size": 128,
+            "weight_decay": 0.0001,
+            "gradient_clip": 1.0
+          }
+        ],
+        "loss": "mean squared field error",
+        "selection": "fixed final epoch",
+        "source_checkpoint_sha256": "a8fdb548ea1c2635b2a35e27fc21ac87f0fdcb1b5250e3296c6b0c824aefb8a8"
+      }
+    }
+  ],
+  "field_examples": "paper/figures/data/sod_capacity/examples.npz",
+  "artifact_archive": "artifacts/TEMPO-models.tar"
+}

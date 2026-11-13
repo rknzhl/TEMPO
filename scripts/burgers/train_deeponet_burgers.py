@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Train vanilla DeepONet (Lu 2019) on 1D Burgers Flow - pure PyTorch."""
+"""Train DeepONet on 1D Burgers."""
 import argparse
 import json
 import os
@@ -54,7 +54,6 @@ def _data_path(nu: float, data_dir: str) -> str:
 
 
 def _mlp(in_dim, out_dim, hidden_dim, n_layers, act=nn.Tanh):
-    """MLP: [in_dim, hidden_dim, ..., hidden_dim, out_dim]"""
     layers = [nn.Linear(in_dim, hidden_dim), act()]
     for _ in range(n_layers - 1):
         layers.extend([nn.Linear(hidden_dim, hidden_dim), act()])
