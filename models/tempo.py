@@ -41,12 +41,13 @@ class TEMPOConfig:
     eps_large: float = 0.1
     eps_prune: float = 0.01
     eps_conv: float = 0.005
-    heteroscedastic: bool = True   # relative error in the E-step; robust for multi-scale data
+    heteroscedastic: bool = True   # Per-trajectory relative squared residuals.
     kappa_init: bool = False
     kappa_prior_weight: float = 1.0
     kappa_init_noise: float = 0.05  # breaks symmetry at initialization
     basis_config: Any = field(default_factory=lambda: PODConfig(max_modes=8))
     basis_factory: Callable = field(default_factory=lambda: pod_factory)
+    kappa_prior_with_gmm: bool = False
 
 
 class TEMPOTrainer:
@@ -85,6 +86,13 @@ class TEMPOTrainer:
                 self.alpha, kappa, s.device)
         else:
             self.gamma, self.pi, self.mu, self.Sigma = self._init_gmm(self.alpha, s.device)
+            if self.cfg.kappa_prior_with_gmm and kappa is not None:
+                self._set_kappa_grid(kappa)
+                # Align prior centers with GMM labels using train-only log(kappa).
+                log_k = kappa.detach().cpu().reshape(-1).log()
+                weights = self.gamma.detach().cpu()
+                order = ((weights.T @ log_k) / weights.sum(0).clamp_min(1e-12)).argsort()
+                self._kappa_centers = self._kappa_centers[order.argsort()]
         print(f"  pi={[f'{p:.3f}' for p in self.pi.tolist()]}")
         print("Phase 3: regime bases init")
         self.trainers = self._init_bases(s, x, t, kappa)
@@ -92,7 +100,6 @@ class TEMPOTrainer:
         self._calibrate_sigma2(s, x)
 
     def _calibrate_sigma2(self, s: Tensor, x: Tensor) -> None:
-        """Set sigma2 from initial reconstructions."""
         N, total = s.shape[0], 0.0
         dev = x.device
         w = self._w.to(dev)
@@ -106,7 +113,7 @@ class TEMPOTrainer:
                     if self.cfg.heteroscedastic:
                         res_sq = res_sq / self._s_norm_sq[i:i+256].to(dev)
                     total += (gamma_m[i:i+256] * res_sq).sum().item()
-        self.cfg.sigma2 = 0.5 * total / N
+        self.cfg.sigma2 = max(0.5 * total / N, 1e-12)
         print(f"  calibrated sigma2 = {self.cfg.sigma2:.4e}")
 
     def _global_pod(self, s: Tensor, x: Tensor, t: Tensor) -> Tensor:
@@ -133,8 +140,7 @@ class TEMPOTrainer:
             to_tensor(gmm.covariances_),
         )
 
-    def _init_gmm_kappa(self, alpha: Tensor, kappa: Tensor, device: torch.device) -> tuple:
-        """Soft-assign regimes from log(kappa) spacing; adjacent regimes have ~50% overlap."""
+    def _set_kappa_grid(self, kappa: Tensor) -> None:
         log_k = kappa.float().cpu().squeeze(-1).log()
 
         unique_log = torch.unique(log_k).sort().values
@@ -152,6 +158,14 @@ class TEMPOTrainer:
         inter = span / max(M - 1, 1)
         T = 0.2 * inter
 
+        self._kappa_centers = centers
+        self._kappa_T = T
+
+    def _init_gmm_kappa(self, alpha: Tensor, kappa: Tensor, device: torch.device) -> tuple:
+        """Soft-assign regimes from log(kappa) spacing."""
+        self._set_kappa_grid(kappa)
+        log_k = kappa.float().cpu().reshape(-1).log()
+        centers, T = self._kappa_centers, self._kappa_T
         dist_sq = (log_k[:, None] - centers[None, :]) ** 2
         log_gamma = -0.5 * dist_sq / (T ** 2)
         log_gamma = log_gamma - log_gamma.logsumexp(dim=1, keepdim=True)
@@ -168,9 +182,6 @@ class TEMPOTrainer:
             A = (gamma[:, m] / N_m[m]).sqrt().unsqueeze(1) * diff
             Sigma[m] = A.T @ A
 
-        self._kappa_centers = centers
-        self._kappa_T = T
-
         if self.cfg.kappa_init_noise > 0.0:
             noise = torch.rand_like(gamma) * self.cfg.kappa_init_noise
             gamma = gamma + noise
@@ -180,7 +191,6 @@ class TEMPOTrainer:
         return gamma, pi, mu, Sigma
 
     def _init_bases(self, s: Tensor, x: Tensor, t: Tensor, kappa: Tensor) -> list:
-        """Train one basis per regime with initial gamma."""
         trainers = []
         for m in range(self.cfg.M):
             print(f"  regime {m + 1}/{self.cfg.M}")
@@ -193,7 +203,6 @@ class TEMPOTrainer:
         return trainers
 
     def _em_loop(self, s: Tensor, x: Tensor, t: Tensor, kappa: Tensor) -> None:
-        """EM iterations until convergence or max_em_iters."""
         N = s.shape[0]
         P = self.alpha.shape[1]
         k_bic = self.cfg.M * P + self.cfg.M * P * (P + 1) // 2 + (self.cfg.M - 1)
@@ -271,7 +280,7 @@ class TEMPOTrainer:
                         res_sq = res_sq / self._s_norm_sq[i:i+256].to(dev)
                     log_p[i:i+256, m] = log_pi - res_sq / (2.0 * self.cfg.sigma2)
 
-            if self.cfg.kappa_init and kappa is not None and self._kappa_centers is not None:
+            if self.cfg.kappa_prior_weight and kappa is not None and self._kappa_centers is not None:
                 log_k = kappa.float().cpu().squeeze(-1).log()
                 centers = self._kappa_centers
                 T = self._kappa_T
@@ -327,7 +336,6 @@ class TEMPOTrainer:
 
     def _m2_full_rerun(self, m: int, s: Tensor, x: Tensor, t: Tensor,
                        kappa: Tensor, gamma_m: Tensor) -> None:
-        """Recreate basis from scratch and retrain with updated gamma."""
         trainer = self.cfg.basis_factory(s, x, self.cfg.basis_config)
         trainer.train(s, x, t, kappa, gamma=gamma_m)
         self.trainers[m] = trainer

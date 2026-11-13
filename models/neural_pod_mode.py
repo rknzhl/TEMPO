@@ -6,16 +6,11 @@ import torch.nn as nn
 
 def _mlp(in_dim: int, out_dim: int, hidden_dim: int, n_layers: int,
           act: type[nn.Module] = nn.Tanh) -> nn.Sequential:
-    """Fully connected network with uniform hidden width."""
     layers: list[nn.Module] = [nn.Linear(in_dim, hidden_dim), act()]
     for _ in range(n_layers - 1):
         layers += [nn.Linear(hidden_dim, hidden_dim), act()]
     layers.append(nn.Linear(hidden_dim, out_dim))
     return nn.Sequential(*layers)
-
-
-
-
 
 
 class SpatialFourierNN(nn.Module):
@@ -29,12 +24,11 @@ class SpatialFourierNN(nn.Module):
         if scales is not None:
             k = num_frequencies // len(scales)
             Bs = [torch.randn(k, d_x) * s for s in scales[:-1]]
-            # last scale takes the remainder so the total equals num_frequencies
             Bs.append(torch.randn(num_frequencies - k * (len(scales) - 1), d_x) * scales[-1])
             B = torch.cat(Bs, dim=0)
         else:
             B = torch.randn(num_frequencies, d_x) * scale
-        self.register_buffer("B", B, persistent=False)
+        self.register_buffer("B", B)
 
         layers: list[nn.Module] = [nn.Linear(2 * num_frequencies, hidden_dim), nn.Tanh()]
         for _ in range(n_layers - 1):
@@ -47,12 +41,6 @@ class SpatialFourierNN(nn.Module):
         x_proj = 2 * math.pi * x @ self.B.to(x.device).T
         feats = torch.cat([torch.sin(x_proj), torch.cos(x_proj)], dim=-1)
         return self.net(feats).squeeze(-1)
-
-
-
-
-
-
 
 
 class FourierPODMode(nn.Module):

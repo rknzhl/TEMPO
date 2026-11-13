@@ -37,7 +37,6 @@ class TrainHistory:
 
 @dataclass
 class FourierNeuralPODConfig:
-    """Hyperparameters for Fourier basis mode extraction."""
     tol: float = 1e-3
     lr: float = 5e-4
     lr_lambda: float = 1e-2
@@ -54,7 +53,7 @@ class FourierNeuralPODConfig:
 
 
 class FourierNeuralPODTrainer:
-    """Sequential mode extraction with Fourier spatial basis. Trajectories batched over N; s stays on CPU."""
+    """Fit Fourier mean and modes sequentially, streaming trajectories from CPU."""
 
     def __init__(self, basis: FourierRegimeBasis, cfg: FourierNeuralPODConfig) -> None:
         self.basis = basis
@@ -167,9 +166,8 @@ class FourierNeuralPODTrainer:
             div_factor=self.cfg.div_factor,
         )
 
-        subset_n = max(B, int(self.cfg.epoch_subset * N))
+        subset_n = min(N, max(B, int(self.cfg.epoch_subset * N)))
 
-# top-k by gamma keeps the highest-responsibility trajectories in every epoch
         idx_subset = gamma_cpu.topk(subset_n).indices
         idx_subset_dev = idx_subset.to(dev)
 

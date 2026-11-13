@@ -5,8 +5,6 @@ import torch.nn as nn
 from .neural_pod_mode import SpatialFourierNN, FourierPODMode
 
 
-
-
 class FourierRegimeBasis(nn.Module):
     """Sequential Fourier basis: SpatialFourierNN mean + FourierPODMode list with per-trajectory lambdas."""
 

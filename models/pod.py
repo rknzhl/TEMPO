@@ -23,10 +23,10 @@ class TrainHistory:
 
 @dataclass
 class PODConfig:
-    """Hyperparameters for classical POD via SVD."""
     max_modes: int = 10
     tol: float = 0.9999
-    log_every: int = 1 
+    log_every: int = 1
+    fixed_rank: bool = False  # use exactly max_modes when the matrix dimension permits
 
 
 class PODBasis(nn.Module):
@@ -37,7 +37,6 @@ class PODBasis(nn.Module):
         self._initialized = False
 
     def initialize(self, mean: Tensor, modes: Tensor, coeffs: Tensor) -> None:
-        """Store SVD results (mean, modes, coeffs) as non-trainable buffers."""
         self.register_buffer("mean", mean)
         self.register_buffer("modes", modes)
         self.register_buffer("coeffs", coeffs)
@@ -102,7 +101,9 @@ class PODTrainer:
         cumvar = torch.cumsum(energy, dim=0) / energy.sum()
         above_tol = (cumvar >= self.cfg.tol).nonzero(as_tuple=True)[0]
         n_for_tol = int(above_tol[0].item()) + 1 if len(above_tol) > 0 else len(sigma)
-        P = min(n_for_tol, self.cfg.max_modes, len(sigma))
+        P = min(self.cfg.max_modes, len(sigma))
+        if not self.cfg.fixed_rank:
+            P = min(P, n_for_tol)
 
         print(f"  P={P} modes ({self.cfg.tol*100:.2f}% variance, needed {n_for_tol})")
         for p in range(P):

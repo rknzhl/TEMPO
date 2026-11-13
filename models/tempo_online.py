@@ -91,6 +91,18 @@ class TEMPOOnlineConfig:
     lambda_ent: float = 0.1
     log_every: int = 50
     val_every: int = 50
+    data_loss: str = "mse"
+    # Floor for per-trajectory mean target energy in the trainer's target units.
+    relative_loss_eps: float = 1e-12
+    gate_hidden_dim: int | None = None
+
+    def __post_init__(self) -> None:
+        if self.gate_hidden_dim is not None and self.gate_hidden_dim < 1:
+            raise ValueError('gate_hidden_dim must be positive.')
+        if self.data_loss not in {"mse", "relative"}:
+            raise ValueError("data_loss must be 'mse' or 'relative'.")
+        if not math.isfinite(self.relative_loss_eps) or self.relative_loss_eps <= 0:
+            raise ValueError("relative_loss_eps must be finite and positive.")
 
 
 class TEMPOOnlineTrainer:
@@ -100,6 +112,13 @@ class TEMPOOnlineTrainer:
         self.model = model
         self.cfg = cfg
         self.val_history: list[tuple[int, float]] = []
+
+    def _data_loss(self, prediction: Tensor, target: Tensor) -> Tensor:
+        if self.cfg.data_loss == "relative":
+            squared_error = (prediction - target).square().mean(dim=1)
+            target_energy = target.square().mean(dim=1).clamp_min(self.cfg.relative_loss_eps)
+            return (squared_error / target_energy).mean()
+        return F.mse_loss(prediction, target)
 
     def train(
         self,
@@ -156,7 +175,7 @@ class TEMPOOnlineTrainer:
 
                 s_hat, w = self.model(u0_b, kappa_b, means_dev, modes_dev)
 
-                l_data = F.mse_loss(s_hat, s_b)
+                l_data = self._data_loss(s_hat, s_b)
 
                 w_c = w.clamp(min=1e-8)
                 gamma_c = gamma_b.clamp(min=1e-8)
@@ -190,7 +209,7 @@ class TEMPOOnlineTrainer:
                         sv, _ = self.model(val_u0_sensors[i:i+256], val_kappa_d[i:i+256],
                                            means_dev, modes_dev)
                         parts.append(sv)
-                    vl = F.mse_loss(torch.cat(parts, dim=0), val_s_d).item()
+                    vl = self._data_loss(torch.cat(parts, dim=0), val_s_d).item()
                 self.model.train()
                 self.val_history.append((epoch, vl))
 
@@ -238,7 +257,8 @@ def build_tempo_online(
     m_sensors = math.ceil(Nx / cfg.sensor_stride)
     P_list = [_num_modes(t) for t in trainers]
 
-    gating = GatingNet(m_sensors, d_kappa, M, cfg.hidden_dim, cfg.n_layers)
+    gate_width = cfg.gate_hidden_dim if cfg.gate_hidden_dim is not None else cfg.hidden_dim
+    gating = GatingNet(m_sensors, d_kappa, M, gate_width, cfg.n_layers)
     branches = nn.ModuleList([
         BranchNet(m_sensors, P_list[m], cfg.hidden_dim, cfg.n_layers, d_kappa=d_kappa)
         for m in range(M)
