@@ -1,4 +1,4 @@
-"""Plot Coanda EM diagnostics and training losses."""
+"""Plot Coanda EM diagnostics and the first 200 training epochs."""
 import argparse
 from pathlib import Path
 import numpy as np
@@ -32,19 +32,21 @@ def training(z, output):
         ax.set_xlabel('EM iteration')
         clean(ax)
         ax.xaxis.set_major_locator(MaxNLocator(4, integer=True))
-    epochs = np.arange(1, len(d('online_data'))+1)
+    epochs = np.arange(1, min(200, len(d('online_data')))+1)
     ax = fig.add_subplot(gs[1, :3])
-    ax.plot(epochs, d('online_total'), label='Total', color=REGIMES[0])
-    ax.plot(epochs, d('online_data'), label='Data', color='#777777')
-    ax.set(xlabel='Epoch', ylabel='Training objective')
+    ax.plot(epochs, d('online_total')[:200], label='Total', color=REGIMES[0])
+    ax.plot(epochs, d('online_data')[:200], label='Data', color='#777777')
+    ax.set(xlabel='Epoch', ylabel='Training objective', xlim=(0, 200))
     ax.legend(ncol=2, loc='upper right', handlelength=1.2)
     clean(ax)
+    ax.set_xticks([0, 100, 200])
     ax = fig.add_subplot(gs[1, 3:])
-    ax.plot(epochs, d('online_kl'), label='KL', color=REGIMES[1])
-    ax.plot(epochs, d('online_ent'), label='Entropy', color=REGIMES[2])
-    ax.set(xlabel='Epoch', ylabel='Regularization')
+    ax.plot(epochs, d('online_kl')[:200], label='KL', color=REGIMES[1])
+    ax.plot(epochs, d('online_ent')[:200], label='Entropy', color=REGIMES[2])
+    ax.set(xlabel='Epoch', ylabel='Regularization', xlim=(0, 200))
     ax.legend(ncol=2, loc='upper right', handlelength=1.2)
     clean(ax)
+    ax.set_xticks([0, 100, 200])
     fig.text(.5, .985, 'TEMPO · Coanda', ha='center', va='top')
     save(fig, output/'coanda_training')
     plt.close(fig)

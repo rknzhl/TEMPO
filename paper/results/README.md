@@ -16,3 +16,6 @@ Sod and Coanda retain measurements of the same architectures with earlier weight
 Earlier timing records are retained with `current_table=false`.
 Parameter counts in `paper/configs/parameter_counts.json` use real scalars: one complex
 coefficient counts twice. Fixed POD arrays and Fourier buffers are excluded.
+
+`reconstruction/summary.json` contains the reconstruction diagnostics in Table A.7.
+`burgers_by_viscosity.json` contains common-test errors split by viscosity.

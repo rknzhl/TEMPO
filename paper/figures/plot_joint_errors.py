@@ -12,30 +12,29 @@ from matplotlib.text import Text
 from style import apply,size,REGIMES
 
 HERE=Path(__file__).resolve().parent
-CAPTION='Mean relative test errors. Error bars show sample standard deviations where repeated runs are available.'
+CAPTION='Mean relative $L^2$ test errors.'
 def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--data',type=Path,default=HERE);parser.add_argument('--out',type=Path,default=HERE);args=parser.parse_args()
     args.out.mkdir(parents=True,exist_ok=True);apply()
     source=args.data/'joint_test_errors_values.json';data=json.loads(source.read_text())
     values=np.asarray(data['percent_values'],dtype=float);stds=np.asarray(data['sample_sd_percent'],dtype=float)
-    assert values.shape==stds.shape==(3,len(data['tasks']))
+    assert values.shape==stds.shape==(4,len(data['tasks']))
     assert np.all(values[np.isfinite(values)]>0)
     assert np.all((stds[np.isfinite(stds)] >= 0))
     tasks=data['tasks'];names=data['display_names']
-    labels=['Global POD','TEMPO(POD)','TEMPO(NeuralPOD)']
+    labels=['Global POD','Global NeuralPOD','TEMPO(POD)','TEMPO(NeuralPOD)']
     fig,ax=plt.subplots(figsize=size(68));fig.subplots_adjust(left=.105,right=.99,bottom=.22,top=.82)
-    x=np.arange(len(tasks));width=.23;error_bars=[]
-    for i,(vals,sd,label,color) in enumerate(zip(values,stds,labels,[REGIMES[2],REGIMES[0],REGIMES[1]])):
+    x=np.arange(len(tasks));width=.18;error_bars=[]
+    for i,(vals,sd,label,color) in enumerate(zip(values,stds,labels,[REGIMES[2],REGIMES[3],REGIMES[0],REGIMES[1]])):
         finite=np.isfinite(vals)
-        ax.bar((x+(i-1)*width)[finite],vals[finite],width,label=label,color=color)
-        keep=np.isfinite(sd)&(sd>0);error_bars.append(keep.tolist())
-        ax.errorbar((x+(i-1)*width)[keep],vals[keep],yerr=sd[keep],fmt='none',ecolor='black',elinewidth=.6,capsize=1.5)
+        ax.bar((x+(i-1.5)*width)[finite],vals[finite],width,label=label,color=color)
+        error_bars.append([False] * len(tasks))
     ax.set_yscale('log');ax.set_ylim(.3,100);ax.set_ylabel('Relative $L^2$ error (%)',fontsize=9)
     ax.set_xticks(x,names);ax.tick_params(axis='x',length=0,pad=7);ax.tick_params(axis='both',labelsize=8.5)
     ax.set_yticks([.5,1,3,10,30,100],['0.5','1','3','10','30','100'])
     ax.spines[['top','right']].set_visible(False)
-    ax.legend(ncol=3,loc='lower center',bbox_to_anchor=(.5,1.035),columnspacing=1.7,handlelength=1.,fontsize=8.5)
+    ax.legend(ncol=4,loc='lower center',bbox_to_anchor=(.5,1.035),columnspacing=1.1,handlelength=1.,fontsize=8.5)
     fig.canvas.draw();renderer=fig.canvas.get_renderer()
     for item in fig.findobj(Text):
         if item.get_visible() and item.get_text():

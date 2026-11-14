@@ -1,0 +1,64 @@
+{
+  "models": [
+    {
+      "model_id": "burgers_original_deeponet_old100updates_seed39_20261109",
+      "checkpoint_sha256": "0f5aa7c0a290a404bb3ad2defea97e337baeb452a24a6b68d910047318eed5ea",
+      "n_test": 3000,
+      "mean_relative_l2": 0.358431220172582,
+      "by_viscosity": {
+        "0.001": 0.5036068672102963,
+        "0.1": 0.34348262294365944,
+        "1.0": 0.2282041703637902
+      },
+      "source_summary_sha256": "6014ad02142280752b03cc6b04dfed982bf72d3b7fc2cc97934322f9380d2d40"
+    },
+    {
+      "model_id": "global_pod96_seed42",
+      "checkpoint_sha256": "67ee4a1f578db275095ebccad40dda8376bf1ccc377d1db6ec64e2c51d5ac6eb",
+      "n_test": 3000,
+      "mean_relative_l2": 0.19368761294695763,
+      "by_viscosity": {
+        "0.001": 0.3285585971538944,
+        "0.1": 0.13364867461988678,
+        "1.0": 0.11885556706709174
+      },
+      "source_summary_sha256": "7bd1fbcd548ff37fae45ae4a1cf15f09163b02f3b50ad66ba0db1f1f74988aed"
+    },
+    {
+      "model_id": "joint_npod32_seed42",
+      "checkpoint_sha256": "e6b5039cf652ddf6e2b57f9544748000825e68e33d82fc9614330a783e30109d",
+      "n_test": 3000,
+      "mean_relative_l2": 0.23852594276843592,
+      "by_viscosity": {
+        "0.001": 0.36843077549617737,
+        "0.1": 0.16267318707704545,
+        "1.0": 0.18447386573208496
+      },
+      "source_summary_sha256": "20315df8577062de19d70f1f1029e7227b38628a4ac35a6f43d34663cd34c0ce"
+    },
+    {
+      "model_id": "night20261109_burgers_original_pod_m3k32_noise1_seed17",
+      "checkpoint_sha256": "1f61d627096d03baf45df29aace3250fc1c166575cca2be87cf824d24ddeb322",
+      "n_test": 3000,
+      "mean_relative_l2": 0.20541506737209805,
+      "by_viscosity": {
+        "0.001": 0.30698723120204496,
+        "0.1": 0.1427595082032056,
+        "1.0": 0.1664984627110436
+      },
+      "source_summary_sha256": "3fa1eed2fa8a54a8f70f97d7a075c9be3e4ffb93f81b8d688b4383d7d311b4ed"
+    },
+    {
+      "model_id": "burgers_original_pod_m4k16_total64_seed17_20261109",
+      "checkpoint_sha256": "86da29ebe677e3c4d6f15fb316029b7dd32f908518e07bf416a9020db83e4497",
+      "n_test": 3000,
+      "mean_relative_l2": 0.22522744665899783,
+      "by_viscosity": {
+        "0.001": 0.3376321670628881,
+        "0.1": 0.14997777482665267,
+        "1.0": 0.18807239808745257
+      },
+      "source_summary_sha256": "498c66218e92e3a7c28f0ea0e7df2f7dc169b5c6d8a35e5738cd273ef6f62a14"
+    }
+  ]
+}

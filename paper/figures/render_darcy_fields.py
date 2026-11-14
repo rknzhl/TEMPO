@@ -27,7 +27,7 @@ apply()
 fig = plt.figure(figsize=size(46))
 images = []
 for i, (field, x, title) in enumerate(zip(fields, [.06, .215, .37, .60, .765],
-        ['Reference', 'POD', 'NeuralPOD', 'Error (POD)', 'Error (NPOD)'])):
+        ['Reference', 'POD', 'NeuralPOD', 'POD error', 'NeuralPOD error'])):
     ax = fig.add_axes([x, .23, .135, .56])
     images.append(ax.imshow(field.T, origin='lower', extent=(0, 1, 0, 1),
                             cmap=POSITIVE if i < 3 else ERROR,

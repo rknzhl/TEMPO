@@ -1,0 +1,70 @@
+{
+  "table": "tab:frozen_reconstruction",
+  "metric": "Validation relative L2 percent; outside share uses squared relative errors.",
+  "models": [
+    {
+      "task": "burgers",
+      "basis": "POD",
+      "checkpoint_sha256": "f453f93c973856c9cff5a3057fd2f7f0c5d4202156abed0031e9901e346ffbce",
+      "best_local_LS_percent": 14.790063330206227,
+      "prediction_percent": 19.5692341186602,
+      "outside_relative_share_percent": 54.443215220877484
+    },
+    {
+      "task": "burgers",
+      "basis": "NeuralPOD",
+      "checkpoint_sha256": "55fa111e422f9ffd8b26f7720d8bf497ec99f5f392842e36ab4adae7cc23271b",
+      "best_local_LS_percent": 23.322101639188354,
+      "prediction_percent": 22.866204679974025,
+      "outside_relative_share_percent": 80.65335289345137
+    },
+    {
+      "task": "sod",
+      "basis": "POD",
+      "checkpoint_sha256": "11e8f1b31aab783045e1301ec8d96348f4c8039ecba86e68d5255c2cd4763c51",
+      "best_local_LS_percent": 3.1632691199139416,
+      "prediction_percent": 3.211331183630759,
+      "outside_relative_share_percent": 88.74183490129423
+    },
+    {
+      "task": "sod",
+      "basis": "NeuralPOD",
+      "checkpoint_sha256": "925f1cff39fb7d4c92aea7a8a71029ba7dc27294ee62662f249148387bde8a71",
+      "best_local_LS_percent": 4.189889946264821,
+      "prediction_percent": 4.190902626818425,
+      "outside_relative_share_percent": 89.06226873585564
+    },
+    {
+      "task": "coanda",
+      "basis": "POD",
+      "checkpoint_sha256": "6e7fdb1079e8e8509a3c024a5ba5525209e9d3d57bec207b00a408f6c25134d6",
+      "best_local_LS_percent": 0.13956792024252881,
+      "prediction_percent": 0.807780304424645,
+      "outside_relative_share_percent": 1.9509475436192882
+    },
+    {
+      "task": "coanda",
+      "basis": "NeuralPOD",
+      "checkpoint_sha256": "503f9133fe2fc51641ba6c3f0aa8b17da39c6a8cc078995cfeee2d29b7ac5f4a",
+      "best_local_LS_percent": 0.6915062909064539,
+      "prediction_percent": 0.8026434058563943,
+      "outside_relative_share_percent": 53.092664849860526
+    },
+    {
+      "task": "helmholtz",
+      "basis": "POD",
+      "checkpoint_sha256": "079400dcb94a6d527f3eb7536955d5dc4078ace71a38df1f725561e419f4027f",
+      "best_local_LS_percent": 2.7967130111087872,
+      "prediction_percent": 3.5877782213727505,
+      "outside_relative_share_percent": 32.10579709449885
+    },
+    {
+      "task": "helmholtz",
+      "basis": "NeuralPOD",
+      "checkpoint_sha256": "cd4dc7e6658a1b7bd97d0881c61590b848d340da76e59149c9b349abe22f652a",
+      "best_local_LS_percent": 4.86035631242845,
+      "prediction_percent": 5.903258367213031,
+      "outside_relative_share_percent": 59.79574091475247
+    }
+  ]
+}

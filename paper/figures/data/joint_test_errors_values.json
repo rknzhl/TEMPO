@@ -10,6 +10,7 @@
   ],
   "methods": [
     "global_pod_total",
+    "global_npod",
     "tempo_pod",
     "tempo_npod"
   ],
@@ -21,6 +22,14 @@
       2.2539307284390575,
       17.29007056300611,
       14.865426284560467
+    ],
+    [
+      23.852594276843593,
+      6.526847905564346,
+      9.117408023920296,
+      2.2798611654417105,
+      51.17092207074165,
+      55.164557535183704
     ],
     [
       18.610750124308677,
@@ -51,6 +60,14 @@
     [
       null,
       null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
       0.06472418409329453,
       null,
       null,
@@ -66,6 +83,14 @@
     ]
   ],
   "runs": [
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
     [
       1,
       1,
@@ -217,11 +242,47 @@
       "method": "tempo_npod",
       "path": "artifacts/checkpoints/darcy/tempo_neuralpod2x32_seed17/checkpoint.pt",
       "sha256": "ec49412c374c8306dc4162df196e3c491465e1e437537120d8604807ef431431"
+    },
+    {
+      "task": "burgers_original",
+      "method": "global_npod",
+      "path": "artifacts/checkpoints/burgers_original/joint_npod32_seed42/weights.pt",
+      "sha256": "e6b5039cf652ddf6e2b57f9544748000825e68e33d82fc9614330a783e30109d"
+    },
+    {
+      "task": "sod",
+      "method": "global_npod",
+      "path": "artifacts/checkpoints/sod/neuralpod_sod_matched_width_20261112/checkpoint.pt",
+      "sha256": "0d6eee81ceda8b6ab09063b143d62f47b043cc00c48544b8f7da928c3c9d5e95"
+    },
+    {
+      "task": "coanda",
+      "method": "global_npod",
+      "path": "artifacts/checkpoints/coanda/neuralpod_coanda_matched_width_20261112/checkpoint.pt",
+      "sha256": "ab677587ee17e8b21793202c702842006ebc659f1e5b0e9048f647ddcc0ff752"
+    },
+    {
+      "task": "darcy_stationary",
+      "method": "global_npod",
+      "path": "artifacts/checkpoints/darcy/global_neuralpod64_seed17/checkpoint.pt",
+      "sha256": "c05fb5d996d6cc536cc75f5e5c720203d0be37f963a326f48b8344b04c62503f"
+    },
+    {
+      "task": "navier_stokes",
+      "method": "global_npod",
+      "path": "artifacts/checkpoints/navier_stokes/npod_deeponet_ns_joint_v1_complete/weights.pt",
+      "sha256": "f32a7089cd23637d047c971a58dd25a90212949de7547580f848f3b7b34eb3e8"
+    },
+    {
+      "task": "helmholtz_four_omega",
+      "method": "global_npod",
+      "path": "artifacts/checkpoints/helmholtz_four_omega/neuralpod_helmholtz_matched_width_20261112/checkpoint.pt",
+      "sha256": "fd76b099199bda0a54c07f53baf634b36b6592982dfbafaa981deebcfff3a028"
     }
   ],
   "source_files": {
     "results/online_refinement/selection.json": "b26b9ffbaad62be64bbb054f70f95adcddb66b313c9a0d3fd2ec0993417ad4cc",
-    "results/summary.csv": "c1d94b78d3f59f5aa1ccce422d60adb4c39d0656e2afa01d5732d158cd7abf52",
+    "results/summary.csv": "1ac69f9178a5908be2f698761c725ce8e7a18dad7e2654b3ba44685919958672",
     "configs/sod_capacity.json": "a92d5aed6506b3152fa4427dd02bd862315ccdcf699486236d644f07ff375d38",
     "configs/refinement.json": "c68bb11be5bed2154e877818d46259131ff758c075c4ee2ae584596ed86b3d1d",
     "results/refinement/burgers_test.npz": "52f7367e99c7bbeee26b2adb645bd0523e716d761b1dd53a9a72c917cfae0d28",
@@ -229,8 +290,9 @@
     "results/refinement/sod_test.npz": "22bd860d6cf72f8446b9ac5e450f4542359032f733330a075f36401d5313c26d",
     "results/refinement/coanda_test.npz": "023085d0f8f736628c41e1f5fda59c0c41a611b74ed2db2baff6351772871177",
     "results/refinement/helmholtz_test.npz": "bfdf93dc8b2a8a7b7328c21e3938f671a36dec7f425e0b572f57f28bba94fcaf",
-    "configs/checkpoints.json": "d54d60d87f8ba5fe4390423dcb750a23e35b60d1af41e78b70b68b76c321b3bf",
-    "results/darcy/summary.json": "4f4cc05309fc00a6b500ddc94bd40f6757a56808f35944e730a8c21ee1218179"
+    "configs/checkpoints.json": "10263f7bbce1aa481812ea2d980463bbb404181a4ac511c9ca05248ddca03a02",
+    "results/darcy/summary.json": "4f4cc05309fc00a6b500ddc94bd40f6757a56808f35944e730a8c21ee1218179",
+    "artifacts/checkpoints/navier_stokes/npod_deeponet_ns_joint_v1_complete/metrics.json": "dd499431c042aa439a32a17327e74b4a98456befe98cd4d315cfcb0797ce560f"
   },
   "display_names": [
     "Burgers'",

@@ -45,8 +45,8 @@
     },
     {
       "path": "data/joint_test_errors_values.json",
-      "bytes": 8553,
-      "sha256": "20ce6f0d49769b6b6c38e2bf300940c5a25899f1d62270e44bb7f315d59c8a69"
+      "bytes": 10572,
+      "sha256": "f728de84de00760e4a230921f85d7482b1590933ef124ac3f5a1ddc56adea538"
     },
     {
       "path": "data/neuralpod_fields/burgers.npz",
@@ -97,7 +97,7 @@
   "assets": [
     {
       "file": "joint_test_errors.pdf",
-      "sha256": "f550d50faab0a90c52cc7ccd2809032a9ea00e5d63386d146e894d2eaef85d73",
+      "sha256": "93ad93463e6c8e52070fb46483371c081f5feb7a9f88f56e8bc70bdc8f863c0a",
       "reproduction": "frozen_numeric_inputs",
       "archive": "output/joint_test_errors.pdf",
       "renderer": "plot_joint_errors.py",
@@ -140,7 +140,7 @@
     },
     {
       "file": "darcy_fields.pdf",
-      "sha256": "284cf32970c587ebf6ad5453b5629778607c47413e9d5d588ae9aa9ffe29db79",
+      "sha256": "506f7ad4892de59bf7b4dd1705d8cc188b37dd3f7b996e2e8fadb3633251ecfc",
       "reproduction": "frozen_numeric_inputs",
       "archive": "output/darcy_fields.pdf",
       "renderer": "render_darcy_fields.py",
@@ -150,7 +150,7 @@
     },
     {
       "file": "coanda_training.pdf",
-      "sha256": "ce6f8d7d7aa67e4ad5814ccf3dff47e72333dc5c486ca0cca9148084ac179e49",
+      "sha256": "8a3876c1f92631614206802304a76e96f4903cb5f5d4e99f8381f9fe7f48f2f8",
       "reproduction": "frozen_numeric_inputs",
       "archive": "output/coanda_training.pdf",
       "renderer": "plot_coanda_training.py",
@@ -170,7 +170,7 @@
     },
     {
       "file": "sod_fields_combined.pdf",
-      "sha256": "6aa3c738ea21f0f8d7f2ddd48e2cb5c58eb93a61170da7ed0ed7e3a95e2c15f3",
+      "sha256": "329e91834fc753172a1e80a29f99ab8cd48ba720f64a77240f59fe73facb1bc5",
       "reproduction": "frozen_numeric_inputs",
       "archive": "output/sod_fields_combined.pdf",
       "renderer": "render_neuralpod_fields.py",
@@ -200,7 +200,7 @@
     },
     {
       "file": "helmholtz_four_omega_fields.pdf",
-      "sha256": "4d383cb6080dfaf5aab31860267749204217fc83921561889a0fd6cc6f1a9e6b",
+      "sha256": "398c1842c3ac803f914bd367f7f639031e09c6e9ebaf7f8e42abcc167fd8512f",
       "reproduction": "frozen_numeric_inputs",
       "archive": "output/helmholtz_four_omega_fields.pdf",
       "renderer": "render_neuralpod_fields.py",
@@ -244,8 +244,8 @@
     },
     {
       "path": "plot_coanda_training.py",
-      "bytes": 2613,
-      "sha256": "f46bc0d5c3285f8361bca901360e9ab2fb31aa3996b08ff3c95185e56e9c5b6c"
+      "bytes": 2757,
+      "sha256": "06c41024b01eb7972246c7e40848e674c47609043fcac133c03e08ce04ded965"
     },
     {
       "path": "plot_combined_regimes.py",
@@ -254,8 +254,8 @@
     },
     {
       "path": "plot_joint_errors.py",
-      "bytes": 3854,
-      "sha256": "3c807e5a1fd52f776fdce9b81494f167fbb30b0db290e520e6bfdd97819a1199"
+      "bytes": 3673,
+      "sha256": "7e0a8385bd3747520febb8870334fda6ccd6c9ec05fdbb3659032f8937ea2c95"
     },
     {
       "path": "render_all.py",
@@ -264,13 +264,13 @@
     },
     {
       "path": "render_darcy_fields.py",
-      "bytes": 2750,
-      "sha256": "1b92352140e935e9d034578d156e5d4b0664f33c277b5b60c8c197fb14d89f00"
+      "bytes": 2751,
+      "sha256": "d1236593cd8d1dd3b1292f1fd09fbc557c40c15894e0303e9e975540ac43ffd8"
     },
     {
       "path": "render_neuralpod_fields.py",
-      "bytes": 8436,
-      "sha256": "51c28edb2e2f65d5670dad6530583c19502fdd162bc85a13a6879896d21a0e4c"
+      "bytes": 8450,
+      "sha256": "5b0ed0ef1cd3e721894f1d676fc06dd3db8f45fdd0d3d8fe4b5f89752930cc26"
     },
     {
       "path": "style.py",

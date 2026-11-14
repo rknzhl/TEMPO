@@ -65,7 +65,7 @@ def grid(rows, name, task, height):
     width = .205 if methods==1 else .12
     fieldbar = .585 if methods==1 else .375
     errorbar = .915 if methods==1 else .915
-    titles = ['Reference', 'TEMPO', 'Error'] if methods==1 else ['Reference', 'POD', 'Error', 'NeuralPOD', 'Error']
+    titles = ['Reference', 'TEMPO', 'Error'] if methods==1 else ['Reference', 'POD', 'POD error', 'NeuralPOD', 'NeuralPOD error']
     fig = plt.figure(figsize=style.size(height))
     for left, title in zip(lefts, titles):
         fig.text(left+width/2, .985, title, ha='center', va='top', fontsize=8)
