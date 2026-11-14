@@ -57,8 +57,9 @@ The five task configurations are indexed in `paper/configs/refinement.json`.
 
 - `summarize.py refinement`: paired test errors.
 - `summarize.py regimes`: the main Burgers model's regime weights.
-- `paper/results/parameter_ablation/`: the training-mean parameter experiment.
-- `paper/results/parameter_estimation/`: known versus estimated parameters.
+- `python scripts/paper/check_parameter_ablation.py`: parameter replacement errors.
+- `python scripts/paper/check_parameter_estimation.py`: known versus estimated parameters.
+- `python scripts/paper/check_adaptive_updates.py`: Burgers EM update branches.
 - `paper/configs/sod_capacity.json`: the compact Sod models and training settings.
 
 The NS Re estimator uses the initial velocity field. Its weights and training
