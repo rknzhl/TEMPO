@@ -50,7 +50,3 @@ Task settings are in `paper/configs/`; test errors and timings are in `paper/res
 python paper/figures/render_all.py --out output/figures
 python -m unittest discover -s tests
 ```
-
-The figure command builds all 14 article figures using the shared style.
-Joint NeuralPOD refinement is implemented in `models/neural_refinement.py`;
-settings are indexed in `paper/configs/refinement.json`.
