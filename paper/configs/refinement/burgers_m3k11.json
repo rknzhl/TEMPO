@@ -1,0 +1,35 @@
+{
+  "seed": 17,
+  "source_sha256": "55fa111e422f9ffd8b26f7720d8bf497ec99f5f392842e36ab4adae7cc23271b",
+  "target_units": "prepared",
+  "basis": {
+    "steps": 200,
+    "lr": 0.0001,
+    "coefficient_every": 25,
+    "trajectory_batch": 64,
+    "coordinate_batch": 8192,
+    "relative": false,
+    "normalize_modes": true,
+    "patience": 75
+  },
+  "em_steps": 2,
+  "online": {
+    "epochs": 200,
+    "batch_size": 256,
+    "gate_lr": 3e-05,
+    "hidden_lr": 0.0001,
+    "head_lr": 0.0003,
+    "patience": 40
+  },
+  "subsequent_steps": 100,
+  "initialization": {
+    "checkpoint": "artifacts/checkpoints/burgers_original/tempo_npod_joint_seed17/checkpoint.pt",
+    "keep_first_modes_per_regime": 11
+  },
+  "ranks": [
+    11,
+    11,
+    11
+  ],
+  "recalibrate_noise": true
+}

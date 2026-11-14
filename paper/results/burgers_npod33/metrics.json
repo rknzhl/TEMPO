@@ -1,0 +1,28 @@
+{
+  "model_id": "tempo_npod_m3k11_seed17",
+  "checkpoint_sha256": "55643dd38cfb397a38c5ea9f1f5a862cf26163e09f4c3b37271c15532b732de2",
+  "seed": 17,
+  "ranks": [
+    11,
+    11,
+    11
+  ],
+  "grid": [
+    201,
+    1024
+  ],
+  "train": 10800,
+  "validation": 1200,
+  "n_test": 3000,
+  "test_mean": 0.2245478304457174,
+  "test_by_parameter": {
+    "0.001": 0.3620613572751356,
+    "0.1": 0.15341944330291946,
+    "1.0": 0.1581626907590972
+  },
+  "validation_error": 0.2373256049452895,
+  "neural_parameters": 2600520,
+  "same_test_as": "tempo_npod_joint_seed17",
+  "standard_ms": 0.39393049999999996,
+  "cuda_graph_ms": 0.196491
+}

@@ -1377,6 +1377,32 @@
       "paper_tables": [
         "tab:adaptive"
       ]
+    },
+    {
+      "task": "burgers_original",
+      "method": "tempo_npod_m3k11",
+      "id": "tempo_npod_m3k11_seed17",
+      "seed": 17,
+      "path": "artifacts/checkpoints/burgers_original/tempo_npod_m3k11_seed17/checkpoint.pt",
+      "sha256": "55643dd38cfb397a38c5ea9f1f5a862cf26163e09f4c3b37271c15532b732de2",
+      "bytes": 16364438,
+      "scope": "additional_mode_budget",
+      "config": "paper/configs/refinement/burgers_m3k11.json",
+      "metrics": "paper/results/burgers_npod33/metrics.json",
+      "ranks": [
+        11,
+        11,
+        11
+      ],
+      "grid": [
+        201,
+        1024
+      ],
+      "split": {
+        "train": 10800,
+        "validation": 1200,
+        "test": 3000
+      }
     }
   ],
   "historical_table_checkpoints": [

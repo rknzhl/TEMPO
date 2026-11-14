@@ -951,6 +951,17 @@
       "torch_parameter_entries": 2287298,
       "complex_parameter_entries": 0,
       "real_parameter_count": 2287298
+    },
+    {
+      "task": "burgers",
+      "id": "tempo_npod_m3k11_seed17",
+      "method": "tempo_npod_m3k11",
+      "seed": 17,
+      "path": "artifacts/checkpoints/burgers_original/tempo_npod_m3k11_seed17/checkpoint.pt",
+      "sha256": "55643dd38cfb397a38c5ea9f1f5a862cf26163e09f4c3b37271c15532b732de2",
+      "torch_parameter_entries": 2600520,
+      "complex_parameter_entries": 0,
+      "real_parameter_count": 2600520
     }
   ],
   "historical_burgers_fno": [
