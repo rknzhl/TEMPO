@@ -27,10 +27,10 @@ FNO uses `neuraloperator==2.0.0`; CNO source information is in
 ## Models
 
 Weights and settings are indexed in `paper/configs/checkpoints.json`.
-Unpack the model bundle from the repository root:
+Download [trained models](https://github.com/rknzhl/TEMPO/releases/download/models-v1/TEMPO_models_main.tar.xz) into `artifacts/` and extract from the repository root:
 
 ```sh
-tar -xf artifacts/TEMPO-models.tar
+tar -xf artifacts/TEMPO_models_main.tar.xz
 ```
 
 Predict a Darcy pressure field:
